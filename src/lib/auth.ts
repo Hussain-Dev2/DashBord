@@ -1,21 +1,15 @@
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
-const clientId = process.env.GOOGLE_CLIENT_ID
-const clientSecret = process.env.GOOGLE_CLIENT_SECRET
-
-if (!clientId || !clientSecret) {
-  console.error("Missing Google Client ID or Secret")
-}
-
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: clientId || "",
-      clientSecret: clientSecret || "",
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
   pages: {
     signIn: '/login',
   },
