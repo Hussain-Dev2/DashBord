@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Status {
+  LEAD
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+model Client {
+  id          String   @id @default(uuid())
+  name        String
+  industry    String?
+  logoUrl     String?
+  projectUrl  String?
+  repoUrl     String?
+  phone       String?
+  
+  status      Status   @default(LEAD)
+  
+  priceQuoted Decimal? @default(0)
+  amountPaid  Decimal? @default(0)
+  
+  notes       Note[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+}
