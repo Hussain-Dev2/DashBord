@@ -1,12 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/app/actions'
-import { useRouter } from 'next/navigation'
+import { useClients } from '@/contexts/ClientsContext'
 import { X, Plus } from 'lucide-react'
 
 export function CreateClientModal() {
-  const router = useRouter()
+  const { addClient } = useClients()
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
@@ -25,7 +24,7 @@ export function CreateClientModal() {
     setIsSubmitting(true)
     
     try {
-      await createClient(formData)
+      await addClient(formData)
       setIsOpen(false)
       setFormData({
         name: '',
@@ -37,10 +36,9 @@ export function CreateClientModal() {
         priceQuoted: 0,
         amountPaid: 0,
       })
-      router.refresh()
     } catch (error) {
       console.error('Failed to create client:', error)
-      alert('Failed to create client')
+      // Toast is handled in context
     } finally {
       setIsSubmitting(false)
     }

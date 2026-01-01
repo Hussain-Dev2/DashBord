@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Search, Filter, MoreHorizontal, ExternalLink, Eye } from 'lucide-react'
+import { useClients } from '@/contexts/ClientsContext'
+import { Search, Filter, MoreHorizontal, ExternalLink, Eye, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { formatCurrency, formatDate } from '@/lib/format'
 
@@ -15,11 +16,12 @@ type Client = {
   phone: string | null
   priceQuoted: number
   amountPaid: number
-  updatedAt: Date
+  updatedAt: Date | string // Date or string (iso)
   logoUrl: string | null
 }
 
 export function ClientTable({ clients }: { clients: Client[] }) {
+  const { deleteClientFn, isLoading } = useClients()
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('ALL')
   const router = useRouter()
@@ -39,6 +41,12 @@ export function ClientTable({ clients }: { clients: Client[] }) {
       case 'PENDING': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'
       case 'SUSPENDED': return 'bg-red-500/10 text-red-500 border-red-500/20'
       default: return 'bg-blue-500/10 text-blue-500 border-blue-500/20' // LEAD
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (confirm('Are you sure you want to delete this client?')) {
+        await deleteClientFn(id)
     }
   }
 
@@ -115,23 +123,30 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-gray-400">
-                    {formatDate(client.updatedAt)}
+                    {formatDate(new Date(client.updatedAt))}
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Link href={`/admin/clients/${client.id}`} className="p-2 hover:bg-white/10 rounded-md text-gray-400 hover:text-white transition-colors">
                             <Eye className="h-4 w-4" />
                         </Link>
+                        <button 
+                            onClick={() => handleDelete(client.id)}
+                            disabled={isLoading}
+                            className="p-2 hover:bg-red-500/10 rounded-md text-gray-400 hover:text-red-500 transition-colors disabled:opacity-50"
+                        >
+                            <Trash2 className="h-4 w-4" />
+                        </button>
                     </div>
                   </td>
                 </tr>
             )})}
             {filteredClients.length === 0 && (
-                <tr>
-                    <td colSpan={5} className="px-6 py-8 text-center text-gray-500">
-                        No clients found matching your search.
-                    </td>
-                </tr>
+              <tr>
+                  <td colSpan={5} className="px-6 py-8 text-center text-gray-500">
+                      No clients found matching your search.
+                  </td>
+              </tr>
             )}
           </tbody>
         </table>

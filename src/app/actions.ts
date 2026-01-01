@@ -3,31 +3,58 @@
 import { prisma } from '@/lib/prisma'
 import { Status, Client } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import { ADMIN_EMAIL, SAMPLE_CLIENTS } from '@/lib/constants'
 
 export async function getClients() {
-  const clients = await prisma.client.findMany({
-    orderBy: { updatedAt: 'desc' },
-    include: { notes: true }
-  })
-  return clients.map(client => ({
-    ...client,
-    priceQuoted: client.priceQuoted?.toNumber() ?? 0,
-    amountPaid: client.amountPaid?.toNumber() ?? 0,
-  }))
+  const session = await getServerSession(authOptions)
+  const isAdmin = session?.user?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+
+  if (!isAdmin) {
+    return SAMPLE_CLIENTS
+  }
+
+  try {
+    const clients = await prisma.client.findMany({
+      orderBy: { updatedAt: 'desc' },
+      include: { notes: true }
+    })
+    return clients.map(client => ({
+      ...client,
+      priceQuoted: client.priceQuoted?.toNumber() ?? 0,
+      amountPaid: client.amountPaid?.toNumber() ?? 0,
+    }))
+  } catch (error) {
+    console.error("Database Error: Failed to fetch clients. Falling back to sample data.", error)
+    return SAMPLE_CLIENTS
+  }
 }
 
 export async function getClient(id: string) {
-  const client = await prisma.client.findUnique({
-    where: { id },
-    include: { notes: { orderBy: { createdAt: 'desc' } } }
-  })
-  
-  if (!client) return null
-  
-  return {
-    ...client,
-    priceQuoted: client.priceQuoted?.toNumber() ?? 0,
-    amountPaid: client.amountPaid?.toNumber() ?? 0,
+  const session = await getServerSession(authOptions)
+  const isAdmin = session?.user?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+
+  if (!isAdmin) {
+    return SAMPLE_CLIENTS.find(c => c.id === id) || null
+  }
+
+  try {
+    const client = await prisma.client.findUnique({
+      where: { id },
+      include: { notes: { orderBy: { createdAt: 'desc' } } }
+    })
+    
+    if (!client) return null
+    
+    return {
+      ...client,
+      priceQuoted: client.priceQuoted?.toNumber() ?? 0,
+      amountPaid: client.amountPaid?.toNumber() ?? 0,
+    }
+  } catch (error) {
+    console.error(`Database Error: Failed to fetch client ${id}. Checking sample data.`, error)
+    return SAMPLE_CLIENTS.find(c => c.id === id) || null
   }
 }
 
@@ -41,6 +68,11 @@ export async function createClient(data: {
   priceQuoted?: number
   amountPaid?: number
 }) {
+  const session = await getServerSession(authOptions)
+  if (session?.user?.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    throw new Error("Unauthorized")
+  }
+
   await prisma.client.create({
     data: {
       name: data.name,
@@ -58,6 +90,11 @@ export async function createClient(data: {
 }
 
 export async function updateClientStatus(id: string, status: Status) {
+  const session = await getServerSession(authOptions)
+  if (session?.user?.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    throw new Error("Unauthorized")
+  }
+  
   await prisma.client.update({
     where: { id },
     data: { status }
@@ -67,6 +104,11 @@ export async function updateClientStatus(id: string, status: Status) {
 }
 
 export async function addNote(clientId: string, content: string) {
+  const session = await getServerSession(authOptions)
+  if (session?.user?.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    throw new Error("Unauthorized")
+  }
+
   await prisma.note.create({
     data: {
       content,
@@ -87,6 +129,11 @@ export async function updateClient(id: string, data: {
   priceQuoted?: number
   amountPaid?: number
 }) {
+  const session = await getServerSession(authOptions)
+  if (session?.user?.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    throw new Error("Unauthorized")
+  }
+
   await prisma.client.update({
     where: { id },
     data: {
@@ -106,6 +153,11 @@ export async function updateClient(id: string, data: {
 }
 
 export async function deleteClient(id: string) {
+  const session = await getServerSession(authOptions)
+  if (session?.user?.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    throw new Error("Unauthorized")
+  }
+
   await prisma.client.delete({
     where: { id }
   })

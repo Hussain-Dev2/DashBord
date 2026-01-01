@@ -1,6 +1,8 @@
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
+import { ADMIN_EMAIL } from "./constants"
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -14,7 +16,10 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
   },
   callbacks: {
-    async session({ session, token }) {
+    async session({ session }) {
+      if (session.user?.email) {
+        session.user.isAdmin = session.user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+      }
       return session
     },
   },

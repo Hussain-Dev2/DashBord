@@ -4,4 +4,5 @@ export default withAuth({
   secret: process.env.NEXTAUTH_SECRET || "secret",
 })
 
-export const config = { matcher: ["/admin/:path*"] }
+// Public access to admin dashboard for demo mode
+export const config = { matcher: [] }
