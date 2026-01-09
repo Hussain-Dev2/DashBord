@@ -1,10 +1,10 @@
 'use client'
 
-import { DollarSign } from 'lucide-react'
+import { DollarSign, Loader2 } from 'lucide-react'
 import { useCurrency } from '@/contexts/CurrencyContext'
 
 export function CurrencySelector() {
-  const { currency, setCurrency, exchangeRate, lastUpdated } = useCurrency()
+  const { currency, setCurrency, exchangeRate, lastUpdated, isLoading } = useCurrency()
 
   return (
     <div className="relative group">
@@ -34,8 +34,13 @@ export function CurrencySelector() {
       
       {/* Tooltip showing exchange rate */}
       <div className="absolute top-full mt-2 right-0 bg-nexa-gray/95 border border-nexa-gold/30 rounded-lg px-3 py-2 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
-        <div className="text-nexa-gold font-semibold">USD → IQD</div>
-        <div className="text-gray-300">1 USD = {exchangeRate.toLocaleString('en-US', { maximumFractionDigits: 2 })} IQD</div>
+        <div className="text-nexa-gold font-semibold flex items-center gap-2">
+          USD → IQD
+          {isLoading && <Loader2 className="h-3 w-3 animate-spin" />}
+        </div>
+        <div className="text-gray-300">
+          1 USD = {exchangeRate.toLocaleString('en-US', { maximumFractionDigits: 2 })} IQD
+        </div>
         {lastUpdated && (
           <div className="text-gray-500 text-[10px] mt-1">Updated: {lastUpdated}</div>
         )}
