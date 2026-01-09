@@ -1,8 +1,24 @@
 'use client'
 
 import { signIn } from 'next-auth/react'
+import { useSearchParams } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
 
-export default function LoginPage() {
+function LoginContent() {
+  const searchParams = useSearchParams()
+  const error = searchParams.get('error')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    if (error === 'OAuthSignin') {
+      setErrorMessage('Error initializing Google Sign-In. Please check your server configuration (Client ID/Secret).')
+    } else if (error === 'OAuthCallback') {
+      setErrorMessage('Error during Google Sign-In callback. Please try again.')
+    } else if (error) {
+      setErrorMessage(`Authentication Error: ${error}`)
+    }
+  }, [error])
+
   return (
     <div className="min-h-screen bg-nexa-black flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-nexa-gray/30 border border-white/10 p-8 rounded-xl shadow-2xl">
@@ -13,6 +29,12 @@ export default function LoginPage() {
             <p className="text-gray-400">Admin Portal Access</p>
         </div>
         
+        {errorMessage && (
+            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 text-sm text-center">
+                {errorMessage}
+            </div>
+        )}
+
         <div className="space-y-4">
             <button 
                 onClick={() => signIn('google', { callbackUrl: '/admin' })}
@@ -33,5 +55,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   )
 }
