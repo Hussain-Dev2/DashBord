@@ -4,7 +4,7 @@ import { Client, Status } from '@prisma/client'
 export const ADMIN_EMAIL = 'devhussain90@gmail.com'
 
 // Helper type for the sample clients, omitting fields that might be problematic or adding related types
-// We use 'any' for Decimal fields in this sample array to avoid Decimal object instantiation issues in simple constants,
+// We use 'any' for Decimal fields in this sample array to avoid Decimal object instantiation issues in simple constants, 
 // but in a real app we might want to be more strict. The UI handles numbers/Decimals usually.
 export const SAMPLE_CLIENTS: (Omit<Client, 'priceQuoted' | 'amountPaid'> & { 
   priceQuoted: number, 

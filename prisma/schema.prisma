@@ -30,6 +30,7 @@ model Client {
   amountPaid  Decimal? @default(0)
   
   notes       Note[]
+  payments    Payment[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -39,6 +40,15 @@ model Note {
   id        String   @id @default(uuid())
   content   String
   createdAt DateTime @default(now())
+  
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  amount    Decimal
+  date      DateTime @default(now())
   
   clientId  String
   client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)

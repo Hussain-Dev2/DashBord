@@ -69,7 +69,7 @@ export function ClientsProvider({
     }
   }, [clients, session, isAdmin])
 
-  const addClient = async (data: any) => {
+  const addClient = React.useCallback(async (data: any) => {
     setIsLoading(true)
     if (isAdmin) {
       try {
@@ -95,9 +95,9 @@ export function ClientsProvider({
       toast.success('Demo: Client created (Local Only)')
     }
     setIsLoading(false)
-  }
+  }, [isAdmin, router])
 
-  const updateClientFn = async (id: string, data: any) => {
+  const updateClientFn = React.useCallback(async (id: string, data: any) => {
     setIsLoading(true)
     if (isAdmin) {
       try {
@@ -113,9 +113,9 @@ export function ClientsProvider({
       toast.success('Demo: Client updated (Local Only)')
     }
     setIsLoading(false)
-  }
+  }, [isAdmin, router])
 
-  const updateStatusFn = async (id: string, status: Status) => {
+  const updateStatusFn = React.useCallback(async (id: string, status: Status) => {
     if (isAdmin) {
       try {
         await updateClientStatus(id, status)
@@ -129,9 +129,9 @@ export function ClientsProvider({
        setClients(prev => prev.map(c => c.id === id ? { ...c, status } : c))
        toast.success('Demo: Status updated (Local Only)')
     }
-  }
+  }, [isAdmin, router])
 
-  const deleteClientFn = async (id: string) => {
+  const deleteClientFn = React.useCallback(async (id: string) => {
     setIsLoading(true)
     if (isAdmin) {
       try {
@@ -147,26 +147,28 @@ export function ClientsProvider({
       toast.success('Demo: Client deleted (Local Only)')
     }
     setIsLoading(false)
-  }
+  }, [isAdmin, router])
 
-  const resetDemoData = () => {
+  const resetDemoData = React.useCallback(() => {
     if (isAdmin) return
     localStorage.removeItem('demo_clients')
     // User requested reset to clear EVERYTHING (0 earnings)
     setClients([]) 
     toast.info('Demo data cleared')
-  }
+  }, [isAdmin])
+
+  const value = React.useMemo(() => ({
+    clients, 
+    addClient, 
+    updateClientFn, 
+    deleteClientFn, 
+    updateStatusFn,
+    resetDemoData,
+    isLoading 
+  }), [clients, addClient, updateClientFn, deleteClientFn, updateStatusFn, resetDemoData, isLoading])
 
   return (
-    <ClientsContext.Provider value={{ 
-      clients, 
-      addClient, 
-      updateClientFn, 
-      deleteClientFn, 
-      updateStatusFn,
-      resetDemoData,
-      isLoading 
-    }}>
+    <ClientsContext.Provider value={value}>
       {children}
     </ClientsContext.Provider>
   )

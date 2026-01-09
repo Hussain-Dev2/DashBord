@@ -5,6 +5,8 @@ import { ArrowLeft, ExternalLink, Phone, Github, Globe, FileText, Send, DollarSi
 import { Status } from '@prisma/client'
 import { formatCurrency, formatDateTime } from '@/lib/format'
 import { ClientEditForm } from '@/components/ClientEditForm'
+import { QuickPaymentUpdate } from '@/components/QuickPaymentUpdate'
+import { PaymentHistory } from '@/components/PaymentHistory'
 
 // Helper for WhatsApp Link
 function getWhatsAppLink(phone: string | null) {
@@ -90,7 +92,11 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
                     <TrendingUp className="h-4 w-4" />
                     Amount Paid
                   </span>
-                  <span className="text-xl font-bold text-green-400">${formatCurrency(client.amountPaid)}</span>
+                  <QuickPaymentUpdate 
+                    clientId={client.id}
+                    currentAmount={client.amountPaid || 0}
+                    totalAmount={client.priceQuoted || 0}
+                  />
                 </div>
                 {/* Progress Bar */}
                 <div className="mt-3">
@@ -148,6 +154,8 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
               )}
             </div>
           </div>
+          
+          <PaymentHistory payments={client?.payments || []} />
         </div>
 
         {/* Right Column: Interaction Log */}

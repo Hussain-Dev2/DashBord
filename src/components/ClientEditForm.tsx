@@ -20,6 +20,14 @@ type Client = {
   amountPaid: number
 }
 
+// Helper to convert number to string for input, but keep 0 as 0 if user explicitly typed it? 
+// Actually for edit form, we usually WANT to show the current value (e.g. 500). 
+// But if it is 0, we might want to show "0" or empty? 
+// The user complaint was "cant add number i must delele the zero".
+// This implies when they see "0", they click and type "5" and get "05" or have to backspace.
+// So if the value is 0, we should probably show "" or allow them to clear it easily.
+// Let's use string state to allow empty string.
+
 export function ClientEditForm({ client }: { client: Client }) {
   const router = useRouter()
   const [isEditing, setIsEditing] = useState(false)
@@ -34,8 +42,8 @@ export function ClientEditForm({ client }: { client: Client }) {
     projectUrl: client.projectUrl || '',
     repoUrl: client.repoUrl || '',
     status: client.status,
-    priceQuoted: client.priceQuoted,
-    amountPaid: client.amountPaid,
+    priceQuoted: client.priceQuoted === 0 ? '' : client.priceQuoted.toString(),
+    amountPaid: client.amountPaid === 0 ? '' : client.amountPaid.toString(),
   })
 
   useEffect(() => {
@@ -46,7 +54,11 @@ export function ClientEditForm({ client }: { client: Client }) {
   const handleSave = async () => {
     setIsSaving(true)
     try {
-      await updateClient(client.id, formData)
+      await updateClient(client.id, {
+        ...formData,
+        priceQuoted: formData.priceQuoted ? parseFloat(formData.priceQuoted as string) : 0,
+        amountPaid: formData.amountPaid ? parseFloat(formData.amountPaid as string) : 0,
+      })
       setIsEditing(false)
       router.refresh()
     } catch (error) {
@@ -77,7 +89,21 @@ export function ClientEditForm({ client }: { client: Client }) {
     return (
       <div className="flex gap-3">
         <button
-          onClick={() => setIsEditing(true)}
+          onClick={() => {
+            setIsEditing(true)
+            // Reset form data when opening edit to ensure fresh state
+             setFormData({
+                name: client.name,
+                industry: client.industry || '',
+                phone: client.phone || '',
+                logoUrl: client.logoUrl || '',
+                projectUrl: client.projectUrl || '',
+                repoUrl: client.repoUrl || '',
+                status: client.status,
+                priceQuoted: client.priceQuoted === 0 ? '' : client.priceQuoted.toString(),
+                amountPaid: client.amountPaid === 0 ? '' : client.amountPaid.toString(),
+              })
+          }}
           className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-semibold hover:shadow-lg hover:shadow-nexa-gold/50 transition-all duration-300 hover:scale-105 active:scale-95"
         >
           <Pencil className="h-4 w-4" />
@@ -114,17 +140,6 @@ export function ClientEditForm({ client }: { client: Client }) {
           <button
             onClick={() => {
               setIsEditing(false)
-              setFormData({
-                name: client.name,
-                industry: client.industry || '',
-                phone: client.phone || '',
-                logoUrl: client.logoUrl || '',
-                projectUrl: client.projectUrl || '',
-                repoUrl: client.repoUrl || '',
-                status: client.status,
-                priceQuoted: client.priceQuoted,
-                amountPaid: client.amountPaid,
-              })
             }}
             className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg"
           >
@@ -192,10 +207,11 @@ export function ClientEditForm({ client }: { client: Client }) {
             <input
               type="number"
               value={formData.priceQuoted}
-              onChange={(e) => setFormData({ ...formData, priceQuoted: parseFloat(e.target.value) || 0 })}
-              className="w-full px-4 py-3 bg-nexa-black/50 border-2 border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-nexa-gold focus:outline-none focus:ring-2 focus:ring-nexa-gold/20 transition-all duration-300"
+              onChange={(e) => setFormData({ ...formData, priceQuoted: e.target.value })}
+              className="w-full px-4 py-3 bg-nexa-black/50 border-2 border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-nexa-gold focus:outline-none focus:ring-2 focus:ring-nexa-gold/20 transition-all duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               min="0"
               step="0.01"
+              placeholder="0.00"
             />
           </div>
 
@@ -205,10 +221,11 @@ export function ClientEditForm({ client }: { client: Client }) {
             <input
               type="number"
               value={formData.amountPaid}
-              onChange={(e) => setFormData({ ...formData, amountPaid: parseFloat(e.target.value) || 0 })}
-              className="w-full px-4 py-3 bg-nexa-black/50 border-2 border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-nexa-gold focus:outline-none focus:ring-2 focus:ring-nexa-gold/20 transition-all duration-300"
+              onChange={(e) => setFormData({ ...formData, amountPaid: e.target.value })}
+              className="w-full px-4 py-3 bg-nexa-black/50 border-2 border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-nexa-gold focus:outline-none focus:ring-2 focus:ring-nexa-gold/20 transition-all duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               min="0"
               step="0.01"
+              placeholder="0.00"
             />
           </div>
 
@@ -271,17 +288,6 @@ export function ClientEditForm({ client }: { client: Client }) {
           <button
             onClick={() => {
               setIsEditing(false)
-              setFormData({
-                name: client.name,
-                industry: client.industry || '',
-                phone: client.phone || '',
-                logoUrl: client.logoUrl || '',
-                projectUrl: client.projectUrl || '',
-                repoUrl: client.repoUrl || '',
-                status: client.status,
-                priceQuoted: client.priceQuoted,
-                amountPaid: client.amountPaid,
-              })
             }}
             className="flex items-center gap-2 px-6 py-3 bg-white/5 text-white border-2 border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95"
           >
