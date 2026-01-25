@@ -5,6 +5,7 @@ import { Check, X, Plus, DollarSign } from 'lucide-react'
 import { addPayment } from '@/app/actions'
 import { useRouter } from 'next/navigation'
 import { formatCurrency } from '@/lib/format'
+import { useCurrency } from '@/contexts/CurrencyContext'
 
 interface QuickPaymentUpdateProps {
   clientId: string
@@ -17,17 +18,23 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
   const [amount, setAmount] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const { currency, exchangeRate, formatAmount } = useCurrency()
 
   const remainingBalance = totalAmount - currentAmount
-  const isFullyPaid = remainingBalance <= 0.01 // Tolerance for small float errors
+  const isFullyPaid = remainingBalance <= 0.01
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
     try {
-      const paymentAmount = parseFloat(amount)
+      let paymentAmount = parseFloat(amount)
       if (isNaN(paymentAmount) || paymentAmount <= 0) return
+
+      // If user is in IQD mode, we must convert the input back to USD for the storage
+      if (currency === 'IQD') {
+        paymentAmount = paymentAmount / exchangeRate
+      }
 
       await addPayment(clientId, paymentAmount)
       
@@ -46,19 +53,19 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
       <form onSubmit={handleSubmit} className="flex items-center gap-2">
         <div className="relative group">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <span className="text-green-400 font-bold">$</span>
+            <span className="text-green-400 font-bold">
+              {currency === 'USD' ? '$' : 'IQD'}
+            </span>
           </div>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder={`Max ${remainingBalance}`}
-            // Added global CSS class or Tailwind utilities to hide spinner
-            className="w-40 bg-white/5 border border-white/10 rounded-xl text-white font-medium pl-8 pr-3 py-2 focus:border-green-500 focus:ring-1 focus:ring-green-500/20 focus:outline-none transition-all placeholder:text-gray-600 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            placeholder={currency === 'USD' ? `Max ${formatCurrency(remainingBalance)}` : `Max ${formatCurrency(remainingBalance * exchangeRate)}`}
+            className="w-48 bg-white/5 border border-white/10 rounded-xl text-white font-medium pl-12 pr-3 py-2 focus:border-green-500 focus:ring-1 focus:ring-green-500/20 focus:outline-none transition-all placeholder:text-gray-600 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             autoFocus
             step="0.01"
             min="0"
-            max={remainingBalance}
           />
         </div>
         <div className="flex gap-1">
@@ -89,23 +96,21 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
   return (
     <div className="flex items-center gap-3">
       <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-        ${formatCurrency(currentAmount)}
+        {formatAmount(currentAmount)}
       </span>
       
-      {!isFullyPaid && (
-        <button
-          onClick={() => setIsEditing(true)}
-          className="group relative p-2 rounded-full hover:bg-green-500/10 transition-all duration-300"
-          title="Add Payment"
-        >
-          <div className="bg-green-500/20 p-1.5 rounded-full border border-green-500/30 group-hover:border-green-500/60 transition-colors shadow-lg shadow-green-900/20">
-             <Plus className="h-3.5 w-3.5 text-green-400 group-hover:text-green-300" />
-          </div>
-          <span className="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 -translate-x-1/2 text-xs bg-black/80 text-white px-2 py-1 rounded whitespace-nowrap transition-opacity pointer-events-none border border-white/10">
-            Add Payment
-          </span>
-        </button>
-      )}
+      <button
+        onClick={() => setIsEditing(true)}
+        className="group relative p-2 rounded-full hover:bg-green-500/10 transition-all duration-300"
+        title="Add Payment"
+      >
+        <div className="bg-green-500/20 p-1.5 rounded-full border border-green-500/30 group-hover:border-green-500/60 transition-colors shadow-lg shadow-green-900/20">
+           <Plus className="h-3.5 w-3.5 text-green-400 group-hover:text-green-300" />
+        </div>
+        <span className="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 -translate-x-1/2 text-xs bg-black/80 text-white px-2 py-1 rounded whitespace-nowrap transition-opacity pointer-events-none border border-white/10">
+          Add Payment
+        </span>
+      </button>
     </div>
   )
 }

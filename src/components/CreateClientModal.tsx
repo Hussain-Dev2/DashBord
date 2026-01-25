@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Plus, X, User, Building2, Phone, ImageIcon, DollarSign, Link as LinkIcon, Github } from 'lucide-react'
 import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useCurrency } from '@/contexts/CurrencyContext'
 
 interface CreateClientData {
     name: string
@@ -19,6 +20,7 @@ interface CreateClientData {
 export function CreateClientModal() {
   const { addClient } = useClients()
   const { t } = useLanguage()
+  const { currency, exchangeRate } = useCurrency()
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState<CreateClientData>({
@@ -37,10 +39,19 @@ export function CreateClientModal() {
     setIsSubmitting(true)
     
     try {
+      let priceQuoted = formData.priceQuoted ? parseFloat(formData.priceQuoted) : 0
+      let amountPaid = formData.amountPaid ? parseFloat(formData.amountPaid) : 0
+
+      // Convert from IQD to USD before saving if necessary
+      if (currency === 'IQD') {
+        priceQuoted = priceQuoted / exchangeRate
+        amountPaid = amountPaid / exchangeRate
+      }
+
       await addClient({
         ...formData,
-        priceQuoted: formData.priceQuoted ? parseFloat(formData.priceQuoted) : 0,
-        amountPaid: formData.amountPaid ? parseFloat(formData.amountPaid) : 0,
+        priceQuoted,
+        amountPaid,
       })
       
       setIsOpen(false)
@@ -177,7 +188,9 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('price_quoted')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <span className="text-gray-500 group-focus-within:text-nexa-gold font-bold transition-colors">$</span>
+                        <span className="text-gray-500 group-focus-within:text-nexa-gold font-bold transition-colors">
+                          {currency === 'USD' ? '$' : 'IQD'}
+                        </span>
                       </div>
                       <input
                         type="number"
@@ -193,7 +206,9 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('initial_payment')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <span className="text-gray-500 group-focus-within:text-nexa-gold font-bold transition-colors">$</span>
+                        <span className="text-gray-500 group-focus-within:text-nexa-gold font-bold transition-colors">
+                          {currency === 'USD' ? '$' : 'IQD'}
+                        </span>
                       </div>
                       <input
                         type="number"

@@ -6,6 +6,7 @@ import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Search, ListFilter, X, Trash2 } from 'lucide-react'
 import { formatCurrency, formatDate } from '@/lib/format'
+import { useCurrency } from '@/contexts/CurrencyContext'
 
 // Local or imported types
 type Client = {
@@ -27,6 +28,7 @@ type SortMode = 'DEFAULT' | 'LAST_PAYMENT'
 export function ClientTable({ clients }: { clients: Client[] }) {
   const { deleteClientFn, isLoading } = useClients()
   const { t } = useLanguage()
+  const { formatAmount } = useCurrency()
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [filterPreset, setFilterPreset] = useState<FilterPreset>('ALL')
@@ -125,17 +127,17 @@ export function ClientTable({ clients }: { clients: Client[] }) {
             <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="bg-white/5 rounded-lg p-2">
                      <span className="text-xs text-gray-500 block">{t('price_quoted')}</span>
-                     <span className="text-white font-medium">${formatCurrency(client.priceQuoted)}</span>
+                     <span className="text-white font-medium">{formatAmount(client.priceQuoted)}</span>
                 </div>
                 <div className="bg-white/5 rounded-lg p-2">
                      <span className="text-xs text-gray-500 block">{t('initial_payment')}</span>
-                     <span className="text-white font-medium">${formatCurrency(client.amountPaid)}</span>
+                     <span className="text-white font-medium">{formatAmount(client.amountPaid)}</span>
                 </div>
             </div>
             
             {balance > 0.01 && (
                 <div className="mt-3 p-2 bg-red-500/10 border border-red-500/20 rounded-lg text-center">
-                    <span className="text-xs text-red-400 font-bold block">DUE: ${formatCurrency(balance)}</span>
+                    <span className="text-xs text-red-400 font-bold block">DUE: {formatAmount(balance)}</span>
                 </div>
             )}
         </div>
@@ -304,15 +306,15 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                         <div className="flex flex-col gap-0.5">
                             <div className="flex items-center gap-2">
                                 <span className="text-gray-400 text-xs">{t('initial_payment')}:</span>
-                                <span className="text-white font-medium">${formatCurrency(client.amountPaid)}</span>
+                                <span className="text-white font-medium">{formatAmount(client.amountPaid)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="text-gray-400 text-xs">{t('price_quoted')}:</span>
-                                <span className="text-gray-500 text-xs">${formatCurrency(client.priceQuoted)}</span>
+                                <span className="text-gray-500 text-xs">{formatAmount(client.priceQuoted)}</span>
                             </div>
                             {balance > 0.01 && (
                                 <div className="mt-1 px-2 py-0.5 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold rounded w-fit">
-                                    DUE: ${formatCurrency(balance)}
+                                    DUE: {formatAmount(balance)}
                                 </div>
                             )}
                         </div>

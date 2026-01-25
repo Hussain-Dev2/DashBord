@@ -1,6 +1,6 @@
 'use client'
 
-import { formatCurrency, formatDateTime } from '@/lib/format'
+import { useCurrency } from '@/contexts/CurrencyContext'
 import { Calendar, DollarSign, Plus } from 'lucide-react'
 
 interface Payment {
@@ -14,6 +14,8 @@ interface PaymentHistoryProps {
 }
 
 export function PaymentHistory({ payments }: PaymentHistoryProps) {
+  const { formatAmount } = useCurrency()
+  
   return (
     <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 shadow-2xl h-full flex flex-col mt-8">
       <div className="flex items-center gap-3 mb-6">
@@ -34,11 +36,11 @@ export function PaymentHistory({ payments }: PaymentHistoryProps) {
             >
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-green-400 group-hover:scale-105 transition-transform origin-left">
-                  ${formatCurrency(payment.amount)}
+                  {formatAmount(payment.amount)}
                 </span>
                 <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-1">
                   <Calendar className="h-3 w-3" />
-                  <span>{formatDateTime(payment.date)}</span>
+                  <span>{new Date(payment.date).toLocaleDateString()}</span>
                 </div>
               </div>
               <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/20 group-hover:border-green-500/50 transition-colors">

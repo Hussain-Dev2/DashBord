@@ -6,6 +6,7 @@ import { Status } from '@prisma/client'
 import { updateClient, deleteClient } from '@/app/actions'
 import { useRouter } from 'next/navigation'
 import { Pencil, Save, X, Trash2, Loader2 } from 'lucide-react'
+import { useCurrency } from '@/contexts/CurrencyContext'
 
 type Client = {
   id: string
@@ -30,21 +31,41 @@ type Client = {
 
 export function ClientEditForm({ client }: { client: Client }) {
   const router = useRouter()
+  const { currency, exchangeRate } = useCurrency()
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: client.name,
-    industry: client.industry || '',
-    phone: client.phone || '',
-    logoUrl: client.logoUrl || '',
-    projectUrl: client.projectUrl || '',
-    repoUrl: client.repoUrl || '',
-    status: client.status,
-    priceQuoted: client.priceQuoted === 0 ? '' : client.priceQuoted.toString(),
-    amountPaid: client.amountPaid === 0 ? '' : client.amountPaid.toString(),
-  })
+
+  const getInitialValues = () => {
+    let pq = client.priceQuoted
+    let ap = client.amountPaid
+    
+    if (currency === 'IQD') {
+      pq = pq * exchangeRate
+      ap = ap * exchangeRate
+    }
+
+    return {
+      name: client.name,
+      industry: client.industry || '',
+      phone: client.phone || '',
+      logoUrl: client.logoUrl || '',
+      projectUrl: client.projectUrl || '',
+      repoUrl: client.repoUrl || '',
+      status: client.status,
+      priceQuoted: pq === 0 ? '' : pq.toFixed(0),
+      amountPaid: ap === 0 ? '' : ap.toFixed(0),
+    }
+  }
+
+  const [formData, setFormData] = useState(getInitialValues())
+
+  useEffect(() => {
+    if (isEditing) {
+      setFormData(getInitialValues())
+    }
+  }, [isEditing, currency])
 
   useEffect(() => {
     setMounted(true)
@@ -54,10 +75,19 @@ export function ClientEditForm({ client }: { client: Client }) {
   const handleSave = async () => {
     setIsSaving(true)
     try {
+      let priceQuoted = formData.priceQuoted ? parseFloat(formData.priceQuoted as string) : 0
+      let amountPaid = formData.amountPaid ? parseFloat(formData.amountPaid as string) : 0
+
+      // Convert back to USD if in IQD mode
+      if (currency === 'IQD') {
+        priceQuoted = priceQuoted / exchangeRate
+        amountPaid = amountPaid / exchangeRate
+      }
+
       await updateClient(client.id, {
         ...formData,
-        priceQuoted: formData.priceQuoted ? parseFloat(formData.priceQuoted as string) : 0,
-        amountPaid: formData.amountPaid ? parseFloat(formData.amountPaid as string) : 0,
+        priceQuoted,
+        amountPaid,
       })
       setIsEditing(false)
       router.refresh()
@@ -91,18 +121,6 @@ export function ClientEditForm({ client }: { client: Client }) {
         <button
           onClick={() => {
             setIsEditing(true)
-            // Reset form data when opening edit to ensure fresh state
-             setFormData({
-                name: client.name,
-                industry: client.industry || '',
-                phone: client.phone || '',
-                logoUrl: client.logoUrl || '',
-                projectUrl: client.projectUrl || '',
-                repoUrl: client.repoUrl || '',
-                status: client.status,
-                priceQuoted: client.priceQuoted === 0 ? '' : client.priceQuoted.toString(),
-                amountPaid: client.amountPaid === 0 ? '' : client.amountPaid.toString(),
-              })
           }}
           className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-semibold hover:shadow-lg hover:shadow-nexa-gold/50 transition-all duration-300 hover:scale-105 active:scale-95"
         >
@@ -203,7 +221,7 @@ export function ClientEditForm({ client }: { client: Client }) {
 
           {/* Price Quoted */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">Price Quoted ($)</label>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">Price Quoted ({currency})</label>
             <input
               type="number"
               value={formData.priceQuoted}
@@ -217,7 +235,7 @@ export function ClientEditForm({ client }: { client: Client }) {
 
           {/* Amount Paid */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">Amount Paid ($)</label>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">Amount Paid ({currency})</label>
             <input
               type="number"
               value={formData.amountPaid}
