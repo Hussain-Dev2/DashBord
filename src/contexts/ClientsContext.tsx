@@ -4,15 +4,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner' 
-import { createClient, updateClient, deleteClient as deleteClientAction, updateClientStatus } from '@/app/actions'
-import { Client, Status } from '@prisma/client'
+import { createClient, updateClient, deleteClient as deleteClientAction, updateClientStatus, addPayment, addNote } from '@/app/actions'
+import { Status } from '@prisma/client'
+import { SerializedClient } from '@/lib/types'
 
-// Define the shape of our Client type for the frontend (handling Decimals as numbers if needed)
-export type ClientWithNotes = Omit<Client, 'priceQuoted' | 'amountPaid'> & {
-  priceQuoted: number
-  amountPaid: number
-  notes?: any[]
-}
+export type ClientWithNotes = SerializedClient
 
 interface ClientsContextType {
   clients: ClientWithNotes[]
@@ -20,6 +16,8 @@ interface ClientsContextType {
   updateClientFn: (id: string, data: any) => Promise<void>
   deleteClientFn: (id: string) => Promise<void>
   updateStatusFn: (id: string, status: Status) => Promise<void>
+  addPaymentFn: (clientId: string, amount: number) => Promise<void>
+  addNoteFn: (clientId: string, content: string) => Promise<void>
   resetDemoData: () => void
   isLoading: boolean
 }
@@ -88,9 +86,9 @@ export function ClientsProvider({
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         notes: [],
-        priceQuoted: data.priceQuoted || 0,
-        amountPaid: data.amountPaid || 0,
-      }
+        priceQuoted: Number(data.priceQuoted) || 0,
+        amountPaid: Number(data.amountPaid) || 0,
+      } as any // Cast because of complex type intersection in Omit/SerializedClient
       setClients(prev => [newClient, ...prev])
       toast.success('Demo: Client created (Local Only)')
     }
@@ -131,6 +129,62 @@ export function ClientsProvider({
     }
   }, [isAdmin, router])
 
+  const addPaymentFn = React.useCallback(async (clientId: string, amount: number) => {
+    setIsLoading(true)
+    if (isAdmin) {
+      try {
+        await addPayment(clientId, amount)
+        router.refresh()
+        toast.success('Payment added')
+      } catch (error) {
+        toast.error('Failed to add payment')
+      }
+    } else {
+      // Demo Mode
+      setClients(prev => prev.map(c => {
+        if (c.id === clientId) {
+          return {
+            ...c,
+            amountPaid: Number(c.amountPaid) + amount,
+            updatedAt: new Date().toISOString()
+          }
+        }
+        return c
+      }))
+      toast.success('Demo: Payment added (Local Only)')
+    }
+    setIsLoading(false)
+  }, [isAdmin, router])
+
+  const addNoteFn = React.useCallback(async (clientId: string, content: string) => {
+    setIsLoading(true)
+    if (isAdmin) {
+      try {
+        await addNote(clientId, content)
+        router.refresh()
+        toast.success('Note added')
+      } catch (error) {
+        toast.error('Failed to add note')
+      }
+    } else {
+      // Demo Mode
+      setClients(prev => prev.map(c => {
+        if (c.id === clientId) {
+          return {
+            ...c,
+            notes: [
+              { id: `demo-note-${Date.now()}`, content, createdAt: new Date().toISOString(), clientId },
+              ...(c.notes || [])
+            ]
+          }
+        }
+        return c
+      }))
+      toast.success('Demo: Note added (Local Only)')
+    }
+    setIsLoading(false)
+  }, [isAdmin, router])
+
   const deleteClientFn = React.useCallback(async (id: string) => {
     setIsLoading(true)
     if (isAdmin) {
@@ -163,9 +217,11 @@ export function ClientsProvider({
     updateClientFn, 
     deleteClientFn, 
     updateStatusFn,
+    addPaymentFn,
+    addNoteFn,
     resetDemoData,
     isLoading 
-  }), [clients, addClient, updateClientFn, deleteClientFn, updateStatusFn, resetDemoData, isLoading])
+  }), [clients, addClient, updateClientFn, deleteClientFn, updateStatusFn, addPaymentFn, addNoteFn, resetDemoData, isLoading])
 
   return (
     <ClientsContext.Provider value={value}>

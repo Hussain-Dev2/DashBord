@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { Check, X, Plus, DollarSign } from 'lucide-react'
-import { addPayment } from '@/app/actions'
 import { useRouter } from 'next/navigation'
 import { formatCurrency } from '@/lib/format'
 import { useCurrency } from '@/contexts/CurrencyContext'
+
+import { useClients } from '@/contexts/ClientsContext'
+import { toast } from 'sonner'
 
 interface QuickPaymentUpdateProps {
   clientId: string
@@ -19,6 +21,7 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { currency, exchangeRate, formatAmount } = useCurrency()
+  const { addPaymentFn } = useClients()
 
   const remainingBalance = totalAmount - currentAmount
   const isFullyPaid = remainingBalance <= 0.01
@@ -29,20 +32,23 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
 
     try {
       let paymentAmount = parseFloat(amount)
-      if (isNaN(paymentAmount) || paymentAmount <= 0) return
+      if (isNaN(paymentAmount) || paymentAmount <= 0) {
+        toast.error('Please enter a valid amount')
+        return
+      }
 
       // If user is in IQD mode, we must convert the input back to USD for the storage
       if (currency === 'IQD') {
         paymentAmount = paymentAmount / exchangeRate
       }
 
-      await addPayment(clientId, paymentAmount)
+      await addPaymentFn(clientId, paymentAmount)
       
       setIsEditing(false)
       setAmount('')
-      router.refresh()
     } catch (error) {
       console.error('Failed to add payment:', error)
+      toast.error('An unexpected error occurred')
     } finally {
       setIsLoading(false)
     }

@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Status } from '@prisma/client'
-import { updateClient, deleteClient } from '@/app/actions'
 import { useRouter } from 'next/navigation'
 import { Pencil, Save, X, Trash2, Loader2 } from 'lucide-react'
 import { useCurrency } from '@/contexts/CurrencyContext'
+import { useClients } from '@/contexts/ClientsContext'
+import { toast } from 'sonner'
+
 
 type Client = {
   id: string
@@ -32,6 +34,7 @@ type Client = {
 export function ClientEditForm({ client }: { client: Client }) {
   const router = useRouter()
   const { currency, exchangeRate } = useCurrency()
+  const { updateClientFn, deleteClientFn } = useClients()
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -84,7 +87,7 @@ export function ClientEditForm({ client }: { client: Client }) {
         amountPaid = amountPaid / exchangeRate
       }
 
-      await updateClient(client.id, {
+      await updateClientFn(client.id, {
         ...formData,
         priceQuoted,
         amountPaid,
@@ -106,7 +109,7 @@ export function ClientEditForm({ client }: { client: Client }) {
     
     setIsDeleting(true)
     try {
-      await deleteClient(client.id)
+      await deleteClientFn(client.id)
       router.push('/admin')
     } catch (error) {
       console.error('Failed to delete client:', error)
