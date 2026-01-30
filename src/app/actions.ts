@@ -1,36 +1,57 @@
 'use server'
 
+// استيراد prisma للتعامل مع قاعدة البيانات
+// Import prisma to interact with the database
 import { prisma } from '@/lib/prisma'
+// استيراد revalidatePath لتحديث البيانات في Next.js
+// Import revalidatePath to refresh data in Next.js
 import { revalidatePath } from 'next/cache'
+// استيراد getServerSession للحصول على بيانات الجلسة الحالية
+// Import getServerSession to get current session data
 import { getServerSession } from 'next-auth'
+// استيراد إعدادات المصادقة
+// Import authentication options
 import { authOptions } from '@/lib/auth'
-import { ADMIN_EMAIL, SAMPLE_CLIENTS } from '@/lib/constants'
+// استيراد قائمة المسؤولين والبيانات التجريبية
+// Import admin emails and sample data
+import { ADMIN_EMAILS, SAMPLE_CLIENTS } from '@/lib/constants'
+// استيراد الأنواع البرمجية المستخدمة
+// Import TypeScript types
 import { SerializedClient, CreateClientData, UpdateClientData, Status } from '@/lib/types'
 
-// Helper to check admin status
+// وظيفة مساعدة للتحقق مما إذا كان المستخدم مسؤولاً
+// Helper function to check if the user is an admin
 async function requireAdmin() {
   let session;
   try {
+    // الحصول على الجلسة الحالية
+    // Get the current session
     session = await getServerSession(authOptions)
   } catch (error) {
     console.warn("Failed to retrieve session:", error)
     return false
   }
-  return session?.user?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+  // التحقق مما إذا كان البريد الإلكتروني موجوداً في قائمة المسؤولين
+  // Check if the email is in the admin emails list
+  return ADMIN_EMAILS.some(
+    email => email.toLowerCase() === session?.user?.email?.toLowerCase()
+  )
 }
 
+// جلب قائمة العملاء
+// Fetch the list of clients
 export async function getClients(): Promise<SerializedClient[]> {
   const isAdmin = await requireAdmin()
 
+  // إذا لم يكن مسؤولاً، يتم إرجاع البيانات التجريبية
+  // If not an admin, return sample demo data
   if (!isAdmin) {
-    // Return sample clients formatted as SerializedClient
-    // Note: SAMPLE_CLIENTS in constants might need casting if it doesn't match perfectly, 
-    // but assuming it's close enough for demo.
     return SAMPLE_CLIENTS as any as SerializedClient[]
   }
 
   try {
-    // We explicitly type the result or let Prisma infer it, then map carefully.
+    // جلب العملاء من قاعدة البيانات مع الملاحظات وآخر عملية دفع
+    // Fetch clients from DB with notes and the latest payment
     const clients = await (prisma.client as any).findMany({
       orderBy: { updatedAt: 'desc' },
       include: { 
@@ -42,8 +63,9 @@ export async function getClients(): Promise<SerializedClient[]> {
       }
     })
 
+    // تحويل البيانات لتناسب الواجهة الأمامية (تجنب مشاكل Decimal)
+    // Map data to fit frontend (avoid Decimal issues)
     return clients.map((client: any) => {
-        // Safe access to relations
         const lastPaymentDate = client.payments?.[0]?.date
         
         return {
@@ -53,7 +75,6 @@ export async function getClients(): Promise<SerializedClient[]> {
             createdAt: client.createdAt.toISOString(),
             updatedAt: client.updatedAt.toISOString(),
             lastPayment: lastPaymentDate?.toISOString() ?? null,
-            // We exclude the raw 'payments' array from the returned object to avoid Decimal errors
             payments: undefined 
         }
     })
@@ -63,6 +84,8 @@ export async function getClients(): Promise<SerializedClient[]> {
   }
 }
 
+// جلب بيانات عميل واحد بواسطة المعرف
+// Fetch single client data by ID
 export async function getClient(id: string): Promise<SerializedClient | null> {
   const isAdmin = await requireAdmin()
 
@@ -89,14 +112,9 @@ export async function getClient(id: string): Promise<SerializedClient | null> {
       amountPaid: c.amountPaid?.toNumber() ?? 0,
       createdAt: c.createdAt.toISOString(),
       updatedAt: c.updatedAt.toISOString(),
-      // For single client view, we might WANT the full payment history, 
-      // but we need to ensure it's serialized (no Decimals)
       payments: c.payments.map((p: any) => ({
           ...p,
           amount: p.amount.toNumber(),
-          // keep date as Date or convert to string? Client expects Date usually or string.
-          // Let's stick to what the component expects. 
-          // If the component expects 'any' for payments, we return cleaned objects.
       })) as any
     }
   } catch (error) {
@@ -105,6 +123,8 @@ export async function getClient(id: string): Promise<SerializedClient | null> {
   }
 }
 
+// إنشاء عميل جديد
+// Create a new client
 export async function createClient(data: CreateClientData) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")
@@ -123,9 +143,13 @@ export async function createClient(data: CreateClientData) {
       status: 'PENDING',
     }
   })
+  // تحديث المسار لتظهر البيانات الجديدة
+  // Refresh path to show new data
   revalidatePath('/admin')
 }
 
+// تحديث حالة العميل (مثل: قيد التنفيذ، مكتمل)
+// Update client status (e.g., ACTIVE, PENDING)
 export async function updateClientStatus(id: string, status: Status) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")
@@ -139,6 +163,8 @@ export async function updateClientStatus(id: string, status: Status) {
   revalidatePath('/admin')
 }
 
+// إضافة ملاحظة جديدة للعميل
+// Add a new note to a client
 export async function addNote(clientId: string, content: string) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")
@@ -153,12 +179,15 @@ export async function addNote(clientId: string, content: string) {
   revalidatePath(`/admin/clients/${clientId}`)
 }
 
+// إضافة عملية دفع جديدة
+// Add a new payment record
 export async function addPayment(clientId: string, amount: number) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")
   }
 
-  // 1. Create the payment record
+  // 1. إنشاء سجل الدفع
+  // Create the payment record
   await (prisma as any).payment.create({
     data: {
       amount,
@@ -167,7 +196,8 @@ export async function addPayment(clientId: string, amount: number) {
     }
   })
 
-  // 2. Update the client's total amount paid
+  // 2. تحديث إجمالي المبلغ المدفوع للعميل
+  // Update the client's total amount paid
   await prisma.client.update({
     where: { id: clientId },
     data: {
@@ -181,6 +211,8 @@ export async function addPayment(clientId: string, amount: number) {
   revalidatePath('/admin')
 }
 
+// تحديث كافة بيانات العميل
+// Update all client data
 export async function updateClient(id: string, data: UpdateClientData) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")
@@ -204,6 +236,8 @@ export async function updateClient(id: string, data: UpdateClientData) {
   revalidatePath('/admin')
 }
 
+// حذف عميل من القائمة
+// Delete a client from the list
 export async function deleteClient(id: string) {
   if (!(await requireAdmin())) {
     throw new Error("Unauthorized")

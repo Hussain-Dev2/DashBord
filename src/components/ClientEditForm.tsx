@@ -1,12 +1,21 @@
 'use client'
 
+// استيراد أدوات React الأساسية
+// Import core React hooks and utilities
 import { useState, useEffect } from 'react'
+// استيراد أداة لإنشاء عناصر خارج شجرة DOM الحالية
+// Import createPortal to render components outside the current DOM tree
 import { createPortal } from 'react-dom'
+// استيراد أنواع البيانات من Prisma
 import { Status } from '@prisma/client'
+// استيراد أداة التوجيه من Next.js
 import { useRouter } from 'next/navigation'
+// استيراد الأيقونات
 import { Pencil, Save, X, Trash2, Loader2 } from 'lucide-react'
+// استيراد سياقات العملة والعملاء
 import { useCurrency } from '@/contexts/CurrencyContext'
 import { useClients } from '@/contexts/ClientsContext'
+// استيراد أداة عرض التنبيهات
 import { toast } from 'sonner'
 
 
@@ -23,27 +32,24 @@ type Client = {
   amountPaid: number
 }
 
-// Helper to convert number to string for input, but keep 0 as 0 if user explicitly typed it? 
-// Actually for edit form, we usually WANT to show the current value (e.g. 500). 
-// But if it is 0, we might want to show "0" or empty? 
-// The user complaint was "cant add number i must delele the zero".
-// This implies when they see "0", they click and type "5" and get "05" or have to backspace.
-// So if the value is 0, we should probably show "" or allow them to clear it easily.
-// Let's use string state to allow empty string.
-
+// مكون نموذج تعديل بيانات العميل
+// Client Edit Form Component
 export function ClientEditForm({ client }: { client: Client }) {
-  const router = useRouter()
-  const { currency, exchangeRate } = useCurrency()
-  const { updateClientFn, deleteClientFn } = useClients()
-  const [isEditing, setIsEditing] = useState(false)
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const router = useRouter() // الموجه للتنقل بين الصفحات
+  const { currency, exchangeRate } = useCurrency() // بيانات العملة وسعر الصرف
+  const { updateClientFn, deleteClientFn } = useClients() // وظائف التعديل والحذف
+  const [isEditing, setIsEditing] = useState(false) // حالة التعديل (فتح النافذة)
+  const [isDeleting, setIsDeleting] = useState(false) // حالة جاري الحذف
+  const [isSaving, setIsSaving] = useState(false) // حالة جاري الحفظ
+  const [mounted, setMounted] = useState(false) // حالة تركيب المكون في المتصفح
 
+  // وظيفة للحصول على القيم الابتدائية للنموذج مع تحويل العملة إذا لزم الأمر
+  // Helper to get initial form values with currency conversion
   const getInitialValues = () => {
     let pq = client.priceQuoted
     let ap = client.amountPaid
     
+    // تحويل المبالغ من الدولار إلى الدينار العراقي للعرض
     if (currency === 'IQD') {
       pq = pq * exchangeRate
       ap = ap * exchangeRate
@@ -57,51 +63,61 @@ export function ClientEditForm({ client }: { client: Client }) {
       projectUrl: client.projectUrl || '',
       repoUrl: client.repoUrl || '',
       status: client.status,
+      // عرض القيم الفارغة إذا كانت صفر لسهولة الإدخال
       priceQuoted: pq === 0 ? '' : pq.toFixed(0),
       amountPaid: ap === 0 ? '' : ap.toFixed(0),
     }
   }
 
-  const [formData, setFormData] = useState(getInitialValues())
+  const [formData, setFormData] = useState(getInitialValues()) // بيانات الحقول
 
+  // تحديث البيانات عند فتح نافذة التعديل أو تغيير العملة
   useEffect(() => {
     if (isEditing) {
       setFormData(getInitialValues())
     }
   }, [isEditing, currency])
 
+  // التأكد من أن المكون تم تركيبه في المتصفح (لأغراض Portal)
   useEffect(() => {
     setMounted(true)
     return () => setMounted(false)
   }, [])
 
+  // معالجة حفظ التغييرات
+  // Handle saving changes
   const handleSave = async () => {
     setIsSaving(true)
     try {
       let priceQuoted = formData.priceQuoted ? parseFloat(formData.priceQuoted as string) : 0
       let amountPaid = formData.amountPaid ? parseFloat(formData.amountPaid as string) : 0
 
+      // تحويل المبالغ مرة أخرى إلى الدولار لحفظها في قاعدة البيانات
       // Convert back to USD if in IQD mode
       if (currency === 'IQD') {
         priceQuoted = priceQuoted / exchangeRate
         amountPaid = amountPaid / exchangeRate
       }
 
+      // استدعاء وظيفة التحديث
       await updateClientFn(client.id, {
         ...formData,
         priceQuoted,
         amountPaid,
       })
-      setIsEditing(false)
-      router.refresh()
+      setIsEditing(false) // إغلاق النافذة
+      router.refresh() // تحديث بيانات الصفحة
+      toast.success('Client updated successfully')
     } catch (error) {
       console.error('Failed to update client:', error)
-      alert('Failed to update client')
+      toast.error('Failed to update client')
     } finally {
       setIsSaving(false)
     }
   }
 
+  // معالجة حذف العميل
+  // Handle client deletion
   const handleDelete = async () => {
     if (!confirm(`Are you sure you want to delete ${client.name}? This action cannot be undone.`)) {
       return
@@ -110,17 +126,19 @@ export function ClientEditForm({ client }: { client: Client }) {
     setIsDeleting(true)
     try {
       await deleteClientFn(client.id)
-      router.push('/admin')
+      router.push('/admin') // العودة للوحة التحكم بعد الحذف
     } catch (error) {
       console.error('Failed to delete client:', error)
-      alert('Failed to delete client')
+      toast.error('Failed to delete client')
       setIsDeleting(false)
     }
   }
 
+  // إذا لم يكن في وضع التعديل، اعرض أزرار "تعديل" و "حذف"
   if (!isEditing) {
     return (
       <div className="flex gap-3">
+        {/* زر فتح نافذة التعديل */}
         <button
           onClick={() => {
             setIsEditing(true)
@@ -130,6 +148,7 @@ export function ClientEditForm({ client }: { client: Client }) {
           <Pencil className="h-4 w-4" />
           Edit Client
         </button>
+        {/* زر الحذف */}
         <button
           onClick={handleDelete}
           disabled={isDeleting}
@@ -151,9 +170,11 @@ export function ClientEditForm({ client }: { client: Client }) {
     )
   }
 
+  // محتوى نافذة التعديل (Modal)
   const modalContent = (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[9999] overflow-y-auto">
       <div className="bg-gradient-to-br from-nexa-gray to-nexa-black border-2 border-white/20 rounded-2xl p-8 max-w-4xl w-full my-8 shadow-2xl">
+        {/* رأس النافذة */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-nexa-gold to-white bg-clip-text text-transparent">
             Edit Client
@@ -168,8 +189,9 @@ export function ClientEditForm({ client }: { client: Client }) {
           </button>
         </div>
 
+        {/* شبكة حقول الإدخال */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Client Name */}
+          {/* اسم العميل */}
           <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-300 mb-2">
               Client Name <span className="text-red-400">*</span>
@@ -183,7 +205,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Industry */}
+          {/* مجال العمل */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Industry</label>
             <input
@@ -195,7 +217,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Phone */}
+          {/* رقم الهاتف */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Phone</label>
             <input
@@ -207,7 +229,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Status */}
+          {/* الحالة */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Status</label>
             <select
@@ -222,7 +244,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             </select>
           </div>
 
-          {/* Price Quoted */}
+          {/* السعر المعروض (يظهر بالعملة المختارة) */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Price Quoted ({currency})</label>
             <input
@@ -236,7 +258,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Amount Paid */}
+          {/* المبلغ المدفوع */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Amount Paid ({currency})</label>
             <input
@@ -250,7 +272,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Logo URL */}
+          {/* رابط شعار العميل */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Logo URL</label>
             <input
@@ -262,7 +284,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Project URL */}
+          {/* رابط المشروع */}
           <div>
             <label className="block text-sm font-semibold text-gray-300 mb-2">Project URL</label>
             <input
@@ -274,7 +296,7 @@ export function ClientEditForm({ client }: { client: Client }) {
             />
           </div>
 
-          {/* Repository URL */}
+          {/* رابط مستودع الكود (GitHub) */}
           <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-300 mb-2">Repository URL</label>
             <input
@@ -287,7 +309,7 @@ export function ClientEditForm({ client }: { client: Client }) {
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* أزرار الإجراءات (حفظ أو إلغاء) */}
         <div className="flex gap-3 pt-8 border-t border-white/10 mt-8">
           <button
             onClick={handleSave}
@@ -320,5 +342,6 @@ export function ClientEditForm({ client }: { client: Client }) {
     </div>
   )
 
+  // عرض النافذة المنبثقة باستخدام Portal لضمان ظهورها فوق كل العناصر
   return mounted ? createPortal(modalContent, document.body) : null
 }

@@ -1,14 +1,22 @@
 'use client'
 
+// استيراد الأيقونات والمكونات
+// Import icons and components
 import { DollarSign, Loader2 } from 'lucide-react'
+// استيراد سياق العملة
+// Import currency context
 import { useCurrency } from '@/contexts/CurrencyContext'
 
+// مكون اختيار العملة (USD / IQD)
+// Currency Selector Component
 export function CurrencySelector() {
   const { currency, setCurrency, exchangeRate, lastUpdated, isLoading } = useCurrency()
 
   return (
     <div className="relative group">
+      {/* حاوية أزرار التبديل */}
       <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-1">
+        {/* زر الدولار الأمريكي */}
         <button
           onClick={() => setCurrency('USD')}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
@@ -20,6 +28,7 @@ export function CurrencySelector() {
           <DollarSign className="h-4 w-4" />
           USD
         </button>
+        {/* زر الدينار العراقي */}
         <button
           onClick={() => setCurrency('IQD')}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
@@ -32,7 +41,8 @@ export function CurrencySelector() {
         </button>
       </div>
       
-      {/* Tooltip showing exchange rate */}
+      {/* نافذة تفصيلية تظهر عند الحوم (Tooltip) لعرض سعر الصرف */}
+      {/* Tooltip showing exchange rate on hover */}
       <div className="absolute top-full mt-2 right-0 bg-nexa-gray/95 border border-nexa-gold/30 rounded-lg px-3 py-2 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10 shadow-xl">
         <div className="text-nexa-gold font-semibold flex items-center gap-2">
           USD → IQD

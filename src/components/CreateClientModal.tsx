@@ -1,11 +1,17 @@
 'use client'
 
+// استيراد أدوات React والأيقونات
+// Import React hooks and Lucide icons
 import React, { useState } from 'react'
 import { Plus, X, User, Building2, Phone, ImageIcon, DollarSign, Link as LinkIcon, Github } from 'lucide-react'
+// استيراد السياقات لاستخدام البيانات واللغة والعملة
+// Import contexts for data, language, and currency
 import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useCurrency } from '@/contexts/CurrencyContext'
 
+// تعريف نوع بيانات نموذج إنشاء عميل
+// Define interface for create client form data
 interface CreateClientData {
     name: string
     industry: string
@@ -17,13 +23,15 @@ interface CreateClientData {
     amountPaid: string
 }
 
+// مكون نافذة إضافة عميل جديد
+// Create Client Modal Component
 export function CreateClientModal() {
-  const { addClient } = useClients()
-  const { t } = useLanguage()
-  const { currency, exchangeRate } = useCurrency()
-  const [isOpen, setIsOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState<CreateClientData>({
+  const { addClient } = useClients() // وظيفة إضافة عميل
+  const { t } = useLanguage() // وظيفة الترجمة
+  const { currency, exchangeRate } = useCurrency() // بيانات العملة وسعر الصرف
+  const [isOpen, setIsOpen] = useState(false) // حالة فتح/إغلاق النافذة
+  const [isSubmitting, setIsSubmitting] = useState(false) // حالة إرسال النموذج
+  const [formData, setFormData] = useState<CreateClientData>({ // بيانات الحقول
     name: '',
     industry: '',
     phone: '',
@@ -34,6 +42,8 @@ export function CreateClientModal() {
     amountPaid: '',
   })
 
+  // معالجة إرسال النموذج
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -42,20 +52,22 @@ export function CreateClientModal() {
       let priceQuoted = formData.priceQuoted ? parseFloat(formData.priceQuoted) : 0
       let amountPaid = formData.amountPaid ? parseFloat(formData.amountPaid) : 0
 
+      // تحويل المبالغ من الدينار العراقي إلى الدولار قبل الحفظ إذا لزم الأمر
       // Convert from IQD to USD before saving if necessary
       if (currency === 'IQD') {
         priceQuoted = priceQuoted / exchangeRate
         amountPaid = amountPaid / exchangeRate
       }
 
+      // استدعاء وظيفة الإضافة
       await addClient({
         ...formData,
         priceQuoted,
         amountPaid,
       })
       
-      setIsOpen(false)
-      setFormData({
+      setIsOpen(false) // إغلاق النافذة بعد النجاح
+      setFormData({ // إعادة ضبط الحقول
         name: '',
         industry: '',
         phone: '',
@@ -74,6 +86,7 @@ export function CreateClientModal() {
 
   return (
     <>
+      {/* زر فتح النافذة */}
       <button
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-bold hover:shadow-lg hover:shadow-nexa-gold/20 transition-all duration-300 hover:scale-105 active:scale-95"
@@ -82,14 +95,15 @@ export function CreateClientModal() {
         <span className="hidden sm:inline">{t('add_client')}</span>
       </button>
 
+      {/* محتوى النافذة المنبثقة (Modal) */}
       {isOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="glass-panel rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
             
-            {/* Background Decoration */}
+            {/* زخرفة في الخلفية */}
             <div className="absolute top-0 right-0 p-32 bg-nexa-gold/5 blur-[100px] rounded-full pointer-events-none" />
             
-            {/* Header */}
+            {/* رأس النافذة */}
             <div className="flex justify-between items-start mb-8 relative z-10">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-2">{t('add_client')}</h2>
@@ -103,14 +117,16 @@ export function CreateClientModal() {
               </button>
             </div>
 
+            {/* نموذج البيانات */}
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
               
-              {/* Section 1: Basic Info */}
+              {/* القسم الأول: المعلومات الأساسية */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
                   <User className="h-4 w-4" /> {t('client_name')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* حقل اسم العميل */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('client_name')} *</label>
                     <div className="relative">
@@ -128,6 +144,7 @@ export function CreateClientModal() {
                     </div>
                   </div>
 
+                  {/* حقل مجال العمل */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('industry')}</label>
                     <div className="relative">
@@ -144,6 +161,7 @@ export function CreateClientModal() {
                     </div>
                   </div>
                   
+                  {/* حقل رقم الهاتف */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('phone')}</label>
                     <div className="relative">
@@ -160,6 +178,7 @@ export function CreateClientModal() {
                     </div>
                   </div>
 
+                  {/* حقل رابط الشعار */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">Logo URL</label>
                     <div className="relative">
@@ -178,12 +197,13 @@ export function CreateClientModal() {
                 </div>
               </div>
 
-              {/* Section 2: Financials */}
+              {/* القسم الثاني: المعلومات المالية */}
               <div className="space-y-4">
                  <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
                   <DollarSign className="h-4 w-4" /> {t('financials')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* حقل السعر المعروض */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('price_quoted')}</label>
                     <div className="relative">
@@ -202,6 +222,7 @@ export function CreateClientModal() {
                     </div>
                   </div>
 
+                  {/* حقل الدفعة الأولية */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('initial_payment')}</label>
                     <div className="relative">
@@ -222,12 +243,13 @@ export function CreateClientModal() {
                 </div>
               </div>
 
-              {/* Section 3: Links */}
+              {/* القسم الثالث: الروابط */}
               <div className="space-y-4">
                  <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
                   <LinkIcon className="h-4 w-4" /> {t('project_url')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   {/* حقل رابط المشروع */}
                    <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('project_url')}</label>
                     <div className="relative">
@@ -244,6 +266,7 @@ export function CreateClientModal() {
                     </div>
                   </div>
 
+                  {/* حقل رابط المستودع (GitHub) */}
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('repo_url')}</label>
                     <div className="relative">
@@ -262,7 +285,7 @@ export function CreateClientModal() {
                 </div>
               </div>
 
-              {/* Footer Actions */}
+              {/* أزرار الإجراءات في أسفل النافذة */}
               <div className="flex gap-4 pt-6 border-t border-white/10">
                 <button
                   type="submit"

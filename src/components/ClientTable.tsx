@@ -1,14 +1,23 @@
 'use client'
 
+// استيراد أدوات React الأساسية
+// Import core React hooks and utilities
 import React, { useState } from 'react'
+// استيراد أداة التوجيه من Next.js
+// Import router hook from Next.js
 import { useRouter } from 'next/navigation'
+// استيراد سياق العملاء واللغة والعملة
+// Import client, language, and currency contexts
 import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useCurrency } from '@/contexts/CurrencyContext'
+// استيراد الأيقونات وأدوات التنسيق
+// Import icons and formatting utilities
 import { Search, ListFilter, X, Trash2 } from 'lucide-react'
 import { formatCurrency, formatDate } from '@/lib/format'
-import { useCurrency } from '@/contexts/CurrencyContext'
 
-// Local or imported types
+// تعريف نوع بيانات العميل داخلياً
+// Local definition of Client type
 type Client = {
   id: string
   name: string
@@ -22,78 +31,91 @@ type Client = {
   lastPayment?: string | null
 }
 
+// تعريف أنواع الفلاتر والترتيب
+// Define types for filtering and sorting presets
 type FilterPreset = 'ALL' | 'DEBT' | 'PAID' | 'HIGH_VALUE' | 'ACTIVE' | 'DORMANT'
 type SortMode = 'DEFAULT' | 'LAST_PAYMENT'
 
+// مكون جدول العملاء الأساسي
+// Main Client Table Component
 export function ClientTable({ clients }: { clients: Client[] }) {
-  const { deleteClientFn, isLoading } = useClients()
-  const { t } = useLanguage()
-  const { formatAmount } = useCurrency()
-  const [search, setSearch] = useState('')
-  const [statusFilter, setStatusFilter] = useState('ALL')
-  const [filterPreset, setFilterPreset] = useState<FilterPreset>('ALL')
-  const [sortMode, setSortMode] = useState<SortMode>('DEFAULT')
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const router = useRouter()
+  const { deleteClientFn, isLoading } = useClients() // وظيفة الحذف وحالة التحميل
+  const { t } = useLanguage() // وظيفة الترجمة
+  const { formatAmount } = useCurrency() // وظيفة تنسيق العملة
+  const [search, setSearch] = useState('') // حالة البحث النصي
+  const [statusFilter, setStatusFilter] = useState('ALL') // فلتر الحالة (نشط، معلق...)
+  const [filterPreset, setFilterPreset] = useState<FilterPreset>('ALL') // الفلاتر الذكية (ديون، مدفوع...)
+  const [sortMode, setSortMode] = useState<SortMode>('DEFAULT') // وضع الترتيب
+  const [isFilterOpen, setIsFilterOpen] = useState(false) // حالة فتح نافذة الفلاتر
+  const router = useRouter() // الموجه للتنقل بين الصفحات
 
+  // تصفية وترتيب قائمة العملاء بناءً على المدخلات
+  // Filter and sort the clients list based on user inputs
   const filteredClients = React.useMemo(() => {
     return clients.filter(client => {
-      // 1. Search Query
+      // 1. البحث النصي بالاسم أو الهاتف
+      // 1. Text Search by name or phone
       const matchesSearch = client.name.toLowerCase().includes(search.toLowerCase()) || 
                             (client.phone && client.phone.includes(search))
 
+      // 2. فلتر الحالة
       // 2. Status Filter
       const matchesStatus = statusFilter === 'ALL' || client.status === statusFilter
       
-      // 3. Smart Filter Preset
+      // 3. تطبيق الفلاتر الذكية (ديون، قيمة عالية، نشاط...)
+      // 3. Apply Smart Presets (debt, high value, activity...)
       let matchesPreset = true
       const balance = client.priceQuoted - client.amountPaid
       const now = new Date()
-      // Handle potentially string dates from JSON serialization
       const updatedAt = new Date(client.updatedAt)
       const daysSinceUpdate = (now.getTime() - updatedAt.getTime()) / (1000 * 3600 * 24)
 
       if (filterPreset === 'DEBT') {
-          matchesPreset = balance > 0
+          matchesPreset = balance > 0 // العملاء الذين عليهم مبالغ متبقية
       } else if (filterPreset === 'PAID') {
-          matchesPreset = balance <= 0
+          matchesPreset = balance <= 0 // العملاء الذين دفعوا بالكامل
       } else if (filterPreset === 'HIGH_VALUE') {
-          matchesPreset = client.priceQuoted >= 5000
+          matchesPreset = client.priceQuoted >= 5000 // المشاريع ذات القيمة العالية
       } else if (filterPreset === 'ACTIVE') {
-          matchesPreset = daysSinceUpdate <= 30
+          matchesPreset = daysSinceUpdate <= 30 // عملاء تم تحديثهم خلال شهر
       } else if (filterPreset === 'DORMANT') {
-          matchesPreset = daysSinceUpdate > 30
+          matchesPreset = daysSinceUpdate > 30 // عملاء غير نشطين لأكثر من شهر
       }
 
       return matchesSearch && matchesStatus && matchesPreset
     }).sort((a, b) => {
-      // 4. Sorting logic
+      // 4. منطق الترتيب (حسب تاريخ آخر دفعة مثلاً)
+      // 4. Sorting logic (e.g., by last payment date)
       if (sortMode === 'LAST_PAYMENT') {
           const dateA = a.lastPayment ? new Date(a.lastPayment).getTime() : 0
           const dateB = b.lastPayment ? new Date(b.lastPayment).getTime() : 0
-          return dateB - dateA // Descending
+          return dateB - dateA // تنازلي (الأحدث أولاً)
       }
-      return 0 // Default sort
+      return 0 // الترتيب الافتراضي
     })
   }, [clients, search, statusFilter, filterPreset, sortMode])
 
-  // Status Badge Helper
+  // الحصول على ألوان الحالة (نشط، معلق، إلخ)
+  // Get status badge colors
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'ACTIVE': return 'bg-green-500/10 text-green-500 border-green-500/20'
       case 'PENDING': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'
       case 'SUSPENDED': return 'bg-red-500/10 text-red-500 border-red-500/20'
-      default: return 'bg-blue-500/10 text-blue-500 border-blue-500/20' // LEAD
+      default: return 'bg-blue-500/10 text-blue-500 border-blue-500/20'
     }
   }
 
+  // معالجة حذف عميل (مع رسالة تأكيد)
+  // Handle client deletion (with confirmation)
   const handleDelete = async (id: string) => {
     if (confirm(t('delete_confirm'))) {
         await deleteClientFn(id)
     }
   }
 
-  // Mobile Card Component
+  // مكون بطاقة العميل للهواتف المحمولة
+  // Mobile Card Component for small screens
   const MobileClientCard = ({ client }: { client: Client }) => {
     const balance = client.priceQuoted - client.amountPaid
     return (
@@ -146,10 +168,11 @@ export function ClientTable({ clients }: { clients: Client[] }) {
 
   return (
     <div className="space-y-4">
-      {/* Top Controls */}
+      {/* عناصر التحكم العلوية (البحث، الفلاتر) */}
+      {/* Top Controls (Search, Filters) */}
       <div className="flex flex-col xl:flex-row gap-4 justify-between items-start xl:items-center">
         
-        {/* Search & Status */}
+        {/* البحث والحالة */}
         <div className="flex flex-col md:flex-row gap-4 w-full xl:w-auto">
             <div className="relative w-full md:w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 rtl:right-3 rtl:left-auto" />
@@ -161,6 +184,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                 />
             </div>
 
+            {/* أزرار تصفية الحالة */}
             <div className="flex gap-1 overflow-x-auto pb-1 sm:pb-0 w-full sm:w-auto scrollbar-hide">
                 {['ALL', 'LEAD', 'ACTIVE', 'PENDING', 'SUSPENDED'].map((status) => (
                     <button
@@ -178,9 +202,8 @@ export function ClientTable({ clients }: { clients: Client[] }) {
             </div>
         </div>
         
-        {/* Smart Filters Dropdown Area */}
+        {/* قائمة الفلاتر الذكية والترتيب */}
         <div className="flex gap-3 w-full xl:w-auto relative z-20">
-            {/* Filter Dropdown Toggle */}
             <div className="relative">
                 <button 
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -206,6 +229,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                         <div className="p-2 space-y-1">
                             <div className="text-xs font-semibold text-gray-500 px-2 py-1 uppercase tracking-wider">{t('smart_filters')}</div>
                             
+                            {/* خيارات الفلاتر الذكية */}
                             <button onClick={() => { setFilterPreset('ALL'); setIsFilterOpen(false) }} className={`w-full text-left rtl:text-right px-3 py-2 rounded-lg text-sm transition-colors ${filterPreset === 'ALL' ? 'bg-nexa-gold/10 text-nexa-gold' : 'text-gray-300 hover:bg-white/5'}`}>
                                 {t('filter_all')}
                             </button>
@@ -228,6 +252,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                             <div className="h-px bg-white/10 my-1" />
                             <div className="text-xs font-semibold text-gray-500 px-2 py-1 uppercase tracking-wider">Sorting</div>
                             
+                            {/* خيار الترتيب حسب آخر دفعة */}
                             <button onClick={() => { setSortMode(sortMode === 'DEFAULT' ? 'LAST_PAYMENT' : 'DEFAULT'); setIsFilterOpen(false) }} className={`w-full text-left rtl:text-right px-3 py-2 rounded-lg text-sm transition-colors ${sortMode === 'LAST_PAYMENT' ? 'bg-nexa-gold/10 text-nexa-gold' : 'text-gray-300 hover:bg-white/5'}`}>
                                 {t('sort_payment')} {sortMode === 'LAST_PAYMENT' && '✓'}
                             </button>
@@ -237,6 +262,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                 )}
             </div>
 
+            {/* مسح الفلاتر */}
             {(filterPreset !== 'ALL' || sortMode !== 'DEFAULT') && (
                 <button 
                   onClick={() => { setFilterPreset('ALL'); setSortMode('DEFAULT') }}
@@ -249,7 +275,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
         </div>
       </div>
 
-      {/* Mobile Card View (Visible on Small Screens) */}
+      {/* عرض البطاقات للهواتف (يختفي في الشاشات الكبيرة) */}
       <div className="md:hidden">
           {filteredClients.length > 0 ? (
               filteredClients.map(client => <MobileClientCard key={client.id} client={client} />)
@@ -260,7 +286,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
           )}
       </div>
 
-      {/* Desktop Table View (Hidden on Small Screens) */}
+      {/* عرض الجدول للحواسيب (يختفي في الشاشات الصغيرة) */}
       <div className="hidden md:block rounded-xl border border-white/10 bg-nexa-gray/20 overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right">
@@ -284,6 +310,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                     >
                     <td className="px-6 py-4 font-medium text-white">
                         <div className="flex items-center gap-3">
+                            {/* شعار العميل (أو أول حرفين من اسمه) */}
                             <div className="h-10 w-10 shrink-0 rounded-full bg-nexa-gold/20 flex items-center justify-center text-nexa-gold font-bold ring-2 ring-white/5">
                                 {client.logoUrl ? (
                                     <img src={client.logoUrl} alt={client.name} className="h-full w-full object-cover rounded-full" />
@@ -312,6 +339,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                                 <span className="text-gray-400 text-xs">{t('price_quoted')}:</span>
                                 <span className="text-gray-500 text-xs">{formatAmount(client.priceQuoted)}</span>
                             </div>
+                            {/* عرض المبالغ المستحقة باللون الأحمر */}
                             {balance > 0.01 && (
                                 <div className="mt-1 px-2 py-0.5 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold rounded w-fit">
                                     DUE: {formatAmount(balance)}
@@ -332,6 +360,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                         </div>
                     </td>
                     <td className="px-6 py-4 text-right rtl:text-left">
+                        {/* أزرار العمليات (مثل الحذف) */}
                         <div className="flex justify-end rtl:justify-start gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button 
                                 onClick={(e) => {
@@ -347,6 +376,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                     </td>
                     </tr>
                 )})}
+                {/* حالة عدم وجود عملاء مطابقين للبحث */}
                 {filteredClients.length === 0 && (
                 <tr>
                     <td colSpan={5} className="px-6 py-12 text-center text-gray-500 bg-white/[0.02]">

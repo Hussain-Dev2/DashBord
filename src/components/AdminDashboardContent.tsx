@@ -1,11 +1,15 @@
 'use client'
 
-import { ClientTable } from '@/components/ClientTable'
-import { StatCard } from '@/components/StatCard'
-import { Users, DollarSign, Clock, LayoutDashboard, Database } from 'lucide-react'
-import { CreateClientModal } from '@/components/CreateClientModal'
-import { CurrencySelector } from '@/components/CurrencySelector'
-import { LanguageToggle } from '@/components/LanguageToggle'
+// استيراد المكونات الفرعية
+// Import child components
+import { ClientTable } from '@/components/ClientTable' // جدول العملاء
+import { StatCard } from '@/components/StatCard' // بطاقات الإحصائيات
+import { Users, DollarSign, Clock, LayoutDashboard, Database } from 'lucide-react' // أيقونات
+import { CreateClientModal } from '@/components/CreateClientModal' // نافذة إضافة عميل
+import { CurrencySelector } from '@/components/CurrencySelector' // اختيار العملة
+import { LanguageToggle } from '@/components/LanguageToggle' // تبديل اللغة
+// استيراد السياقات (Contexts) للحصول على البيانات والإعدادات
+// Import contexts for data and settings
 import { useCurrency } from '@/contexts/CurrencyContext'
 import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -15,22 +19,28 @@ import { LogIn, LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 
-// ... existing imports
-
+// المكون الأساسي لمحتوى لوحة تحكم المسؤول
+// Main component for the Admin Dashboard Content
 export function AdminDashboardContent() {
-  const { formatAmount } = useCurrency()
-  const { clients, isLoading, resetDemoData } = useClients()
-  const { t } = useLanguage()
-  const { data: session, status } = useSession()
-  const isAdmin = session?.user?.isAdmin
-  const isAuthenticated = status === 'authenticated'
+  const { formatAmount } = useCurrency() // وظيفة تنسيق المبالغ المالية
+  const { clients, isLoading, resetDemoData } = useClients() // بيانات العملاء وحالة التحميل
+  const { t } = useLanguage() // وظيفة الترجمة
+  const { data: session, status } = useSession() // بيانات الجلسة وحالة الاتصال
+  const isAdmin = session?.user?.isAdmin // هل المستخدم مدير؟
+  const isAuthenticated = status === 'authenticated' // هل المستخدم مسجل دخول؟
 
-  // Safe checks for potentially undefined fields if matching different types
-  const totalClients = clients.length
+  // حساب الإحصائيات بناءً على قائمة العملاء
+  // Calculate statistics based on the clients list
+  const totalClients = clients.length // إجمالي عدد العملاء
+  // إجمالي الإيرادات (مجموع المبالغ المدفوعة)
   const totalRevenue = clients.reduce((acc, curr) => acc + (Number(curr.amountPaid) || 0), 0)
+  // المبالغ المتبقية (السعير المعروض - المبلغ المدفوع)
   const outstandingBalance = clients.reduce((acc, curr) => acc + ((Number(curr.priceQuoted) || 0) - (Number(curr.amountPaid) || 0)), 0)
+  // عدد المشاريع النشطة
   const activeProjects = clients.filter(c => c.status === 'ACTIVE').length
 
+  // عرض شاشة التحميل إذا كانت البيانات قيد الجلب
+  // Show loading screen if data is being fetched
   if (isLoading && clients.length === 0) {
     return (
       <div className="min-h-screen bg-nexa-black text-white flex items-center justify-center">
@@ -41,7 +51,7 @@ export function AdminDashboardContent() {
 
   return (
     <div className="min-h-screen bg-nexa-black text-white p-4 md:p-10 pb-20 md:pb-10">
-      {/* Header */}
+      {/* رأس الصفحة (Header) */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-6">
         <div>
           <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-nexa-gold to-white mb-2">
@@ -49,6 +59,7 @@ export function AdminDashboardContent() {
           </h1>
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-gray-400 text-sm md:text-base">{t('dashboard_title')}</p>
+            {/* عرض شارة توضح إذا كان المستخدم في وضع المسؤول أو التجربة */}
             {isAdmin ? (
                <span className="px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400 border border-green-500/30">
                  {t('admin_mode')}
@@ -61,10 +72,11 @@ export function AdminDashboardContent() {
           </div>
         </div>
         
-        {/* Controls Grid - Scrollable on mobile or wrapped */}
+        {/* أدوات التحكم (تسجيل الدخول، تبديل اللغة، العملة) */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full lg:w-auto">
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
               {!isAuthenticated ? (
+                // زر تسجيل الدخول
                 <Link 
                   href="/login"
                   className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-semibold hover:shadow-lg transition-all text-sm"
@@ -73,6 +85,7 @@ export function AdminDashboardContent() {
                   {t('sign_in')}
                 </Link>
               ) : (
+                // زر تسجيل الخروج
                 <button 
                   onClick={() => signOut({ callbackUrl: '/' })}
                   className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all text-sm"
@@ -82,6 +95,7 @@ export function AdminDashboardContent() {
                 </button>
               )}
               
+              {/* زر إعادة ضبط البيانات (يظهر للمستخدمين غير المسؤولين فقط) */}
               {!isAdmin && (
                  <button
                    onClick={resetDemoData}
@@ -92,6 +106,7 @@ export function AdminDashboardContent() {
                    <span className="hidden sm:inline">{t('reset_data')}</span>
                  </button>
               )}
+              {/* زر التحليلات (يظهر للمسؤولين فقط) */}
               {isAdmin && (
                 <Link
                   href="/admin/analytics"
@@ -108,13 +123,14 @@ export function AdminDashboardContent() {
               </div>
             </div>
             
+            {/* زر فتح نافذة إضافة عميل جديد */}
             <div className="w-full sm:w-auto mt-2 sm:mt-0">
                 <CreateClientModal />
             </div>
         </div>
       </div>
 
-      {/* Stats Grid */}
+      {/* شبكة الإحصائيات (Stats Grid) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <StatCard 
           title={t('total_clients')} 
@@ -143,7 +159,7 @@ export function AdminDashboardContent() {
         />
       </div>
 
-      {/* Client List */}
+      {/* قائمة العملاء (Client List) */}
       <div className="glass-panel rounded-2xl p-4 md:p-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <h2 className="text-2xl md:text-3xl font-bold text-white">{t('all_clients')}</h2>
@@ -151,6 +167,7 @@ export function AdminDashboardContent() {
             {totalClients} {t('total_clients')}
           </span>
         </div>
+        {/* مكون جدول عرض العملاء */}
         <ClientTable clients={clients} />
       </div>
     </div>
