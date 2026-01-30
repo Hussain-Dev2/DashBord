@@ -7,7 +7,8 @@ import { Client, Status } from '@prisma/client'
 // List of admin email addresses
 export const ADMIN_EMAILS = [
   'dev.hussain90@gmail.com',
-  'omimaahmed2712@gmail.com'
+  'omimaahmed2712@gmail.com',
+  'huiq998877@gmail.com'
 ]
 
 // نوع مساعد لبيانات العملاء التجريبية، يتجاهل الحقول المعقدة أو يضيف أنواعاً مرتبة

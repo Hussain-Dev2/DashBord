@@ -87,12 +87,13 @@ export function CreateClientModal() {
   return (
     <>
       {/* زر فتح النافذة */}
+      {/* في الجوال يظهر كزر عائم (FAB) وفي الحاسوب يظهر بشكل طبيعي في الأعلى */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-bold hover:shadow-lg hover:shadow-nexa-gold/20 transition-all duration-300 hover:scale-105 active:scale-95"
+        className="flex items-center gap-2 px-4 py-3 md:py-2 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-full md:rounded-xl font-bold hover:shadow-lg hover:shadow-nexa-gold/20 transition-all duration-300 hover:scale-105 active:scale-95 fixed bottom-6 right-6 md:static z-50 shadow-2xl md:shadow-none rtl:left-6 rtl:right-auto"
       >
-        <Plus className="h-5 w-5" />
-        <span className="hidden sm:inline">{t('add_client')}</span>
+        <Plus className="h-6 w-6 md:h-5 md:w-5" />
+        <span className="hidden md:inline">{t('add_client')}</span>
       </button>
 
       {/* محتوى النافذة المنبثقة (Modal) */}

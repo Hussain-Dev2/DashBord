@@ -50,7 +50,7 @@ export function AdminDashboardContent() {
   }
 
   return (
-    <div className="min-h-screen bg-nexa-black text-white p-4 md:p-10 pb-20 md:pb-10">
+    <div className="min-h-screen bg-nexa-black text-white p-4 md:p-10 pb-28 md:pb-10">
       {/* رأس الصفحة (Header) */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-6">
         <div>

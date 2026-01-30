@@ -9,12 +9,16 @@ import { QuickPaymentUpdate } from '@/components/QuickPaymentUpdate'
 import { PaymentHistory } from '@/components/PaymentHistory'
 import { ClientsProvider } from '@/contexts/ClientsContext'
 import { InteractionLog } from '@/components/InteractionLog'
+import { ClientInvoice } from '@/components/ClientInvoice'
 
-// Helper for WhatsApp Link
+// دالة مساعدة لإنشاء رابط الواتساب لفتح التطبيق مباشرة
+// Helper function to create WhatsApp link to open the app directly
 function getWhatsAppLink(phone: string | null) {
   if (!phone) return '#'
   const numerics = phone.replace(/\D/g, '')
-  return `https://wa.me/${numerics}`
+  // استخدام البروتوكول الخاص بواتساب لفتح التطبيق بدلاً من المتصفح
+  // Using WhatsApp's custom protocol to open the app instead of the web browser
+  return `whatsapp://send?phone=${numerics}`
 }
 
 
@@ -29,38 +33,41 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
 
   return (
     <ClientsProvider initialClients={[client as any]}>
-      <div className="min-h-screen bg-gradient-to-br from-nexa-black via-nexa-black to-nexa-gray/30 text-white p-4 md:p-8">
+      <div className="min-h-screen bg-gradient-to-br from-nexa-black via-nexa-black to-nexa-gray/30 text-white p-4 md:p-8 pb-24 md:pb-8">
         {/* Header with Glassmorphism */}
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 shadow-2xl">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 mb-8 shadow-2xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <Link href="/admin" className="inline-flex items-center text-gray-400 hover:text-nexa-gold transition-all duration-300 group">
               <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" /> 
               <span className="font-medium">Back to Dashboard</span>
             </Link>
-            <ClientEditForm client={client} />
+            <div className="flex flex-wrap items-center gap-3">
+               <ClientInvoice client={client as any} />
+               <ClientEditForm client={client} />
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Left Column: Profile & Info */}
           <div className="lg:col-span-1 space-y-6">
             {/* Profile Card */}
-            <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 shadow-2xl hover:shadow-nexa-gold/20 transition-all duration-300">
+            <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-nexa-gold/20 transition-all duration-300">
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="relative mb-4">
-                  <div className="h-24 w-24 rounded-full bg-gradient-to-br from-nexa-gold to-nexa-goldHover flex items-center justify-center text-nexa-black text-3xl font-bold border-4 border-white/20 shadow-xl">
+                  <div className="h-20 w-20 md:h-24 md:w-24 rounded-full bg-gradient-to-br from-nexa-gold to-nexa-goldHover flex items-center justify-center text-nexa-black text-2xl md:text-3xl font-bold border-4 border-white/20 shadow-xl">
                     {client.logoUrl ? (
                       <img src={client.logoUrl} alt={client.name} className="h-full w-full object-cover rounded-full" />
                     ) : (
                       client.name.substring(0, 2).toUpperCase()
                     )}
                   </div>
-                  <div className="absolute -bottom-2 -right-2 h-8 w-8 bg-green-500 rounded-full border-4 border-nexa-black"></div>
+                  <div className="absolute -bottom-1 -right-1 h-6 w-6 md:h-8 md:w-8 bg-green-500 rounded-full border-4 border-nexa-black"></div>
                 </div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
+                <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1 md:mb-2">
                   {client.name}
                 </h1>
-                <span className="text-sm text-gray-400 px-4 py-1 bg-white/5 rounded-full border border-white/10">
+                <span className="text-xs md:text-sm text-gray-400 px-4 py-1 bg-white/5 rounded-full border border-white/10">
                   {client.industry || 'No Industry'}
                 </span>
               </div>
@@ -123,16 +130,17 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
                 )}
               </div>
 
-              {/* Action Buttons */}
+                {/* Action Buttons */}
+                {/* تم تعديله ليصبح أكثر بروزاً في الجوال */}
               <div className="mt-6 space-y-3">
                 {client.phone && (
                   <a 
                     href={getWhatsAppLink(client.phone)} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white border border-green-400/50 rounded-xl transition-all duration-300 gap-2 font-medium shadow-lg hover:shadow-green-500/50"
+                    className="flex items-center justify-center w-full py-4 md:py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white border border-green-400/50 rounded-xl transition-all duration-300 gap-2 font-bold shadow-lg hover:shadow-green-500/50 scale-100 hover:scale-[1.02] active:scale-95"
                   >
-                    <Phone className="h-4 w-4" /> Contact via WhatsApp
+                    <Phone className="h-5 w-5 md:h-4 md:w-4" /> Contact via WhatsApp
                   </a>
                 )}
                 {client.projectUrl && (
