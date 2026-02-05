@@ -1,0 +1,32 @@
+
+> temp@0.1.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 74ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.0s
+  Running TypeScript ...
+Failed to compile.
+
+.next/dev/types/validator.ts:62:39
+Type error: Cannot find module '../../../src/app/admin/clients/[id]/page.js' or its corresponding type declarations.
+
+[0m [90m 60 |[39m {
+ [90m 61 |[39m   type __IsExpected[33m<[39m[33mSpecific[39m [36mextends[39m [33mAppPageConfig[39m[33m<[39m[32m"/admin/clients/[id]"[39m[33m>>[39m [33m=[39m [33mSpecific[39m
+[31m[1m>[22m[39m[90m 62 |[39m   [36mconst[39m handler [33m=[39m {} [36mas[39m [36mtypeof[39m [36mimport[39m([32m"../../../src/app/admin/clients/[id]/page.js"[39m)
+ [90m    |[39m                                       [31m[1m^[22m[39m
+ [90m 63 |[39m   type __Check [33m=[39m __IsExpected[33m<[39m[36mtypeof[39m handler[33m>[39m
+ [90m 64 |[39m   [90m// @ts-ignore[39m
+ [90m 65 |[39m   type __Unused [33m=[39m __Check[0m
+Next.js build worker exited with code: 1 and signal: null

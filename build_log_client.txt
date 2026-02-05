@@ -1,0 +1,37 @@
+
+> temp@0.1.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 61ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.6s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/8) ...
+Error occurred prerendering page "/admin/client". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: supabaseUrl is required.
+    at <unknown> (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_1f4b7d7e._.js:37:43505)
+    at new cE (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_1f4b7d7e._.js:37:43756)
+    at module evaluation (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_1f4b7d7e._.js:37:48096)
+    at instantiateModule (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:740:9)
+    at getOrInstantiateModuleFromParent (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:763:12)
+    at Context.esmImport [as i] (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+    at module evaluation (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_bfc794d8._.js:1:7648)
+    at instantiateModule (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:740:9)
+    at getOrInstantiateModuleFromParent (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:763:12)
+    at Context.commonJsRequire [as r] (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\[turbopack]_runtime.js:249:12) {
+  digest: '2938017953'
+}
+Export encountered an error on /admin/client/page: /admin/client, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

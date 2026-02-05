@@ -1,0 +1,27 @@
+{
+  "appId": "com.dashbord.app",
+  "productName": "Dashboard App",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "out/**/*",
+    "electron/**/*",
+    "package.json"
+  ],
+  "win": {
+    "target": ["nsis"]
+  },
+  "mac": {
+    "target": ["dmg"],
+    "identity": null 
+  },
+  "linux": {
+    "target": ["AppImage"]
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "YourGithubUsername",
+    "repo": "YourRepoName"
+  }
+}

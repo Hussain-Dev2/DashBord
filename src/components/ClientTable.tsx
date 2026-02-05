@@ -120,7 +120,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
     const balance = client.priceQuoted - client.amountPaid
     return (
         <div 
-          onClick={() => router.push(`/admin/clients/${client.id}`)}
+          onClick={() => router.push(`/admin/client?id=${client.id}`)}
           className="group block p-4 bg-white/5 border border-white/10 rounded-xl mb-4 hover:border-nexa-gold/50 transition-all cursor-pointer relative overflow-hidden"
         >
             <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -305,7 +305,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                     return (
                     <tr 
                         key={client.id} 
-                        onClick={() => router.push(`/admin/clients/${client.id}`)}
+                        onClick={() => router.push(`/admin/client?id=${client.id}`)}
                         className="hover:bg-white/5 transition-colors group cursor-pointer"
                     >
                     <td className="px-6 py-4 font-medium text-white">

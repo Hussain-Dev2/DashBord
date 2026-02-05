@@ -1,16 +1,12 @@
+'use client'
 
-import { getClients } from '@/app/actions'
 import { AdminDashboardContent } from '@/components/AdminDashboardContent'
 import { ClientsProvider } from '@/contexts/ClientsContext'
 
-export const dynamic = 'force-dynamic'
-
-export default async function AdminDashboardPage() {
-  // This runs on the server. getClients uses session to determine if it returns DB data or Sample data.
-  const initialClients = await getClients()
-
+// Static page, no server loading
+export default function AdminDashboardPage() {
   return (
-    <ClientsProvider initialClients={initialClients as any[]}>
+    <ClientsProvider>
        <AdminDashboardContent />
     </ClientsProvider>
   )

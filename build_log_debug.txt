@@ -1,0 +1,30 @@
+
+> temp@0.1.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 63ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.6s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/8) ...
+Error occurred prerendering page "/admin/client". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: No QueryClient set, use QueryClientProvider to set one
+    at e (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_29551483._.js:1:63124)
+    at <unknown> (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_1f4b7d7e._.js:37:49344)
+    at cI (C:\Users\huiq9\OneDrive\Desktop\My-Project\Product-menu\Dashbord\.next\server\chunks\ssr\_1f4b7d7e._.js:37:53419) {
+  digest: '2224381949'
+}
+Export encountered an error on /admin/client/page: /admin/client, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

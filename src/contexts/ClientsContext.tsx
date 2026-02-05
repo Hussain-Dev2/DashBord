@@ -1,109 +1,95 @@
 'use client'
-
-// استيراد أدوات React الأساسية
-// Import core React hooks and utilities
-import React, { createContext, useContext, useState, useEffect } from 'react'
-// استيراد أداة الجلسة من NextAuth
-// Import session hook from NextAuth
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
-// استيراد أداة التوجيه من Next.js
-// Import router hook from Next.js
 import { useRouter } from 'next/navigation'
-// استيراد أداة الإشعارات (Toast)
-// Import toast notifications library
-import { toast } from 'sonner' 
-// استيراد وظائف الخادم (Server Actions) للتعامل مع العملاء
-// Import server actions for client management
-import { createClient, updateClient, deleteClient as deleteClientAction, updateClientStatus, addPayment, addNote } from '@/app/actions'
-// استيراد أنواع البيانات
-// Import data types
-import { Status } from '@prisma/client'
-import { SerializedClient } from '@/lib/types'
+import { toast } from 'sonner'
+import { useClients as useSupabaseClients } from '@/hooks/useClients'
+import { SerializedClient, Status } from '@/lib/types'
+import { SAMPLE_CLIENTS } from '@/lib/constants'
 
-// تعريف نوع العميل المدمج مع الملاحظات
-// Define client type with notes
+// Re-export types
 export type ClientWithNotes = SerializedClient
 
-// تعريف واجهة سياق العملاء (Context API)
-// Define the interface for the Clients Context
+// Interface
 interface ClientsContextType {
-  clients: ClientWithNotes[] // قائمة العملاء
-  addClient: (data: any) => Promise<void> // إضافة عميل
-  updateClientFn: (id: string, data: any) => Promise<void> // تحديث بيانات عميل
-  deleteClientFn: (id: string) => Promise<void> // حذف عميل
-  updateStatusFn: (id: string, status: Status) => Promise<void> // تحديث حالة العميل
-  addPaymentFn: (clientId: string, amount: number) => Promise<void> // إضافة دفعة مالية
-  addNoteFn: (clientId: string, content: string) => Promise<void> // إضافة ملاحظة
-  resetDemoData: () => void // إعادة ضبط البيانات التجريبية
-  isLoading: boolean // حالة التحميل
+  clients: ClientWithNotes[]
+  addClient: (data: any) => Promise<void>
+  updateClientFn: (id: string, data: any) => Promise<void>
+  deleteClientFn: (id: string) => Promise<void>
+  updateStatusFn: (id: string, status: Status) => Promise<void>
+  addPaymentFn: (clientId: string, amount: number) => Promise<void>
+  addNoteFn: (clientId: string, content: string) => Promise<void>
+  resetDemoData: () => void
+  isLoading: boolean
 }
 
-// إنشاء السياق (Context)
-// Create the Context
 const ClientsContext = createContext<ClientsContextType | undefined>(undefined)
 
-// موفر سياق العملاء الذي يغلف التطبيق
-// Clients Provider component that wraps the application
 export function ClientsProvider({ 
   children, 
-  initialClients 
+  initialClients = []
 }: { 
   children: React.ReactNode
-  initialClients: ClientWithNotes[] 
+  initialClients?: ClientWithNotes[] 
 }) {
-  const { data: session } = useSession() // الحصول على بيانات الجلسة
-  const router = useRouter() // استخدام الموجه
-  const [clients, setClients] = useState<ClientWithNotes[]>(initialClients) // حالة العملاء
-  const [isLoading, setIsLoading] = useState(false) // حالة التحميل
+  const { data: session } = useSession()
+  const isAdmin = session?.user?.isAdmin ?? false
+  const router = useRouter()
 
-  const isAdmin = session?.user?.isAdmin // هل المستخدم مدير؟
+  // 1. Supabase (Admin) Data
+  const { 
+      clients: serverClients, 
+      isLoading: isServerLoading,
+      addClient: addClientCtx,
+      updateClient: updateClientCtx,
+      deleteClient: deleteClientCtx,
+      updateStatus: updateStatusCtx,
+      addPayment: addPaymentCtx,
+      addNote: addNoteCtx
+  } = useSupabaseClients()
 
-  // تهيئة البيانات من التخزين المحلي (LocalStorage) للمستخدمين التجريبيين
-  // Initialize from LocalStorage for Demo Users
+  // 2. Demo (Local) Data
+  const [demoClients, setDemoClients] = useState<ClientWithNotes[]>([])
+
+  // Initialize Demo Data
   useEffect(() => {
-    if (session?.user && !isAdmin) {
+    if (!isAdmin) {
       const stored = localStorage.getItem('demo_clients')
       if (stored) {
         try {
-          const parsed = JSON.parse(stored)
-          setClients(parsed)
+          setDemoClients(JSON.parse(stored))
         } catch (e) {
           console.error("Failed to parse demo clients", e)
+          setDemoClients(SAMPLE_CLIENTS as any)
         }
       } else {
-        // إذا لم توجد بيانات مخزنة، استخدم البيانات الأولية
-        // If no stored data, use initialClients (Sample Clients)
-        setClients(initialClients)
+        setDemoClients(SAMPLE_CLIENTS as any)
       }
-    } else {
-      // للمديرين: دائمًا التزامن مع الخادم
-      // For Admin: Always sync with server state
-      setClients(initialClients)
     }
-  }, [session, isAdmin, initialClients])
+  }, [isAdmin])
 
-  // حفظ التغيرات في التخزين المحلي للمستخدمين التجريبيين
-  // Persist to LocalStorage whenever clients change (for Demo users)
+  // Persist Demo Data
   useEffect(() => {
-    if (session?.user && !isAdmin && clients.length > 0) {
-      localStorage.setItem('demo_clients', JSON.stringify(clients))
+    if (!isAdmin && demoClients.length > 0) {
+      localStorage.setItem('demo_clients', JSON.stringify(demoClients))
     }
-  }, [clients, session, isAdmin])
+  }, [demoClients, isAdmin])
 
-  // وظيفة إضافة عميل جديد
-  // Function to add a new client
-  const addClient = React.useCallback(async (data: any) => {
-    setIsLoading(true)
+  // Derived State
+  // Note: if isAdmin is true, we use serverClients. If false, demoClients.
+  const clients = isAdmin ? serverClients : demoClients
+  const isLoading = isAdmin ? isServerLoading : false
+
+  // Handlers
+  const addClient = useCallback(async (data: any) => {
     if (isAdmin) {
       try {
-        await createClient(data)
-        router.refresh()
-        toast.success('Client created successfully')
+        await addClientCtx.mutateAsync(data)
+        toast.success('Client created')
       } catch (error) {
         toast.error('Failed to create client')
       }
     } else {
-      // وضع التجربة (Demo Mode)
       const newClient: ClientWithNotes = {
         ...data,
         id: `demo-${Date.now()}`,
@@ -111,145 +97,113 @@ export function ClientsProvider({
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         notes: [],
+        payments: [],
         priceQuoted: Number(data.priceQuoted) || 0,
         amountPaid: Number(data.amountPaid) || 0,
       } as any 
-      setClients(prev => [newClient, ...prev])
+      setDemoClients(prev => [newClient, ...prev])
       toast.success('Demo: Client created (Local Only)')
     }
-    setIsLoading(false)
-  }, [isAdmin, router])
+  }, [isAdmin, addClientCtx])
 
-  // وظيفة تحديث بيانات عميل
-  // Function to update client data
-  const updateClientFn = React.useCallback(async (id: string, data: any) => {
-    setIsLoading(true)
+  const updateClientFn = useCallback(async (id: string, data: any) => {
     if (isAdmin) {
       try {
-        await updateClient(id, data)
-        router.refresh()
+        await updateClientCtx.mutateAsync({id, data})
         toast.success('Client updated')
       } catch (error) {
         toast.error('Failed to update client')
       }
     } else {
-      // وضع التجربة
-      setClients(prev => prev.map(c => c.id === id ? { ...c, ...data } : c))
-      toast.success('Demo: Client updated (Local Only)')
+        setDemoClients(prev => prev.map(c => c.id === id ? { ...c, ...data } : c))
+        toast.success('Demo: Client updated')
     }
-    setIsLoading(false)
-  }, [isAdmin, router])
+  }, [isAdmin, updateClientCtx])
 
-  // وظيفة تحديث حالة العميل
-  // Function to update client status
-  const updateStatusFn = React.useCallback(async (id: string, status: Status) => {
+  const deleteClientFn = useCallback(async (id: string) => {
     if (isAdmin) {
-      try {
-        await updateClientStatus(id, status)
-        router.refresh()
-        toast.success('Status updated')
-      } catch (error) {
-        toast.error('Failed to update status')
-      }
-    } else {
-       // وضع التجربة
-       setClients(prev => prev.map(c => c.id === id ? { ...c, status } : c))
-       toast.success('Demo: Status updated (Local Only)')
-    }
-  }, [isAdmin, router])
-
-  // وظيفة إضافة دفعة مالية
-  // Function to add a payment
-  const addPaymentFn = React.useCallback(async (clientId: string, amount: number) => {
-    setIsLoading(true)
-    if (isAdmin) {
-      try {
-        await addPayment(clientId, amount)
-        router.refresh()
-        toast.success('Payment added')
-      } catch (error) {
-        toast.error('Failed to add payment')
-      }
-    } else {
-      // وضع التجربة
-      setClients(prev => prev.map(c => {
-        if (c.id === clientId) {
-          return {
-            ...c,
-            amountPaid: Number(c.amountPaid) + amount,
-            updatedAt: new Date().toISOString()
-          }
+        try {
+            await deleteClientCtx.mutateAsync(id)
+            toast.success('Client deleted')
+        } catch (error) {
+            toast.error('Failed to delete client')
         }
-        return c
-      }))
-      toast.success('Demo: Payment added (Local Only)')
-    }
-    setIsLoading(false)
-  }, [isAdmin, router])
-
-  // وظيفة إضافة ملاحظة
-  // Function to add a note
-  const addNoteFn = React.useCallback(async (clientId: string, content: string) => {
-    setIsLoading(true)
-    if (isAdmin) {
-      try {
-        await addNote(clientId, content)
-        router.refresh()
-        toast.success('Note added')
-      } catch (error) {
-        toast.error('Failed to add note')
-      }
     } else {
-      // وضع التجربة
-      setClients(prev => prev.map(c => {
-        if (c.id === clientId) {
-          return {
-            ...c,
-            notes: [
-              { id: `demo-note-${Date.now()}`, content, createdAt: new Date().toISOString(), clientId },
-              ...(c.notes || [])
-            ]
+        setDemoClients(prev => prev.filter(c => c.id !== id))
+        toast.success('Demo: Client deleted')
+    }
+  }, [isAdmin, deleteClientCtx])
+
+  const updateStatusFn = useCallback(async (id: string, status: Status) => {
+      if (isAdmin) {
+          try {
+              await updateStatusCtx.mutateAsync({id, status})
+              toast.success('Status updated')
+          } catch (error) {
+              toast.error('Failed to update status')
           }
-        }
-        return c
-      }))
-      toast.success('Demo: Note added (Local Only)')
-    }
-    setIsLoading(false)
-  }, [isAdmin, router])
-
-  // وظيفة حذف عميل
-  // Function to delete a client
-  const deleteClientFn = React.useCallback(async (id: string) => {
-    setIsLoading(true)
-    if (isAdmin) {
-      try {
-        await deleteClientAction(id)
-        router.refresh()
-        toast.success('Client deleted')
-      } catch (error) {
-        toast.error('Failed to delete client')
+      } else {
+          setDemoClients(prev => prev.map(c => c.id === id ? { ...c, status } : c))
+          toast.success('Demo: Status updated')
       }
-    } else {
-      // وضع التجربة
-      setClients(prev => prev.filter(c => c.id !== id))
-      toast.success('Demo: Client deleted (Local Only)')
-    }
-    setIsLoading(false)
-  }, [isAdmin, router])
+  }, [isAdmin, updateStatusCtx])
 
-  // وظيفة إعادة ضبط البيانات (للمستخدمين التجريبيين فقط)
-  // Function to reset demo data
-  const resetDemoData = React.useCallback(() => {
+   const addPaymentFn = useCallback(async (clientId: string, amount: number) => {
+      if (isAdmin) {
+          try {
+              await addPaymentCtx.mutateAsync({clientId, amount})
+              toast.success('Payment added')
+          } catch (error) {
+              toast.error('Failed to add payment')
+          }
+      } else {
+          setDemoClients(prev => prev.map(c => {
+            if (c.id === clientId) {
+              return {
+                ...c,
+                amountPaid: Number(c.amountPaid) + amount,
+                updatedAt: new Date().toISOString()
+              }
+            }
+            return c
+          }))
+          toast.success('Demo: Payment added')
+      }
+   }, [isAdmin, addPaymentCtx])
+
+   const addNoteFn = useCallback(async (clientId: string, content: string) => {
+       if (isAdmin) {
+           try {
+               await addNoteCtx.mutateAsync({clientId, content})
+               toast.success('Note added')
+           } catch (error) {
+               toast.error('Failed to add note')
+           }
+       } else {
+           setDemoClients(prev => prev.map(c => {
+             if (c.id === clientId) {
+               return {
+                 ...c,
+                 notes: [
+                   { id: `demo-note-${Date.now()}`, content, createdAt: new Date().toISOString(), clientId },
+                   ...(c.notes || [])
+                 ]
+               }
+             }
+             return c
+           }))
+           toast.success('Demo: Note added')
+       }
+   }, [isAdmin, addNoteCtx])
+
+  const resetDemoData = useCallback(() => {
     if (isAdmin) return
     localStorage.removeItem('demo_clients')
-    setClients([]) 
+    setDemoClients([]) 
     toast.info('Demo data cleared')
   }, [isAdmin])
 
-  // تحسين الأداء باستخدام useMemo لقيمة السياق
-  // Optimize performance using useMemo for context value
-  const value = React.useMemo(() => ({
+  const value = useMemo(() => ({
     clients, 
     addClient, 
     updateClientFn, 
@@ -268,8 +222,6 @@ export function ClientsProvider({
   )
 }
 
-// خطاف مخصص لاستخدام سياق العملاء بسهولة
-// Custom hook for easier access to Clients Context
 export function useClients() {
   const context = useContext(ClientsContext)
   if (context === undefined) {
