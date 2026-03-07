@@ -48,7 +48,7 @@ export function ClientsProvider({
       addPayment: addPaymentCtx,
       addDebt: addDebtCtx,
       addNote: addNoteCtx
-  } = useSupabaseClients()
+  } = useSupabaseClients({ enabled: isAdmin })
 
   // 2. Demo (Local) Data
   const [demoClients, setDemoClients] = useState<ClientWithNotes[]>([])

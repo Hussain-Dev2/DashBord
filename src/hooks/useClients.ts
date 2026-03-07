@@ -27,8 +27,9 @@ async function apiCall(path: string, method: string, body?: object) {
   }
 }
 
-export function useClients() {
+export function useClients(options: { enabled?: boolean } = {}) {
   const queryClient = useQueryClient()
+  const enabled = options.enabled !== false
 
   // ── Query: read all clients via API (Admin only path for data) ──
   const { data: clients = [], isLoading, error } = useQuery({
@@ -44,7 +45,8 @@ export function useClients() {
         payments: client.Payment || client.payments || [],
         lastPayment: (client.Payment || client.payments)?.[0]?.date || null,
       })) as SerializedClient[]
-    }
+    },
+    enabled: enabled
   })
 
   // ── Realtime subscription ──
