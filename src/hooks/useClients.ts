@@ -2,6 +2,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { SerializedClient, CreateClientData, UpdateClientData, Status } from '@/lib/types'
 import { useEffect } from 'react'
+import { db } from '@/lib/db'
+import { toast } from 'sonner'
 
 // ── Helpers ──────────────────────────────────────────────
 async function apiCall(path: string, method: string, body?: object) {
@@ -31,23 +33,49 @@ export function useClients(options: { enabled?: boolean } = {}) {
   const queryClient = useQueryClient()
   const enabled = options.enabled !== false
 
-  // ── Query: read all clients via API (Admin only path for data) ──
+  // ── Query: read all clients with Offline Fallback ──
   const { data: clients = [], isLoading, error } = useQuery({
     queryKey: ['clients'],
     queryFn: async () => {
-      const data = await apiCall('/api/clients', 'GET')
+      try {
+        const data = await apiCall('/api/clients', 'GET')
+        const formatted = (data || []).map((client: any) => ({
+          ...client,
+          priceQuoted: Number(client.priceQuoted),
+          amountPaid: Number(client.amountPaid),
+          notes: client.Note || client.notes || [],
+          payments: client.Payment || client.payments || [],
+          lastPayment: (client.Payment || client.payments)?.[0]?.date || null,
+        })) as SerializedClient[]
 
-      return (data || []).map((client: any) => ({
-        ...client,
-        priceQuoted: Number(client.priceQuoted),
-        amountPaid: Number(client.amountPaid),
-        notes: client.Note || client.notes || [],
-        payments: client.Payment || client.payments || [],
-        lastPayment: (client.Payment || client.payments)?.[0]?.date || null,
-      })) as SerializedClient[]
+        // Store in local DB for offline use
+        await db.clients.clear()
+        await db.clients.bulkPut(formatted)
+        return formatted
+      } catch (err) {
+        console.warn('[apiCall] API failed, falling back to local DB:', err)
+        const localData = await db.clients.toArray()
+        if (localData.length > 0) return localData
+        throw err // Re-throw if nothing locally either
+      }
     },
     enabled: enabled
   })
+
+  // ── Helper to Queue Offline Mutations ──
+  const queueSync = async (type: any, clientId: string, data: any) => {
+    if (!navigator.onLine) {
+      await db.syncQueue.add({
+        type,
+        clientId,
+        data,
+        timestamp: new Date().toISOString()
+      })
+      toast.info('Changes saved locally (Offline). Will sync when back online.')
+      return true
+    }
+    return false
+  }
 
   // ── Realtime subscription ──
   useEffect(() => {
@@ -70,42 +98,107 @@ export function useClients(options: { enabled?: boolean } = {}) {
   // ── Mutations: all go through API routes (service role key, bypasses RLS) ──
 
   const addClient = useMutation({
-    mutationFn: (data: CreateClientData) => apiCall('/api/clients', 'POST', data),
+    mutationFn: async (data: CreateClientData) => {
+      try {
+        return await apiCall('/api/clients', 'POST', data)
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('ADD_CLIENT', 'new', data)
+          return data // Mock return for optimistic update
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const updateClient = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdateClientData }) =>
-      apiCall(`/api/clients/${id}`, 'PATCH', data),
+    mutationFn: async ({ id, data }: { id: string; data: UpdateClientData }) => {
+      try {
+        return await apiCall(`/api/clients/${id}`, 'PATCH', data)
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('UPDATE_CLIENT', id, data)
+          return data
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const deleteClient = useMutation({
-    mutationFn: (id: string) => apiCall(`/api/clients/${id}`, 'DELETE'),
+    mutationFn: async (id: string) => {
+      try {
+        return await apiCall(`/api/clients/${id}`, 'DELETE')
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('DELETE_CLIENT', id, {})
+          return id
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const updateStatus = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: Status }) =>
-      apiCall(`/api/clients/${id}`, 'PATCH', { status }),
+    mutationFn: async ({ id, status }: { id: string; status: Status }) => {
+      try {
+        return await apiCall(`/api/clients/${id}`, 'PATCH', { status })
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('UPDATE_STATUS', id, { status })
+          return { status }
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const addNote = useMutation({
-    mutationFn: ({ clientId, content }: { clientId: string; content: string }) =>
-      apiCall(`/api/clients/${clientId}/note`, 'POST', { content }),
+    mutationFn: async ({ clientId, content }: { clientId: string; content: string }) => {
+      try {
+        return await apiCall(`/api/clients/${clientId}/note`, 'POST', { content })
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('ADD_NOTE', clientId, { content })
+          return { content }
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const addPayment = useMutation({
-    mutationFn: ({ clientId, amount }: { clientId: string; amount: number }) =>
-      apiCall(`/api/clients/${clientId}/payment`, 'POST', { amount }),
+    mutationFn: async ({ clientId, amount }: { clientId: string; amount: number }) => {
+      try {
+        return await apiCall(`/api/clients/${clientId}/payment`, 'POST', { amount })
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('ADD_PAYMENT', clientId, { amount })
+          return { amount }
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 
   const addDebt = useMutation({
-    mutationFn: ({ clientId, amount }: { clientId: string; amount: number }) =>
-      apiCall(`/api/clients/${clientId}/debt`, 'POST', { amount }),
+    mutationFn: async ({ clientId, amount }: { clientId: string; amount: number }) => {
+      try {
+        return await apiCall(`/api/clients/${clientId}/debt`, 'POST', { amount })
+      } catch (err) {
+        if (!navigator.onLine) {
+          await queueSync('ADD_DEBT', clientId, { amount })
+          return { amount }
+        }
+        throw err
+      }
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
   })
 

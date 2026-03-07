@@ -28,6 +28,8 @@
     "@tanstack/react-query-persist-client": "^5.90.22",
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
+    "dexie": "^4.3.0",
+    "dexie-react-hooks": "^4.2.0",
     "electron-serve": "^3.0.1",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.562.0",

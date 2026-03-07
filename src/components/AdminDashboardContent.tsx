@@ -12,9 +12,9 @@ import { LanguageToggle } from '@/components/LanguageToggle'
 import { useCurrency } from '@/contexts/CurrencyContext'
 import { useClients } from '@/contexts/ClientsContext'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { signOut } from 'next-auth/react'
+import { SyncService } from '@/components/SyncService'
 
 export function AdminDashboardContent() {
   const { formatAmount } = useCurrency()
@@ -49,6 +49,7 @@ export function AdminDashboardContent() {
       className="min-h-screen pb-24 md:pb-10"
       style={{ background: 'linear-gradient(160deg, #0d0f1a 0%, #111327 50%, #0d0f1a 100%)' }}
     >
+      <SyncService />
       {/* ── Header ── */}
       <header className="sticky top-0 z-30 glass-panel border-b border-white/8 px-2.5 md:px-8 py-2.5 md:py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 md:gap-4">
