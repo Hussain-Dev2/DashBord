@@ -78,7 +78,7 @@ export function AdminDashboardContent() {
             {isAdmin && (
               <Link
                 href="/admin/analytics"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-xs font-semibold hover:bg-blue-500/20 transition-colors"
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-xs font-semibold hover:bg-blue-500/20 transition-colors"
               >
                 <BarChart2 className="h-3.5 w-3.5" />
                 {t('analytics')}
@@ -88,7 +88,7 @@ export function AdminDashboardContent() {
             {!isAdmin && (
               <button
                 onClick={resetDemoData}
-                className="p-2 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition-colors"
+                className="hidden sm:p-2 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition-colors"
                 title={t('reset_data')}
               >
                 <Database className="h-4 w-4" />
@@ -98,7 +98,7 @@ export function AdminDashboardContent() {
             {!isAuthenticated ? (
               <Link
                 href="/login"
-                className="flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 btn-gold rounded-lg md:rounded-xl text-[10px] md:text-xs"
+                className="hidden md:flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 btn-gold rounded-lg md:rounded-xl text-[10px] md:text-xs"
               >
                 <LogIn className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 <span className="hidden sm:inline-block">{t('sign_in')}</span>
@@ -106,7 +106,7 @@ export function AdminDashboardContent() {
             ) : (
               <button
                 onClick={() => signOut({ callbackUrl: '/' })}
-                className="flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 bg-white/5 border border-white/10 text-gray-300 hover:text-white rounded-lg md:rounded-xl text-[10px] md:text-xs transition-colors"
+                className="hidden md:flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 bg-white/5 border border-white/10 text-gray-300 hover:text-white rounded-lg md:rounded-xl text-[10px] md:text-xs transition-colors"
               >
                 <LogOut className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 <span className="hidden sm:inline-block">{t('sign_out')}</span>
