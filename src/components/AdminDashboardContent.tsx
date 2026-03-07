@@ -119,8 +119,8 @@ export function AdminDashboardContent() {
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
 
-        {/* ── Stat Cards (scroll on mobile) ── */}
-        <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide md:grid md:grid-cols-4 mb-8">
+        {/* ── Stat Cards ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
           {[
             {
               title: t('total_clients'),
@@ -152,7 +152,7 @@ export function AdminDashboardContent() {
               variant: 'blue' as const,
             },
           ].map(card => (
-            <div key={card.title} className="min-w-[170px] md:min-w-0 flex-1">
+            <div key={card.title} className="flex-1">
               <StatCard {...card} />
             </div>
           ))}

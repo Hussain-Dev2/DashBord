@@ -63,7 +63,7 @@ export function StatCard({ title, value, icon: Icon, description, isEmpty, varia
   return (
     <div
       className={`
-        relative rounded-2xl p-4 md:p-5 border transition-all duration-300 cursor-default
+        relative rounded-2xl p-3 md:p-5 border transition-all duration-300 cursor-default
         bg-gradient-to-br from-slate-800/60 to-slate-900/80
         ${s.border} ${!isEmpty ? s.glow : ''}
         ${isEmpty ? 'opacity-60' : ''}
@@ -71,24 +71,24 @@ export function StatCard({ title, value, icon: Icon, description, isEmpty, varia
       `}
     >
       {/* Top row: title + icon */}
-      <div className="flex items-center justify-between mb-3 md:mb-4">
-        <div className="flex items-center gap-2">
-          <span className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${s.dot} opacity-70`} />
-          <span className="text-gray-400 text-[10px] md:text-xs font-semibold uppercase tracking-widest">{title}</span>
+      <div className="flex items-center justify-between mb-2 md:mb-4">
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <span className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${s.dot} opacity-70`} />
+          <span className="text-gray-400 text-[9px] md:text-xs font-semibold uppercase tracking-widest">{title}</span>
         </div>
-        <div className={`p-2 md:p-2.5 rounded-xl ${s.iconBg}`}>
-          <Icon className={`h-4 w-4 md:h-5 md:w-5 ${s.iconColor}`} />
+        <div className={`p-1.5 md:p-2.5 rounded-lg md:rounded-xl ${s.iconBg}`}>
+          <Icon className={`h-3.5 w-3.5 md:h-5 md:w-5 ${s.iconColor}`} />
         </div>
       </div>
 
       {/* Value */}
-      <div className="text-2xl md:text-3xl font-bold text-white mb-1.5 tracking-tight leading-none">
+      <div className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-1.5 tracking-tight leading-none">
         <AnimatedNumber value={value} />
       </div>
 
       {/* Description */}
       {description && (
-        <p className={`text-xs leading-relaxed ${isEmpty ? 'text-gray-600 italic' : 'text-gray-500'}`}>
+        <p className={`hidden md:block text-xs leading-relaxed ${isEmpty ? 'text-gray-600 italic' : 'text-gray-500'}`}>
           {description}
         </p>
       )}
