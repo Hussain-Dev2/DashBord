@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Phone, Github, Globe, DollarSign, TrendingUp } from 'lucide-react'
+import { ArrowLeft, Phone, Github, Globe, DollarSign, TrendingUp, TrendingDown, CheckCircle2 } from 'lucide-react'
 import { formatCurrency } from '@/lib/format'
 import { ClientEditForm } from '@/components/ClientEditForm'
 import { QuickPaymentUpdate } from '@/components/QuickPaymentUpdate'
@@ -18,180 +18,240 @@ function getWhatsAppLink(phone: string | null) {
   return `whatsapp://send?phone=${numerics}`
 }
 
+const statusStyles: Record<string, { bg: string; text: string; border: string }> = {
+  ACTIVE:    { bg: 'bg-green-500/15',  text: 'text-green-400',  border: 'border-green-500/30' },
+  PENDING:   { bg: 'bg-yellow-500/15', text: 'text-yellow-400', border: 'border-yellow-500/30' },
+  SUSPENDED: { bg: 'bg-red-500/15',    text: 'text-red-400',    border: 'border-red-500/30' },
+  LEAD:      { bg: 'bg-blue-500/15',   text: 'text-blue-400',   border: 'border-blue-500/30' },
+}
+
 function ClientDetailsContent() {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
   const { clients, isLoading } = useClients()
   const [client, setClient] = useState<any>(null)
-  
+
   useEffect(() => {
-     if (id && clients.length > 0) {
-        setClient(clients.find(c => c.id === id) || null)
-     }
+    if (id && clients.length > 0) {
+      setClient(clients.find(c => c.id === id) || null)
+    }
   }, [id, clients])
 
   if (isLoading) {
-      return <div className="p-8 text-white">Loading client data...</div>
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--slate-950)' }}>
+        <div className="text-white/50 animate-pulse">Loading client data...</div>
+      </div>
+    )
   }
 
   if (!client) {
-      return <div className="p-8 text-white">Client not found.</div>
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--slate-950)' }}>
+        <div className="glass-panel rounded-2xl p-8 text-center">
+          <p className="text-white mb-4">Client not found.</p>
+          <Link href="/admin" className="text-[var(--gold)] hover:underline text-sm">← Back to Dashboard</Link>
+        </div>
+      </div>
+    )
   }
 
-  const balance = (client.priceQuoted || 0) - (client.amountPaid || 0)
-  const paymentProgress = client.priceQuoted > 0 ? (client.amountPaid / client.priceQuoted) * 100 : 0
+  const balance = Math.max(0, (client.priceQuoted || 0) - (client.amountPaid || 0))
+  const isFullyPaid = balance <= 0.01
+  const paymentProgress = client.priceQuoted > 0
+    ? Math.min(100, (client.amountPaid / client.priceQuoted) * 100)
+    : 0
+  const statusStyle = statusStyles[client.status] || statusStyles.LEAD
+  const initials = client.name.substring(0, 2).toUpperCase()
 
   return (
-      <div className="min-h-screen bg-gradient-to-br from-nexa-black via-nexa-black to-nexa-gray/30 text-white p-4 md:p-8 pb-24 md:pb-8">
-        {/* Header with Glassmorphism */}
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 mb-8 shadow-2xl">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <Link href="/admin" className="inline-flex items-center text-gray-400 hover:text-nexa-gold transition-all duration-300 group">
-              <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" /> 
-              <span className="font-medium">Back to Dashboard</span>
-            </Link>
-            <div className="flex flex-wrap items-center gap-3">
-               <ClientInvoice client={client as any} />
-               <ClientEditForm client={client} />
-            </div>
+    <div className="min-h-screen text-white pb-24 md:pb-10" style={{ background: 'var(--slate-950)' }}>
+      {/* Sticky Header */}
+      <header className="sticky top-0 z-30 glass-panel border-b border-white/8 px-4 md:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <Link
+            href="/admin"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-[var(--gold)] transition-colors text-sm font-medium group"
+          >
+            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Dashboard
+          </Link>
+          <div className="flex items-center gap-2">
+            <ClientInvoice client={client as any} />
+            <ClientEditForm client={client} />
           </div>
         </div>
+      </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* Left Column: Profile & Info */}
-          <div className="lg:col-span-1 space-y-6">
+      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* ── Left Column ── */}
+          <div className="lg:col-span-1 space-y-5">
             {/* Profile Card */}
-            <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-nexa-gold/20 transition-all duration-300">
+            <div className="glass-panel rounded-2xl p-6 border border-white/10">
+              {/* Avatar + Name */}
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="relative mb-4">
-                  <div className="h-20 w-20 md:h-24 md:w-24 rounded-full bg-gradient-to-br from-nexa-gold to-nexa-goldHover flex items-center justify-center text-nexa-black text-2xl md:text-3xl font-bold border-4 border-white/20 shadow-xl">
+                  <div
+                    className="h-20 w-20 rounded-2xl flex items-center justify-center text-2xl font-bold border-2 border-white/20 shadow-xl overflow-hidden"
+                    style={{ background: 'linear-gradient(135deg, var(--gold), #b8922a)' }}
+                  >
                     {client.logoUrl ? (
-                      <img src={client.logoUrl} alt={client.name} className="h-full w-full object-cover rounded-full" />
+                      <img src={client.logoUrl} alt={client.name} className="h-full w-full object-cover" />
                     ) : (
-                      client.name.substring(0, 2).toUpperCase()
+                      <span className="text-black">{initials}</span>
                     )}
                   </div>
-                  <div className="absolute -bottom-1 -right-1 h-6 w-6 md:h-8 md:w-8 bg-green-500 rounded-full border-4 border-nexa-black"></div>
+                  {/* Online dot */}
+                  <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-[3px] border-[var(--slate-950)]" />
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1 md:mb-2">
-                  {client.name}
-                </h1>
-                <span className="text-xs md:text-sm text-gray-400 px-4 py-1 bg-white/5 rounded-full border border-white/10">
+                <h1 className="text-xl font-bold text-white mb-1">{client.name}</h1>
+                <span className="text-xs text-gray-400 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   {client.industry || 'No Industry'}
                 </span>
               </div>
 
               {/* Status Badge */}
-              <div className="flex justify-center mb-6">
-                <span className={`px-6 py-2 rounded-full text-sm font-semibold border-2 ${
-                  client.status === 'ACTIVE' ? 'bg-green-500/20 text-green-400 border-green-500/50' :
-                  client.status === 'PENDING' ? 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50' :
-                  client.status === 'SUSPENDED' ? 'bg-red-500/20 text-red-400 border-red-500/50' :
-                  'bg-blue-500/20 text-blue-400 border-blue-500/50'
-                }`}>
+              <div className="flex justify-center mb-5">
+                <span className={`px-4 py-1.5 rounded-full text-xs font-bold border ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border}`}>
                   {client.status}
                 </span>
               </div>
 
-              {/* Financial Overview */}
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-nexa-gold/10 to-transparent border border-nexa-gold/20 rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-400 flex items-center gap-2">
-                      <DollarSign className="h-4 w-4" />
-                      Price Quoted
-                    </span>
-                    <span className="text-xl font-bold text-white">${formatCurrency(client.priceQuoted)}</span>
+              {/* Financial overview */}
+              <div className="space-y-3">
+                {/* Total Debt */}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--gold)]/8 border border-[var(--gold)]/20">
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <DollarSign className="h-4 w-4 text-[var(--gold)]" />
+                    Total Debt
                   </div>
+                  <span className="text-base font-bold text-white">${formatCurrency(client.priceQuoted)}</span>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-500/10 to-transparent border border-green-500/20 rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-400 flex items-center gap-2">
-                      <TrendingUp className="h-4 w-4" />
-                      Amount Paid
-                    </span>
-                    <QuickPaymentUpdate 
-                      clientId={client.id}
-                      currentAmount={client.amountPaid || 0}
-                      totalAmount={client.priceQuoted || 0}
-                    />
+                {/* Amount Paid */}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-green-500/8 border border-green-500/20">
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <TrendingDown className="h-4 w-4 text-green-400" />
+                    Paid
                   </div>
-                  {/* Progress Bar */}
-                  <div className="mt-3">
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all duration-500"
-                        style={{ width: `${Math.min(paymentProgress, 100)}%` }}
-                      ></div>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">{paymentProgress.toFixed(0)}% paid</p>
-                  </div>
+                  <span className="text-base font-bold text-green-400">${formatCurrency(client.amountPaid)}</span>
                 </div>
 
-                {balance > 0 && (
-                  <div className="bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/20 rounded-xl p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">Balance Due</span>
-                      <span className="text-xl font-bold text-red-400">${formatCurrency(balance)}</span>
+                {/* Balance Due / Paid badge */}
+                {isFullyPaid ? (
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-green-500/10 border border-green-500/30">
+                    <div className="flex items-center gap-1.5 text-sm text-green-400">
+                      <CheckCircle2 className="h-4 w-4" /> Fully Paid
                     </div>
+                    <span className="text-xs font-bold text-green-400 px-2 py-0.5 rounded-full bg-green-500/20">✓ PAID</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-red-500/8 border border-red-500/20">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <TrendingUp className="h-4 w-4 text-red-400" />
+                      Balance Due
+                    </div>
+                    <span className="text-base font-bold text-red-400">${formatCurrency(balance)}</span>
                   </div>
                 )}
+
+                {/* Progress bar */}
+                <div className="pt-1">
+                  <div className="flex justify-between text-xs text-gray-500 mb-1.5">
+                    <span>Payment progress</span>
+                    <span>{paymentProgress.toFixed(0)}%</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-white/8 overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{
+                        width: `${paymentProgress}%`,
+                        background: isFullyPaid
+                          ? 'var(--success)'
+                          : paymentProgress > 50
+                            ? 'var(--gold)'
+                            : 'var(--danger)'
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
 
-                {/* Action Buttons */}
-              <div className="mt-6 space-y-3">
+              {/* Quick Actions */}
+              <div className="mt-4 pt-4 border-t border-white/8">
+                <p className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-3">Quick Actions</p>
+                <QuickPaymentUpdate
+                  clientId={client.id}
+                  currentAmount={client.amountPaid || 0}
+                  totalAmount={client.priceQuoted || 0}
+                />
+              </div>
+
+              {/* Contact buttons */}
+              <div className="mt-4 space-y-2">
                 {client.phone && (
-                  <a 
-                    href={getWhatsAppLink(client.phone)} 
-                    target="_blank" 
+                  <a
+                    href={getWhatsAppLink(client.phone)}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full py-4 md:py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white border border-green-400/50 rounded-xl transition-all duration-300 gap-2 font-bold shadow-lg hover:shadow-green-500/50 scale-100 hover:scale-[1.02] active:scale-95"
+                    className="flex items-center justify-center w-full py-3 rounded-xl font-bold text-sm gap-2 transition-all duration-200
+                      bg-green-500/15 text-green-400 border border-green-500/30 hover:bg-green-500/25"
                   >
-                    <Phone className="h-5 w-5 md:h-4 md:w-4" /> Contact via WhatsApp
+                    <Phone className="h-4 w-4" /> Contact via WhatsApp
                   </a>
                 )}
                 {client.projectUrl && (
-                  <a 
-                    href={client.projectUrl} 
+                  <a
+                    href={client.projectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all duration-300 gap-2 font-medium"
+                    className="flex items-center justify-center w-full py-2.5 rounded-xl font-medium text-sm gap-2 transition-all duration-200
+                      bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
                   >
                     <Globe className="h-4 w-4" /> View Live Site
                   </a>
                 )}
                 {client.repoUrl && (
-                  <a 
-                    href={client.repoUrl} 
+                  <a
+                    href={client.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all duration-300 gap-2 font-medium"
+                    className="flex items-center justify-center w-full py-2.5 rounded-xl font-medium text-sm gap-2 transition-all duration-200
+                      bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
                   >
                     <Github className="h-4 w-4" /> View Repository
                   </a>
                 )}
               </div>
             </div>
-            
+
+            {/* Payment History */}
             <PaymentHistory payments={client?.payments || []} />
           </div>
 
-          {/* Right Column: Interaction Log */}
+          {/* ── Right Column ── */}
           <div className="lg:col-span-2">
             <InteractionLog clientId={client.id} initialNotes={client.notes || []} />
           </div>
         </div>
-      </div>
+      </main>
+    </div>
   )
 }
 
 export default function ClientPage() {
-    return (
-        <ClientsProvider>
-            <Suspense fallback={<div className="p-8 text-white">Loading...</div>}>
-                <ClientDetailsContent />
-            </Suspense>
-        </ClientsProvider>
-    )
+  return (
+    <ClientsProvider>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--slate-950)' }}>
+            <div className="text-white/50 animate-pulse">Loading...</div>
+          </div>
+        }
+      >
+        <ClientDetailsContent />
+      </Suspense>
+    </ClientsProvider>
+  )
 }

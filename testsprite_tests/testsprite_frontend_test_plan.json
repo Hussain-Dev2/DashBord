@@ -1,0 +1,2143 @@
+[
+  {
+    "id": "TC001",
+    "title": "Dashboard renders header branding on initial load",
+    "description": "Verifies the root dashboard loads and shows the visible 'DebtTrack' header branding.",
+    "category": "Dashboard Load",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DebtTrack\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"header\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/\""
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Dashboard shows all four stat cards",
+    "description": "Verifies the four expected stat cards are visible on the dashboard.",
+    "category": "Dashboard Load",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total Clients\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total Collected\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Outstanding Debt\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Active Projects\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Client list panel renders below stats",
+    "description": "Verifies the client list section is present after the stat cards render.",
+    "category": "Dashboard Load",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total Clients\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to \"Client list\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list panel\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Loading state appears during initialization (when present)",
+    "description": "Verifies a loading indicator is shown during data initialization before the dashboard content is ready.",
+    "category": "Dashboard Load",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"loading spinner\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Wait for \"Total Clients\" to appear"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total Clients\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Dashboard remains usable after refresh-like navigation to root",
+    "description": "Verifies the dashboard content still renders consistently when the root route is loaded again in a fresh page visit.",
+    "category": "Dashboard Load",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DebtTrack\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total Clients\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Active Projects\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Record a valid inline payment and see debt + progress update",
+    "description": "Verifies that a valid payment entered via Quick Add Money reduces the displayed debt, updates the progress bar, and shows a success toast.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"25\" into the inline payment amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the green checkmark button to confirm"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client debt amount\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client progress bar\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Confirm payment by pressing Enter instead of clicking the checkmark",
+    "description": "Verifies that pressing Enter confirms the inline payment and shows visible success feedback.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"10\" into the inline payment amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client progress bar\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Inline form appears when Add Money is clicked",
+    "description": "Verifies that clicking Add Money opens the inline input form for entering a payment amount.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"green checkmark confirm button\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"cancel/close payment input control\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Reject non-numeric value in the payment input",
+    "description": "Verifies that entering non-numeric characters shows a visible validation/error message and does not complete the payment.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"abc\" into the inline payment amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Reject negative payment amount",
+    "description": "Verifies that a negative amount triggers a visible validation/error message and keeps the debt unchanged visually (no success toast).",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"-5\" into the inline payment amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"error\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Reject zero payment amount",
+    "description": "Verifies that entering 0 is not accepted and results in a visible validation/error without a success toast.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"0\" into the inline payment amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the green checkmark button to confirm"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"error\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Cancel/close the inline payment form without submitting",
+    "description": "Verifies the user can dismiss the inline payment input without recording a payment.",
+    "category": "Quick Add Money (Reduce Debt)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the green \"Add Money\" button on a client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the cancel/close control on the inline payment form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline payment amount input\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client debt amount\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Quick Add Debt via checkmark updates balance and shows success toast",
+    "description": "Verifies adding a valid debt amount inline succeeds and increases the client outstanding balance.",
+    "category": "Quick Add Debt",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Add Debt\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"25\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the red checkmark button to confirm"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is different than it was before confirming"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Quick Add Debt via Enter key updates balance and shows success toast",
+    "description": "Verifies adding a valid debt amount inline can be confirmed with Enter and updates outstanding balance.",
+    "category": "Quick Add Debt",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"10\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is different than it was before confirming"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Inline Add Debt input auto-focuses on open",
+    "description": "Verifies the inline Add Debt form appears and the amount field is focused for immediate typing.",
+    "category": "Quick Add Debt",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"7\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"7\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Empty input shows inline validation error and does not change balance",
+    "description": "Verifies submitting an empty amount is rejected with inline validation and balance remains unchanged.",
+    "category": "Quick Add Debt",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is unchanged"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Non-numeric input shows inline validation error and does not change balance",
+    "description": "Verifies submitting a non-numeric value is rejected and does not update outstanding balance.",
+    "category": "Quick Add Debt",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"abc\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is unchanged"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Negative amount is rejected (validation) and does not change balance",
+    "description": "Verifies a negative debt amount cannot be added and the outstanding balance remains unchanged.",
+    "category": "Quick Add Debt",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"-5\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"invalid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is unchanged"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Decimal amount is accepted and increases outstanding balance",
+    "description": "Verifies a decimal value can be entered and the balance increases after confirmation.",
+    "category": "Quick Add Debt",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the red \"Add Debt\" button on the first visible client card or table row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"inline Add Debt amount input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"12.50\" into the inline Add Debt amount input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the red checkmark button to confirm"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"success\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outstanding balance for that same client row is different than it was before confirming"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Search clients by phone-number fragment",
+    "description": "Verifies that typing a numeric query filters the client list by phone number in real time.",
+    "category": "Client Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"555\" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"555\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "No-results empty state appears when search matches no clients",
+    "description": "Verifies that the client list shows an empty state message when no clients match the search query.",
+    "category": "Client Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"zzzz_nonexistent_query\" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Whitespace-only search does not filter the list",
+    "description": "Verifies that entering only spaces does not apply an unintended filter and the list remains populated.",
+    "category": "Client Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"   \" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Search results update as the query is refined",
+    "description": "Verifies that results update immediately when the user adds more characters to the search query.",
+    "category": "Client Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"A\" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"l\" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"i\" into \"Client search input\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Filter client list by ACTIVE status using the status pill",
+    "description": "Verifies that clicking the ACTIVE status pill filters the client list and visually highlights the selected pill.",
+    "category": "Client Status Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ACTIVE\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ACTIVE\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ACTIVE\" is visible in the client list"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "Filter client list by SUSPENDED when no suspended clients exist",
+    "description": "Verifies the empty state appears and the SUSPENDED pill shows as selected when there are no suspended clients.",
+    "category": "Client Status Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"SUSPENDED\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"SUSPENDED status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No clients\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Switch filters from ACTIVE to ALL resets the list view",
+    "description": "Verifies that selecting ALL after a specific status filter removes the filter and returns to the full list view.",
+    "category": "Client Status Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ACTIVE\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ALL\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ALL status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Filter by LEAD status and verify selected pill state",
+    "description": "Verifies that clicking LEAD applies the filter and the LEAD pill becomes the selected/highlighted pill.",
+    "category": "Client Status Filter",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"LEAD\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"LEAD\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"LEAD status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"LEAD\" is visible in the client list"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "Filter by PENDING status and verify selected pill state",
+    "description": "Verifies that clicking PENDING applies the filter and the PENDING pill becomes the selected/highlighted pill.",
+    "category": "Client Status Filter",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"PENDING\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"PENDING\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"PENDING status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"PENDING\" is visible in the client list"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Only one status pill is selected at a time when switching filters",
+    "description": "Verifies that selecting a new status pill updates selection so the previously selected pill is no longer selected.",
+    "category": "Client Status Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ACTIVE\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"LEAD\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"LEAD status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (not selected)\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Status filter persists while scrolling the client list",
+    "description": "Verifies that after applying a status filter, scrolling does not reset the selected pill or filtered list view.",
+    "category": "Client Status Filter",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ACTIVE\" status pill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the bottom of the client list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ACTIVE status pill (selected/highlighted)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Apply DEBT smart filter and sort by Highest Debt First",
+    "description": "Verifies that selecting the DEBT filter and Highest Debt First sort updates the visible client list accordingly.",
+    "category": "Smart Filters and Sort",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filter\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"DEBT\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DEBT\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Select sort option \"Highest Debt First\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Highest Debt First\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Apply PAID smart filter updates the client list",
+    "description": "Verifies that selecting the PAID filter refines the client list and shows the chosen filter state.",
+    "category": "Smart Filters and Sort",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"PAID\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"PAID\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"No results\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Apply ACTIVE smart filter updates the client list",
+    "description": "Verifies that selecting the ACTIVE filter updates the client list to show only active clients.",
+    "category": "Smart Filters and Sort",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"ACTIVE\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ACTIVE\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Empty state\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Apply DORMANT smart filter updates the client list",
+    "description": "Verifies that selecting the DORMANT filter updates the client list to show only dormant clients.",
+    "category": "Smart Filters and Sort",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"DORMANT\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DORMANT\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Empty state\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Sort by Last Payment updates ordering of the visible client list",
+    "description": "Verifies that selecting the Last Payment sort updates the ordering of the currently visible clients.",
+    "category": "Smart Filters and Sort",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select sort option \"Last Payment\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Last Payment\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Loading\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC036",
+    "title": "Filter with no matching results shows an empty state and message",
+    "description": "Verifies that selecting a filter that yields no results displays a clear empty state message.",
+    "category": "Smart Filters and Sort",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"HIGH_VALUE\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Empty state\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No clients\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC037",
+    "title": "Switching between filters updates the list each time",
+    "description": "Verifies that changing the selected smart filter from DEBT to PAID refreshes the visible list and selected state.",
+    "category": "Smart Filters and Sort",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"DEBT\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"DEBT\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select smart filter \"PAID\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"PAID\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC038",
+    "title": "Dropdown can be dismissed without changing filter/sort",
+    "description": "Verifies the filter dropdown can be opened and dismissed without applying a new selection.",
+    "category": "Smart Filters and Sort",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Filter\" button to open dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Smart filters\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Press \"Escape\" key"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Smart filters\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC039",
+    "title": "Create a new client from the dashboard header (desktop entry)",
+    "description": "Verifies a user can open the Add Client modal from the header, submit valid details, and see the new client in the list.",
+    "category": "Add New Client",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Add Client\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"E2E Client Alpha\" into the \"Name\" field"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Active\" from the \"Status\" dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Create\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Client Alpha\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC040",
+    "title": "Add Client modal shows required-field validation when submitted empty",
+    "description": "Verifies submitting the Add Client form with missing required fields shows validation errors and does not create a client.",
+    "category": "Add New Client",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Add Client\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Create\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"required\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Create\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC041",
+    "title": "Partial input still blocks submission and keeps modal open",
+    "description": "Verifies entering only some fields and submitting still triggers validation and does not close the modal.",
+    "category": "Add New Client",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Add Client\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"E2E Client Partial\" into the \"Name\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Create\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"required\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC042",
+    "title": "Status dropdown can be changed before creating a client",
+    "description": "Verifies the Status field is interactive and the chosen status is accepted on successful creation.",
+    "category": "Add New Client",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Add Client\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"E2E Client Status\" into the \"Name\" field"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Inactive\" from the \"Status\" dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Create\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Client Status\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC043",
+    "title": "Cancel/close the Add Client modal without creating a client",
+    "description": "Verifies the user can dismiss the modal and no new client is added when they cancel.",
+    "category": "Add New Client",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Add Client\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"E2E Client Should Not Save\" into the \"Name\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Cancel\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Client\" modal dialog is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"E2E Client Should Not Save\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC044",
+    "title": "Demo Mode badge is shown for unauthenticated users on the dashboard",
+    "description": "Verifies that visiting the dashboard without logging in clearly indicates Demo Mode in the header.",
+    "category": "Demo Mode",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Mode\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"header\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC045",
+    "title": "Sample clients are visible in Demo Mode on initial load",
+    "description": "Verifies that Demo Mode loads sample client data for unauthenticated users.",
+    "category": "Demo Mode",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Mode\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list row\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC046",
+    "title": "Reset clears demo data and updates the client list state",
+    "description": "Verifies that using Reset removes demo data and the UI reflects the cleared state.",
+    "category": "Demo Mode",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Mode\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Reset\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Reset\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"client list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No clients\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC047",
+    "title": "Demo Mode quick operation can add a new client locally",
+    "description": "Verifies that an unauthenticated user can create a new client in Demo Mode and see it in the list.",
+    "category": "Demo Mode",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Mode\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Add client\""
+      },
+      {
+        "type": "action",
+        "description": "Type \"Demo Client A\" into \"Client name\""
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Save\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Client A\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC048",
+    "title": "Demo Mode edit operation updates an existing client name in the list",
+    "description": "Verifies that editing a client in Demo Mode updates the visible client list entry.",
+    "category": "Demo Mode",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to \"/\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Demo Mode\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first \"Edit\" button in the client list"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Renamed Demo Client\" into \"Client name\""
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Save\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Renamed Demo Client\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC049",
+    "title": "Switch currency from USD to IQD updates visible monetary values on the dashboard",
+    "description": "Verifies selecting IQD in the header changes the currency display for monetary amounts on the main dashboard.",
+    "category": "Currency Toggle",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Currency selector\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"IQD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"IQD\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"IQD\" currency label"
+      }
+    ]
+  },
+  {
+    "id": "TC050",
+    "title": "Switch currency from IQD back to USD updates visible monetary values on the dashboard",
+    "description": "Verifies selecting USD after IQD changes the currency display back to USD for monetary amounts.",
+    "category": "Currency Toggle",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"IQD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"IQD\" currency label"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"USD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"USD\" currency label"
+      }
+    ]
+  },
+  {
+    "id": "TC051",
+    "title": "Currency selection persists across in-app navigation to Client Detail via client list click",
+    "description": "Verifies that after switching to IQD on the dashboard, navigating to the client detail page via UI keeps the selected currency visible on the destination page.",
+    "category": "Currency Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"IQD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"IQD\" currency label"
+      },
+      {
+        "type": "action",
+        "description": "Click the first visible client in the client list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin/client\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"IQD\" currency label"
+      }
+    ]
+  },
+  {
+    "id": "TC052",
+    "title": "Currency selector reflects the currently selected currency after switching",
+    "description": "Verifies the selector’s visible value/label matches the chosen currency after a change to IQD.",
+    "category": "Currency Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"IQD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Currency selector\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"IQD\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC053",
+    "title": "Rapid switching between currencies results in a consistent final display",
+    "description": "Verifies that quickly switching IQD then USD ends with USD shown for monetary values (no mixed currency display).",
+    "category": "Currency Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"IQD\" from the currency options"
+      },
+      {
+        "type": "action",
+        "description": "Click the currency selector in the header"
+      },
+      {
+        "type": "action",
+        "description": "Select \"USD\" from the currency options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one monetary value on the page shows the \"USD\" currency label"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"IQD\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC054",
+    "title": "Switch language from English to Arabic updates visible UI text",
+    "description": "Verifies that toggling the header language control switches the dashboard UI to Arabic.",
+    "category": "Language Toggle",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Language toggle button in the header\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Dashboard\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"لوحة التحكم\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Dashboard\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC055",
+    "title": "Switch language from Arabic back to English restores English UI text",
+    "description": "Verifies that toggling the language control twice returns the dashboard UI back to English.",
+    "category": "Language Toggle",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"لوحة التحكم\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Dashboard\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"لوحة التحكم\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC056",
+    "title": "Missing translation falls back to English or raw key without breaking the page",
+    "description": "Verifies that if some strings are missing in Arabic, the UI displays a fallback (English text or raw key) and continues to render normally.",
+    "category": "Language Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Dashboard main content\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Fallback translation message\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"At least one label shows English text or a raw translation key while in Arabic mode\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC057",
+    "title": "Language toggle control remains usable after repeated toggles",
+    "description": "Verifies the language toggle can be clicked repeatedly without losing functionality and the UI continues switching languages.",
+    "category": "Language Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Arabic language indicator on the language toggle\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"English language indicator on the language toggle\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Arabic language indicator on the language toggle\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC058",
+    "title": "Language setting affects multiple visible sections on the dashboard",
+    "description": "Verifies that switching language updates text in more than one area (header and main content), not just the toggle control.",
+    "category": "Language Toggle",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Header area\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list area\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the language toggle button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Header text appears in Arabic\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Client list/search labels appear in Arabic (or fall back for missing translations)\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC059",
+    "title": "Client detail page loads for a valid client id and shows key sections",
+    "description": "Verifies the client detail page loads and displays the edit form, payment history, and notes for a valid client id.",
+    "category": "Client Detail Page",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin/client?id=123\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Payment History\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Notes\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Save\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC060",
+    "title": "Edit a client field and save changes",
+    "description": "Verifies a user can update client information and save successfully from the client detail page.",
+    "category": "Client Detail Page",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Save\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Updated client note from E2E test\" into the \"Notes\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Save\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Saved\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC061",
+    "title": "Saved edit persists after page reload",
+    "description": "Verifies that after saving an edit, the updated content remains visible after reloading the page.",
+    "category": "Client Detail Page",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"Persistence check note\" into the \"Notes\" field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Save\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Saved\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Persistence check note\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC062",
+    "title": "Payment history section is visible and shows an empty state when no records exist",
+    "description": "Verifies the payment history section renders and provides a user-facing empty state if there are no payments.",
+    "category": "Client Detail Page",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Payment History\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Payment History\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No payments\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Add Payment\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC063",
+    "title": "Invoice section is present on the client detail page",
+    "description": "Verifies the invoice-related UI is available for a valid client id.",
+    "category": "Client Detail Page",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin/client?id=123\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Invoice\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Generate Invoice\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Save\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC064",
+    "title": "Missing client id query param shows an error/empty state message",
+    "description": "Verifies the page communicates that the client id is missing or invalid when no id query param is provided.",
+    "category": "Client Detail Page",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin/client\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Missing\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"client id\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Back\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC065",
+    "title": "Invalid client id query param shows an error/empty state message",
+    "description": "Verifies the page shows a clear error/empty state when the provided client id is invalid or not found.",
+    "category": "Client Detail Page",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/client?id=does-not-exist"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/admin/client?id=does-not-exist\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Invalid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"client\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Back\" is visible"
+      }
+    ]
+  }
+]

@@ -22,8 +22,7 @@ export function InteractionLog({ clientId, initialNotes }: InteractionLogProps) 
   const [content, setContent] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Sync with context if in demo mode, otherwise use initialNotes (passed from server for admin)
-  // Actually, context 'clients' will have the updated notes if we use context.
+  // Sync with live context (works for demo mode live updates)
   const currentClient = clients.find(c => c.id === clientId)
   const notes = currentClient?.notes || initialNotes
 
@@ -44,28 +43,27 @@ export function InteractionLog({ clientId, initialNotes }: InteractionLogProps) 
   }
 
   return (
-    <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 shadow-2xl h-full flex flex-col">
+    <div className="glass-panel rounded-2xl p-6 md:p-8 border border-white/10 h-full flex flex-col">
+      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="h-10 w-10 rounded-xl bg-nexa-gold/20 flex items-center justify-center">
-          <FileText className="h-5 w-5 text-nexa-gold" />
+        <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(212,175,55,0.15)', border: '1px solid rgba(212,175,55,0.25)' }}>
+          <FileText className="h-5 w-5" style={{ color: 'var(--gold)' }} />
         </div>
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-          Interaction Log
-        </h3>
+        <h3 className="text-xl font-bold text-white">Interaction Log</h3>
       </div>
-      
+
       {/* Notes List */}
-      <div className="flex-1 overflow-y-auto space-y-4 mb-6 pr-2 max-h-[500px] custom-scrollbar">
+      <div className="flex-1 overflow-y-auto space-y-3 mb-6 pr-1 max-h-[480px]">
         {notes && notes.length > 0 ? (
           notes.map((note: any) => (
-            <div 
-              key={note.id} 
-              className="group p-5 bg-gradient-to-br from-white/5 to-transparent hover:from-white/10 border border-white/10 hover:border-nexa-gold/30 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-nexa-gold/10"
+            <div
+              key={note.id}
+              className="group p-4 rounded-xl border border-white/8 bg-white/[0.03] hover:border-[var(--gold)]/25 hover:bg-white/[0.06] transition-all duration-200"
             >
-              <p className="text-gray-200 text-sm leading-relaxed whitespace-pre-wrap mb-3">
+              <p className="text-gray-200 text-sm leading-relaxed whitespace-pre-wrap mb-2">
                 {note.content}
               </p>
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <Calendar className="h-3 w-3" />
                 <span>{formatDateTime(note.createdAt)}</span>
               </div>
@@ -73,34 +71,34 @@ export function InteractionLog({ clientId, initialNotes }: InteractionLogProps) 
           ))
         ) : (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="h-16 w-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
-              <FileText className="h-8 w-8 text-gray-600" />
+            <div className="h-14 w-14 rounded-full bg-white/5 flex items-center justify-center mb-4">
+              <FileText className="h-7 w-7 text-gray-600" />
             </div>
-            <p className="text-gray-500 text-lg">No interactions recorded yet.</p>
-            <p className="text-gray-600 text-sm mt-2">Add your first note below to start tracking.</p>
+            <p className="text-gray-400 font-medium">No interactions yet</p>
+            <p className="text-gray-600 text-sm mt-1">Add your first note below.</p>
           </div>
         )}
       </div>
-      
+
       {/* Add Note Form */}
       <form onSubmit={handleSubmit} className="relative">
-        <div className="relative">
-          <textarea 
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Add a new note about this client..." 
-            className="w-full bg-nexa-black/50 border border-white/20 rounded-xl p-4 pr-14 text-sm focus:border-nexa-gold focus:outline-none focus:ring-2 focus:ring-nexa-gold/20 min-h-[120px] resize-none transition-all duration-300"
-            required
-            disabled={isSubmitting}
-          />
-          <button 
-            type="submit" 
-            disabled={isSubmitting || !content.trim()}
-            className="absolute bottom-4 right-4 p-3 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-lg hover:shadow-lg hover:shadow-nexa-gold/50 transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
-          >
-            <Send className="h-4 w-4" />
-          </button>
-        </div>
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Add a note about this client..."
+          className="w-full rounded-xl p-4 pr-14 text-sm min-h-[110px] resize-none transition-all duration-200 text-white
+            bg-white/5 border border-white/10 focus:border-[var(--gold)] focus:ring-2 focus:ring-[var(--gold)]/15 focus:outline-none"
+          required
+          disabled={isSubmitting}
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting || !content.trim()}
+          className="absolute bottom-4 right-4 p-2.5 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+          style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
+        >
+          <Send className="h-4 w-4" />
+        </button>
       </form>
     </div>
   )

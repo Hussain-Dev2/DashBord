@@ -90,7 +90,8 @@ export function CreateClientModal() {
       {/* في الجوال يظهر كزر عائم (FAB) وفي الحاسوب يظهر بشكل طبيعي في الأعلى */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-3 md:py-2 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-full md:rounded-xl font-bold hover:shadow-lg hover:shadow-nexa-gold/20 transition-all duration-300 hover:scale-105 active:scale-95 fixed bottom-6 right-6 md:static z-50 shadow-2xl md:shadow-none rtl:left-6 rtl:right-auto"
+        className="flex items-center gap-2 px-4 py-3 md:py-2 rounded-full md:rounded-xl font-bold transition-all duration-200 hover:scale-105 active:scale-95 fixed bottom-6 right-6 md:static z-50 shadow-2xl md:shadow-none rtl:left-6 rtl:right-auto"
+        style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
       >
         <Plus className="h-6 w-6 md:h-5 md:w-5" />
         <span className="hidden md:inline">{t('add_client')}</span>
@@ -102,7 +103,7 @@ export function CreateClientModal() {
           <div className="glass-panel rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
             
             {/* زخرفة في الخلفية */}
-            <div className="absolute top-0 right-0 p-32 bg-nexa-gold/5 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 p-32 blur-[100px] rounded-full pointer-events-none" style={{ background: 'rgba(212,175,55,0.05)' }} />
             
             {/* رأس النافذة */}
             <div className="flex justify-between items-start mb-8 relative z-10">
@@ -123,7 +124,7 @@ export function CreateClientModal() {
               
               {/* القسم الأول: المعلومات الأساسية */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
+                <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--gold)' }}>
                   <User className="h-4 w-4" /> {t('client_name')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -132,7 +133,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('client_name')} *</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <User className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                        <User className="h-5 w-5 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
                       </div>
                       <input
                         type="text"
@@ -150,7 +151,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('industry')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <Building2 className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                        <Building2 className="h-5 w-5 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
                       </div>
                       <input
                         type="text"
@@ -167,7 +168,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('phone')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <Phone className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                        <Phone className="h-5 w-5 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
                       </div>
                       <input
                         type="text"
@@ -184,7 +185,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">Logo URL</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <ImageIcon className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                        <ImageIcon className="h-5 w-5 text-gray-500 group-focus-within:text-yellow-400 transition-colors" />
                       </div>
                       <input
                         type="url"
@@ -200,7 +201,7 @@ export function CreateClientModal() {
 
               {/* القسم الثاني: المعلومات المالية */}
               <div className="space-y-4">
-                 <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
+                 <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--gold)' }}>
                   <DollarSign className="h-4 w-4" /> {t('financials')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -246,7 +247,7 @@ export function CreateClientModal() {
 
               {/* القسم الثالث: الروابط */}
               <div className="space-y-4">
-                 <h3 className="text-lg font-semibold text-nexa-gold flex items-center gap-2">
+                 <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--gold)' }}>
                   <LinkIcon className="h-4 w-4" /> {t('project_url')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -255,7 +256,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('project_url')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <LinkIcon className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                         <LinkIcon className="h-5 w-5 text-gray-500 group-focus-within:text-[color:var(--gold)] transition-colors" />
                       </div>
                       <input
                         type="url"
@@ -272,7 +273,7 @@ export function CreateClientModal() {
                     <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-white transition-colors">{t('repo_url')}</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 rtl:pr-4 rtl:left-auto rtl:right-0 flex items-center pointer-events-none">
-                        <Github className="h-5 w-5 text-gray-500 group-focus-within:text-nexa-gold transition-colors" />
+                         <Github className="h-5 w-5 text-gray-500 group-focus-within:text-[color:var(--gold)] transition-colors" />
                       </div>
                       <input
                         type="url"
@@ -291,7 +292,8 @@ export function CreateClientModal() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-nexa-gold to-nexa-goldHover text-nexa-black rounded-xl font-bold hover:shadow-lg hover:shadow-nexa-gold/20 transition-all duration-300 disabled:opacity-70 transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold transition-all duration-200 disabled:opacity-70 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
                 >
                   <Plus className="h-5 w-5" />
                   {isSubmitting ? t('creating') : t('create_client')}

@@ -18,6 +18,7 @@ interface ClientsContextType {
   deleteClientFn: (id: string) => Promise<void>
   updateStatusFn: (id: string, status: Status) => Promise<void>
   addPaymentFn: (clientId: string, amount: number) => Promise<void>
+  addDebtFn: (clientId: string, amount: number) => Promise<void>
   addNoteFn: (clientId: string, content: string) => Promise<void>
   resetDemoData: () => void
   isLoading: boolean
@@ -45,6 +46,7 @@ export function ClientsProvider({
       deleteClient: deleteClientCtx,
       updateStatus: updateStatusCtx,
       addPayment: addPaymentCtx,
+      addDebt: addDebtCtx,
       addNote: addNoteCtx
   } = useSupabaseClients()
 
@@ -82,12 +84,14 @@ export function ClientsProvider({
 
   // Handlers
   const addClient = useCallback(async (data: any) => {
+    console.log('[addClient] isAdmin:', isAdmin, 'data:', data)
     if (isAdmin) {
       try {
         await addClientCtx.mutateAsync(data)
         toast.success('Client created')
-      } catch (error) {
-        toast.error('Failed to create client')
+      } catch (error: any) {
+        console.error('[addClient] FAILED:', error?.message || error)
+        toast.error(`Failed to create client: ${error?.message || 'Unknown error'}`)
       }
     } else {
       const newClient: ClientWithNotes = {
@@ -111,8 +115,9 @@ export function ClientsProvider({
       try {
         await updateClientCtx.mutateAsync({id, data})
         toast.success('Client updated')
-      } catch (error) {
-        toast.error('Failed to update client')
+      } catch (error: any) {
+        console.error('[updateClient] FAILED:', error?.message || error)
+        toast.error(`Failed to update client: ${error?.message || 'Unknown error'}`)
       }
     } else {
         setDemoClients(prev => prev.map(c => c.id === id ? { ...c, ...data } : c))
@@ -153,23 +158,66 @@ export function ClientsProvider({
           try {
               await addPaymentCtx.mutateAsync({clientId, amount})
               toast.success('Payment added')
-          } catch (error) {
-              toast.error('Failed to add payment')
+          } catch (error: any) {
+              console.error('[addPayment] FAILED:', error?.message || error)
+              toast.error(`Failed to add payment: ${error?.message || 'Unknown error'}`)
           }
       } else {
+          // Demo mode: update amountPaid AND push to payments[] history
           setDemoClients(prev => prev.map(c => {
             if (c.id === clientId) {
+              const newPayment = {
+                id: `demo-pay-${Date.now()}`,
+                amount,
+                date: new Date().toISOString(),
+                clientId,
+                type: 'PAYMENT' as const,
+              }
               return {
                 ...c,
                 amountPaid: Number(c.amountPaid) + amount,
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date().toISOString(),
+                payments: [newPayment, ...(c.payments || [])]
               }
             }
             return c
           }))
-          toast.success('Demo: Payment added')
+          toast.success('✅ Payment recorded — debt reduced!')
       }
    }, [isAdmin, addPaymentCtx])
+  
+   const addDebtFn = useCallback(async (clientId: string, amount: number) => {
+      if (isAdmin) {
+          try {
+              await addDebtCtx.mutateAsync({clientId, amount})
+              toast.success('Debt recorded')
+          } catch (error: any) {
+              console.error('[addDebt] FAILED:', error?.message || error)
+              toast.error(`Failed to record debt: ${error?.message || 'Unknown error'}`)
+          }
+      } else {
+          // Demo mode: update priceQuoted AND push to payments[] history as negative
+          setDemoClients(prev => prev.map(c => {
+            if (c.id === clientId) {
+              const newDebt = {
+                id: `demo-debt-${Date.now()}`,
+                amount: -amount, // stored as negative for history
+                date: new Date().toISOString(),
+                clientId,
+                type: 'DEBT' as any,
+              }
+              return {
+                ...c,
+                priceQuoted: Number(c.priceQuoted) + amount,
+                updatedAt: new Date().toISOString(),
+                payments: [newDebt, ...(c.payments || [])]
+              }
+            }
+            return c
+          }))
+          toast.success('⚠️ Debt recorded — total balance increased!')
+      }
+   }, [isAdmin, addDebtCtx])
 
    const addNoteFn = useCallback(async (clientId: string, content: string) => {
        if (isAdmin) {
@@ -210,10 +258,11 @@ export function ClientsProvider({
     deleteClientFn, 
     updateStatusFn,
     addPaymentFn,
+    addDebtFn,
     addNoteFn,
     resetDemoData,
     isLoading 
-  }), [clients, addClient, updateClientFn, deleteClientFn, updateStatusFn, addPaymentFn, addNoteFn, resetDemoData, isLoading])
+  }), [clients, addClient, updateClientFn, deleteClientFn, updateStatusFn, addPaymentFn, addDebtFn, addNoteFn, resetDemoData, isLoading])
 
   return (
     <ClientsContext.Provider value={value}>

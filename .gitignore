@@ -41,3 +41,16 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Desktop/electron build
+dist/
+dist-electron/
+release/
+release-builds/
+
+# Mobile/Android build
+android/
+
+# Testing tmp folders
+testsprite_tests/tmp/
+testsprite_tests/testsprite-mcp-test-report.html
