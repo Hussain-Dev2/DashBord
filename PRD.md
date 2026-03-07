@@ -68,7 +68,7 @@ Every client row/card has two instant action buttons:
 
 | Feature | Expected Behavior |
 |---------|-------------------|
-| Page loads | Dashboard renders without errors at `localhost:3000` |
+| Page loads | Dashboard renders without errors at `https://dashboard.nexadigital.dev` |
 | Stat cards | All 4 stat cards visible with correct labels |
 | Search | Typing in search box filters client list instantly |
 | Add Money | Click "Add Money" → input appears → enter amount → confirm → debt decreases |

@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'Dashboard App',
   webDir: 'out',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    url: 'https://dashboard.nexadigital.dev'
   },
   plugins: {
     LiveUpdates: {
