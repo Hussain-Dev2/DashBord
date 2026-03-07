@@ -32,13 +32,13 @@ const STATUS_COLORS: Record<string, string> = {
   LEAD:      'bg-blue-500/15  text-blue-400  border-blue-500/25',
 }
 
-function ClientAvatar({ client }: { client: Client }) {
+function ClientAvatar({ client, className }: { client: Client, className?: string }) {
   const initials = client.name.substring(0, 2).toUpperCase()
   // Deterministic color per client
   const colors = ['from-amber-400/30 to-amber-600/20', 'from-blue-400/30 to-blue-600/20', 'from-purple-400/30 to-purple-600/20', 'from-green-400/30 to-green-600/20']
   const colorIdx = client.name.charCodeAt(0) % colors.length
   return (
-    <div className={`h-11 w-11 rounded-full bg-gradient-to-br ${colors[colorIdx]} flex items-center justify-center text-white font-bold text-sm ring-2 ring-white/5 shrink-0`}>
+    <div className={`rounded-full bg-gradient-to-br ${colors[colorIdx]} flex items-center justify-center text-white font-bold text-sm ring-2 ring-white/5 shrink-0 ${className || 'h-11 w-11'}`}>
       {client.logoUrl
         ? <img src={client.logoUrl} alt={client.name} className="h-full w-full object-cover rounded-full" />
         : initials
@@ -63,17 +63,17 @@ function MobileClientCard({ client }: { client: Client }) {
     <div className="glass-card rounded-2xl overflow-hidden mb-3 animate-slide-up">
       {/* Main row — click to expand */}
       <div
-        className="flex items-center gap-3 p-4 cursor-pointer"
+        className="flex items-center gap-2.5 p-3 cursor-pointer"
         onClick={() => setExpanded(v => !v)}
       >
-        <ClientAvatar client={client} />
+        <ClientAvatar client={client} className="h-9 w-9 text-xs" />
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-white font-semibold text-sm truncate">{client.name}</span>
-            <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold border shrink-0 ${statusClass}`}>{client.status}</span>
+          <div className="flex items-center flex-wrap gap-1.5 mb-0.5">
+            <span className="text-white font-semibold text-xs leading-tight">{client.name}</span>
+            <span className={`px-1 py-0.5 rounded-[4px] text-[8px] font-bold border shrink-0 ${statusClass}`}>{client.status}</span>
           </div>
-          <div className="text-xs text-gray-500 truncate">{client.industry || 'No Industry'}</div>
+          <div className="text-[10px] text-gray-500 line-clamp-1">{client.industry || 'No Industry'}</div>
 
           {/* Progress bar */}
           <div className="mt-2">
@@ -96,11 +96,11 @@ function MobileClientCard({ client }: { client: Client }) {
         {/* Debt amount */}
         <div className="text-right shrink-0">
           {isFullyPaid ? (
-            <div className="paid-badge">PAID</div>
+            <div className="paid-badge text-[9px] py-0.5 px-1.5">PAID</div>
           ) : (
-            <div className="text-red-400 font-bold text-sm">{formatAmount(balance)}</div>
+            <div className="text-red-400 font-bold text-xs">{formatAmount(balance)}</div>
           )}
-          <div className="text-gray-600 text-xs mt-0.5">due</div>
+          <div className="text-gray-600 text-[10px] mt-0.5">due</div>
         </div>
 
         {/* Expand chevron */}

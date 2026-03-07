@@ -19,7 +19,7 @@ export function CurrencySelector() {
         {/* زر الدولار الأمريكي */}
         <button
           onClick={() => setCurrency('USD')}
-          className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
+          className={`flex-1 flex items-center justify-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
             currency === 'USD'
               ? 'bg-nexa-gold text-nexa-black shadow-lg'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -31,7 +31,7 @@ export function CurrencySelector() {
         {/* زر الدينار العراقي */}
         <button
           onClick={() => setCurrency('IQD')}
-          className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
+          className={`flex-1 flex items-center justify-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
             currency === 'IQD'
               ? 'bg-nexa-gold text-nexa-black shadow-lg'
               : 'text-gray-400 hover:text-white hover:bg-white/5'

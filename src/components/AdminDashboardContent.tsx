@@ -50,29 +50,28 @@ export function AdminDashboardContent() {
       style={{ background: 'linear-gradient(160deg, #0d0f1a 0%, #111327 50%, #0d0f1a 100%)' }}
     >
       {/* ── Header ── */}
-      <header className="sticky top-0 z-30 glass-panel border-b border-white/8 px-4 md:px-8 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-30 glass-panel border-b border-white/8 px-2.5 md:px-8 py-2.5 md:py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 md:gap-4">
 
           {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 md:h-10 md:w-10 rounded-xl bg-gradient-to-br from-amber-400/30 to-yellow-600/20 flex items-center justify-center shrink-0">
-              <DollarSign className="h-5 w-5 md:h-6 md:w-6 text-amber-400" />
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
+            <div className="h-8 w-8 md:h-10 md:w-10 rounded-lg md:rounded-xl bg-gradient-to-br from-amber-400/30 to-yellow-600/20 flex items-center justify-center shrink-0">
+              <DollarSign className="h-4 w-4 md:h-6 md:w-6 text-amber-400" />
             </div>
-            <div>
-              <h1 className="text-lg md:text-xl font-bold text-white leading-none">DebtTrack</h1>
+            <div className="flex flex-col justify-center">
+              <h1 className="hidden sm:block text-base md:text-xl font-bold text-white leading-none">DebtTrack</h1>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-gray-500 text-xs">{t('dashboard_title')}</span>
                 {isAdmin ? (
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-green-500/15 text-green-400 border border-green-500/20">{t('admin_mode')}</span>
+                  <span className="px-1 py-0.5 rounded text-[8px] md:text-[9px] font-bold bg-green-500/15 text-green-400 border border-green-500/20">{t('admin_mode')}</span>
                 ) : (
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-500/15 text-blue-400 border border-blue-500/20">{t('demo_mode')}</span>
+                  <span className="hidden xs:inline-block px-1 py-0.5 rounded text-[8px] md:text-[9px] font-bold bg-blue-500/15 text-blue-400 border border-blue-500/20">{t('demo_mode')}</span>
                 )}
               </div>
             </div>
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 md:gap-2">
             <LanguageToggle />
             <CurrencySelector />
 
@@ -99,28 +98,28 @@ export function AdminDashboardContent() {
             {!isAuthenticated ? (
               <Link
                 href="/login"
-                className="flex items-center gap-1.5 px-3 py-2 btn-gold rounded-xl text-xs"
+                className="flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 btn-gold rounded-lg md:rounded-xl text-[10px] md:text-xs"
               >
-                <LogIn className="h-3.5 w-3.5" />
-                <span className="hidden md:inline">{t('sign_in')}</span>
+                <LogIn className="h-3 w-3 md:h-3.5 md:w-3.5" />
+                <span className="hidden sm:inline-block">{t('sign_in')}</span>
               </Link>
             ) : (
               <button
                 onClick={() => signOut({ callbackUrl: '/' })}
-                className="flex items-center gap-1.5 px-3 py-2 bg-white/5 border border-white/10 text-gray-300 hover:text-white rounded-xl text-xs transition-colors"
+                className="flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-2 bg-white/5 border border-white/10 text-gray-300 hover:text-white rounded-lg md:rounded-xl text-[10px] md:text-xs transition-colors"
               >
-                <LogOut className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">{t('sign_out')}</span>
+                <LogOut className="h-3 w-3 md:h-3.5 md:w-3.5" />
+                <span className="hidden sm:inline-block">{t('sign_out')}</span>
               </button>
             )}
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
+      <main className="max-w-7xl mx-auto px-2.5 md:px-8 pt-4 md:pt-6">
 
         {/* ── Stat Cards ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-4 mb-6 md:mb-8">
           {[
             {
               title: t('total_clients'),
@@ -159,7 +158,7 @@ export function AdminDashboardContent() {
         </div>
 
         {/* ── Client List Panel ── */}
-        <div className="glass-panel rounded-2xl p-4 md:p-6">
+        <div className="glass-panel rounded-2xl p-3 md:p-6">
           <div className="flex items-center justify-between mb-5 gap-4">
             <div>
               <h2 className="text-xl font-bold text-white">{t('all_clients')}</h2>
