@@ -15,29 +15,29 @@ export function CurrencySelector() {
   return (
     <div className="relative group">
       {/* حاوية أزرار التبديل */}
-      <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-1">
+      <div className="flex items-center gap-1 md:gap-2 bg-white/5 border border-white/10 rounded-xl p-1">
         {/* زر الدولار الأمريكي */}
         <button
           onClick={() => setCurrency('USD')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+          className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
             currency === 'USD'
               ? 'bg-nexa-gold text-nexa-black shadow-lg'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
-          <DollarSign className="h-4 w-4" />
+          <DollarSign className="h-3 w-3 md:h-4 md:w-4" />
           USD
         </button>
         {/* زر الدينار العراقي */}
         <button
           onClick={() => setCurrency('IQD')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+          className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs md:text-sm transition-all duration-300 ${
             currency === 'IQD'
               ? 'bg-nexa-gold text-nexa-black shadow-lg'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
-          <span className="text-sm">IQD</span>
+          IQD
         </button>
       </div>
       

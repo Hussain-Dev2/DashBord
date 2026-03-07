@@ -9,11 +9,12 @@ export function LanguageToggle() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all font-medium text-sm group"
+      className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all font-medium text-xs md:text-sm group"
       title="Switch Language / تغيير اللغة"
     >
-      <Languages className="h-4 w-4 text-nexa-gold group-hover:scale-110 transition-transform" />
-      <span>{language === 'en' ? 'العربية' : 'English'}</span>
+      <Languages className="h-3.5 w-3.5 md:h-4 md:w-4 text-nexa-gold group-hover:scale-110 transition-transform" />
+      <span className="hidden sm:inline">{language === 'en' ? 'العربية' : 'English'}</span>
+      <span className="sm:hidden tracking-wider">{language === 'en' ? 'AR' : 'EN'}</span>
     </button>
   )
 }

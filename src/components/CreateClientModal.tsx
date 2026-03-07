@@ -25,7 +25,7 @@ interface CreateClientData {
 
 // مكون نافذة إضافة عميل جديد
 // Create Client Modal Component
-export function CreateClientModal() {
+export function CreateClientModal({ variant = 'default' }: { variant?: 'default' | 'mobile-nav' }) {
   const { addClient } = useClients() // وظيفة إضافة عميل
   const { t } = useLanguage() // وظيفة الترجمة
   const { currency, exchangeRate } = useCurrency() // بيانات العملة وسعر الصرف
@@ -88,19 +88,29 @@ export function CreateClientModal() {
     <>
       {/* زر فتح النافذة */}
       {/* في الجوال يظهر كزر عائم (FAB) وفي الحاسوب يظهر بشكل طبيعي في الأعلى */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-3 md:py-2 rounded-full md:rounded-xl font-bold transition-all duration-200 hover:scale-105 active:scale-95 fixed bottom-6 right-6 md:static z-50 shadow-2xl md:shadow-none rtl:left-6 rtl:right-auto"
-        style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
-      >
-        <Plus className="h-6 w-6 md:h-5 md:w-5" />
-        <span className="hidden md:inline">{t('add_client')}</span>
-      </button>
+      {variant === 'mobile-nav' ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-200 active:scale-95 hover:scale-105"
+          style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
+        >
+          <Plus className="h-7 w-7" />
+        </button>
+      ) : (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg"
+          style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-hover))', color: 'var(--slate-950)' }}
+        >
+          <Plus className="h-5 w-5" />
+          <span className="hidden md:inline">{t('add_client')}</span>
+        </button>
+      )}
 
       {/* محتوى النافذة المنبثقة (Modal) */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="glass-panel rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-50">
+          <div className="glass-panel rounded-t-3xl md:rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[85vh] md:max-h-[90vh] overflow-y-auto relative animate-slide-up">
             
             {/* زخرفة في الخلفية */}
             <div className="absolute top-0 right-0 p-32 blur-[100px] rounded-full pointer-events-none" style={{ background: 'rgba(212,175,55,0.05)' }} />

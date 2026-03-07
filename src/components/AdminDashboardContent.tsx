@@ -55,11 +55,11 @@ export function AdminDashboardContent() {
 
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-400/30 to-yellow-600/20 flex items-center justify-center shrink-0">
-              <DollarSign className="h-5 w-5 text-amber-400" />
+            <div className="h-9 w-9 md:h-10 md:w-10 rounded-xl bg-gradient-to-br from-amber-400/30 to-yellow-600/20 flex items-center justify-center shrink-0">
+              <DollarSign className="h-5 w-5 md:h-6 md:w-6 text-amber-400" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white leading-none">DebtTrack</h1>
+              <h1 className="text-lg md:text-xl font-bold text-white leading-none">DebtTrack</h1>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="text-gray-500 text-xs">{t('dashboard_title')}</span>
                 {isAdmin ? (
@@ -102,7 +102,7 @@ export function AdminDashboardContent() {
                 className="flex items-center gap-1.5 px-3 py-2 btn-gold rounded-xl text-xs"
               >
                 <LogIn className="h-3.5 w-3.5" />
-                {t('sign_in')}
+                <span className="hidden md:inline">{t('sign_in')}</span>
               </Link>
             ) : (
               <button
@@ -152,7 +152,7 @@ export function AdminDashboardContent() {
               variant: 'blue' as const,
             },
           ].map(card => (
-            <div key={card.title} className="min-w-[220px] md:min-w-0 flex-1">
+            <div key={card.title} className="min-w-[170px] md:min-w-0 flex-1">
               <StatCard {...card} />
             </div>
           ))}
@@ -200,9 +200,9 @@ export function AdminDashboardContent() {
           </button>
 
           {/* Add Client FAB */}
-          <div className="relative -mt-5">
-            <div className="animate-pulse-gold rounded-full">
-              <CreateClientModal />
+          <div className="relative -mt-6">
+            <div className="animate-pulse-gold rounded-full bg-[#0d0f1a] p-1.5 shadow-2xl">
+              <CreateClientModal variant="mobile-nav" />
             </div>
           </div>
 
