@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 import { SerializedClient, CreateClientData, UpdateClientData, Status } from '@/lib/types'
 import { useEffect } from 'react'
 import { db } from '@/lib/db'
@@ -8,6 +8,13 @@ import { toast } from 'sonner'
 // ── Helpers ──────────────────────────────────────────────
 async function apiCall(path: string, method: string, body?: object) {
   console.log(`[apiCall] ${method} ${path}`, body)
+  
+  // Guard for common misconfigurations
+  if (path.includes('undefined') || path.includes('null')) {
+    console.error(`[apiCall] CRITICAL: Invalid path ${path}. Environment variable NEXT_PUBLIC_API_BASE might be missing.`)
+    throw new Error('Internal API Configuration Error')
+  }
+
   const res = await fetch(path, {
     method,
     headers: { 'Content-Type': 'application/json' },
@@ -23,7 +30,12 @@ async function apiCall(path: string, method: string, body?: object) {
     }
     return json
   } else {
+    // Check for HTML response (often a 404 or 500 error page from server)
     const text = await res.text()
+    if (text.includes('<!DOCTYPE html>')) {
+      console.error(`[apiCall] Error ${res.status}: Server returned an HTML page instead of JSON. Check if server-side routes are working.`)
+      throw new Error(`Server Error (${res.status}): Please check backend logs.`)
+    }
     console.error(`[apiCall] Error ${res.status} (non-JSON):`, text.slice(0, 200))
     throw new Error(`Server returned ${res.status}: ${text.slice(0, 50)}...`)
   }
@@ -79,6 +91,13 @@ export function useClients(options: { enabled?: boolean } = {}) {
 
   // ── Realtime subscription ──
   useEffect(() => {
+    // PROFESSIONALLY GUARD: Do not attempt subscription if Supabase 
+    // is not configured correctly in environment variables.
+    if (!isSupabaseConfigured || !supabase) {
+      console.warn('[Realtime] Subscription skipped: Supabase credentials are not correctly set in environment variables.')
+      return
+    }
+
     const channel = supabase
       .channel('realtime-clients')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'Client' }, () => {

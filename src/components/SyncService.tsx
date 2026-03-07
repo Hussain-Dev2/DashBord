@@ -88,7 +88,7 @@ export function SyncService() {
     window.addEventListener('offline', handleOffline)
 
     // Initial check
-    if (navigator.onLine) {
+    if (typeof navigator !== 'undefined' && navigator.onLine) {
       processSyncQueue()
     }
 
