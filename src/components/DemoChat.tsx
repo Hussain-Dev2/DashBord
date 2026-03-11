@@ -175,7 +175,8 @@ export function DemoChat() {
   const handleRestartTour = () => {
     sessionStorage.removeItem('demoWelcomeShown')
     setIsOpen(false)
-    window.location.reload()
+    // Fire a custom event — DemoWelcome listens for this and resets without a page reload
+    window.dispatchEvent(new Event('restart-demo-tour'))
   }
 
   return (

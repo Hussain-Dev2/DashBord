@@ -23,11 +23,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// تعريف المعلومات الوصفية للموقع (Metadata)
 // Define site metadata
 export const metadata: Metadata = {
-  title: "Dashboard - Client Management", // عنوان الموقع
-  description: "Advanced dashboard for managing professional clients", // وصف الموقع
+  title: "Dashboard - Client Management",
+  description: "Advanced dashboard for managing professional clients",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover', // required for env(safe-area-inset-*) to work on iOS
+  },
 };
 
 // استيراد مكون "الموفرين" (Providers) الذي يحتوي على السياقات (Contexts)

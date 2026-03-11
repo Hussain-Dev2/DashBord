@@ -94,7 +94,7 @@ function MobileClientCard({ client }: { client: Client }) {
         </div>
 
         {/* Debt amount */}
-        <div className="text-right shrink-0">
+        <div className="text-end shrink-0">
           {isFullyPaid ? (
             <div className="paid-badge text-[9px] py-0.5 px-1.5">PAID</div>
           ) : (
@@ -277,7 +277,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
         </div>
 
         {/* Status pills */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+        <div className={`flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
           {['ALL', 'LEAD', 'ACTIVE', 'PENDING', 'SUSPENDED'].map(s => (
             <button
               key={s}

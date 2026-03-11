@@ -149,16 +149,30 @@ export function DemoWelcome() {
     }
   }, [language])
 
-  // Show only once per session
+  // Show on first visit (once per session) OR when 'restart-demo-tour' event fires
   useEffect(() => {
     const shown = sessionStorage.getItem('demoWelcomeShown')
     if (!shown) {
       const timer = setTimeout(() => {
         setVisible(true)
+        setPhase('welcome')
+        setSlideIndex(0)
         sessionStorage.setItem('demoWelcomeShown', '1')
       }, 800)
       return () => clearTimeout(timer)
     }
+  }, [])
+
+  // Listen for restart event from DemoChat (no page reload, preserves language)
+  useEffect(() => {
+    const handler = () => {
+      setPhase('welcome')
+      setSlideIndex(0)
+      setSlideKey(k => k + 1)
+      setVisible(true)
+    }
+    window.addEventListener('restart-demo-tour', handler)
+    return () => window.removeEventListener('restart-demo-tour', handler)
   }, [])
 
   const handleAcceptTour = () => { setPhase('tour'); setSlideIndex(0) }
