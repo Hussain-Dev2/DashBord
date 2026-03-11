@@ -15,6 +15,8 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { SyncService } from '@/components/SyncService'
+import { DemoWelcome } from '@/components/DemoWelcome'
+import { DemoChat } from '@/components/DemoChat'
 
 export function AdminDashboardContent() {
   const { formatAmount } = useCurrency()
@@ -236,6 +238,10 @@ export function AdminDashboardContent() {
           )}
         </div>
       </nav>
+
+      {/* Demo-only: Welcome Tour + Chat Assistant */}
+      {!isAdmin && <DemoWelcome />}
+      {!isAdmin && <DemoChat />}
     </div>
   )
 }

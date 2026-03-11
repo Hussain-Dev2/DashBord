@@ -23,10 +23,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en')
 
   // جلب اللغة المفضلة من التخزين المحلي عند تحميل التطبيق
+  // On first visit, fall back to the device's browser language
   useEffect(() => {
     const saved = localStorage.getItem('language') as Language
     if (saved && (saved === 'en' || saved === 'ar')) {
+      // User has a saved preference — use it
       setLanguage(saved)
+    } else {
+      // First visit: detect the device language from the browser
+      const deviceLang = navigator.language || (navigator as any).userLanguage || 'en'
+      // If the device is using any Arabic locale (e.g. ar, ar-IQ, ar-SA...), default to Arabic
+      const detected: Language = deviceLang.startsWith('ar') ? 'ar' : 'en'
+      setLanguage(detected)
     }
   }, [])
 
@@ -45,7 +53,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // دالة تبديل اللغة
   const toggleLanguage = () => {
+    // إضافة فئة لمنع الرسوم الانتقالية مؤقتاً عند تغيير الاتجاه
+    // Add class to temporarily disable transitions when direction changes
+    document.documentElement.classList.add('no-transitions')
+    
     setLanguage(prev => prev === 'en' ? 'ar' : 'en')
+
+    // إزالة الفئة بعد وقت قصير للسماح بعودة الرسوم الانتقالية الطبيعية
+    // Remove class after a short delay
+    setTimeout(() => {
+      document.documentElement.classList.remove('no-transitions')
+    }, 100)
   }
 
   const value = {

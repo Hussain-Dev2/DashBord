@@ -50,7 +50,7 @@ function ClientAvatar({ client, className }: { client: Client, className?: strin
 // Mobile expandable card
 function MobileClientCard({ client }: { client: Client }) {
   const [expanded, setExpanded] = useState(false)
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { formatAmount } = useCurrency()
   const router = useRouter()
 
@@ -83,10 +83,10 @@ function MobileClientCard({ client }: { client: Client }) {
                 style={{
                   width: `${progress}%`,
                   background: isFullyPaid
-                    ? 'linear-gradient(90deg, #22c55e, #4ade80)'
+                    ? (language === 'ar' ? 'linear-gradient(-90deg, #22c55e, #4ade80)' : 'linear-gradient(90deg, #22c55e, #4ade80)')
                     : progress > 60
-                      ? 'linear-gradient(90deg, #D4AF37, #fbbf24)'
-                      : 'linear-gradient(90deg, #ef4444, #f87171)',
+                      ? (language === 'ar' ? 'linear-gradient(-90deg, #D4AF37, #fbbf24)' : 'linear-gradient(90deg, #D4AF37, #fbbf24)')
+                      : (language === 'ar' ? 'linear-gradient(-90deg, #ef4444, #f87171)' : 'linear-gradient(90deg, #ef4444, #f87171)'),
                 }}
               />
             </div>
@@ -104,7 +104,7 @@ function MobileClientCard({ client }: { client: Client }) {
         </div>
 
         {/* Expand chevron */}
-        <div className="text-gray-600 ml-1 shrink-0">
+        <div className="text-gray-600 ms-1 shrink-0">
           {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </div>
       </div>
@@ -143,7 +143,7 @@ function MobileClientCard({ client }: { client: Client }) {
 
 export function ClientTable({ clients }: { clients: Client[] }) {
   const { deleteClientFn, isLoading } = useClients()
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { formatAmount } = useCurrency()
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('ALL')
@@ -207,13 +207,13 @@ export function ClientTable({ clients }: { clients: Client[] }) {
         {/* Search row */}
         <div className="flex gap-2">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 rtl:right-3 rtl:left-auto" />
+            <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
             <input
               id="client-search"
               placeholder={t('search_placeholder')}
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2.5 glass-input text-sm"
+              className="w-full ps-9 pe-3 py-2.5 glass-input text-sm"
             />
           </div>
 
@@ -235,7 +235,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
             {isFilterOpen && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
-                <div className="absolute right-0 rtl:left-0 rtl:right-auto top-full mt-2 w-52 glass-panel rounded-xl z-20 overflow-hidden">
+                <div className="absolute end-0 top-full mt-2 w-52 glass-panel rounded-xl z-20 overflow-hidden">
                   <div className="p-2 space-y-0.5">
                     <div className="text-[10px] font-bold text-gray-500 px-3 py-1.5 uppercase tracking-wider">Smart Filters</div>
                     {(['ALL', 'DEBT', 'PAID', 'HIGH_VALUE', 'ACTIVE', 'DORMANT'] as FilterPreset[]).map(preset => (
@@ -373,10 +373,10 @@ export function ClientTable({ clients }: { clients: Client[] }) {
                             style={{
                               width: `${progress}%`,
                               background: isFullyPaid
-                                ? 'linear-gradient(90deg,#22c55e,#4ade80)'
+                                ? (language === 'ar' ? 'linear-gradient(-90deg,#22c55e,#4ade80)' : 'linear-gradient(90deg,#22c55e,#4ade80)')
                                 : progress > 60
-                                  ? 'linear-gradient(90deg,#D4AF37,#fbbf24)'
-                                  : 'linear-gradient(90deg,#ef4444,#f87171)',
+                                  ? (language === 'ar' ? 'linear-gradient(-90deg,#D4AF37,#fbbf24)' : 'linear-gradient(90deg,#D4AF37,#fbbf24)')
+                                  : (language === 'ar' ? 'linear-gradient(-90deg,#ef4444,#f87171)' : 'linear-gradient(90deg,#ef4444,#f87171)'),
                             }}
                           />
                         </div>

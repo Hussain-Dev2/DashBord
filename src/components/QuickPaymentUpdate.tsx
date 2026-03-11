@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Check, X, Plus, Minus, TrendingDown, TrendingUp, AlertCircle } from 'lucide-react'
 import { formatCurrency } from '@/lib/format'
 import { useCurrency } from '@/contexts/CurrencyContext'
+import { useLanguage } from '@/contexts/LanguageContext'
 import { useClients } from '@/contexts/ClientsContext'
 import { toast } from 'sonner'
 
@@ -22,6 +23,7 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
   const [inputError, setInputError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const { currency, exchangeRate, formatAmount } = useCurrency()
+  const { language } = useLanguage()
   const { addPaymentFn, addDebtFn, updateClientFn } = useClients()
 
   const remainingBalance = Math.max(0, totalAmount - currentAmount)
@@ -99,7 +101,7 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
             {/* Amount input */}
             <div className="flex-1">
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
                   <span className={`text-sm font-bold ${isAdd ? 'text-green-400' : 'text-red-400'}`}>
                     {currSymbol}
                   </span>
@@ -114,7 +116,7 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
                     : 'Amount to add'
                   }
                   className={`
-                    w-full pl-9 pr-3 py-2.5 rounded-xl text-white font-medium text-sm
+                    w-full ps-9 pe-3 py-2.5 rounded-xl text-white font-medium text-sm
                     bg-white/5 transition-all
                     [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
                     ${inputError
@@ -197,10 +199,10 @@ export function QuickPaymentUpdate({ clientId, currentAmount, totalAmount }: Qui
             style={{
               width: `${progress}%`,
               background: isFullyPaid
-                ? 'linear-gradient(90deg, #22c55e, #4ade80)'
+                ? (language === 'ar' ? 'linear-gradient(-90deg, #22c55e, #4ade80)' : 'linear-gradient(90deg, #22c55e, #4ade80)')
                 : progress > 60
-                  ? 'linear-gradient(90deg, #D4AF37, #fbbf24)'
-                  : 'linear-gradient(90deg, #ef4444, #f87171)',
+                  ? (language === 'ar' ? 'linear-gradient(-90deg, #D4AF37, #fbbf24)' : 'linear-gradient(90deg, #D4AF37, #fbbf24)')
+                  : (language === 'ar' ? 'linear-gradient(-90deg, #ef4444, #f87171)' : 'linear-gradient(90deg, #ef4444, #f87171)'),
             }}
           />
         </div>
