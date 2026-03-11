@@ -22,11 +22,7 @@ const FAQ_ITEMS = {
       question: '💰 How are payments tracked?',
       answer: `Each client has a **Price Quoted** and **Amount Paid**. The difference is their outstanding balance. You can log new payments any time from the client detail view. A progress bar shows how close they are to full payment.`,
     },
-    {
-      id: 'admin',
-      question: '🔐 How do I get admin access?',
-      answer: `Click **Sign In** in the header (or the login icon on mobile). Admin access gives you real cloud sync, persistent data across devices, and full analytics.`,
-    },
+
     {
       id: 'currencies',
       question: '💱 Can I switch currencies?',
@@ -54,11 +50,7 @@ const FAQ_ITEMS = {
       question: '💰 كيف يتم تتبع المدفوعات؟',
       answer: `لكل عميل **مبلغ متفق عليه** و**مبلغ مدفوع**. الفرق هو الرصيد المستحق. يمكنك تسجيل مدفوعات جديدة في أي وقت من صفحة تفاصيل العميل. المقياس يُظهر مدى اقترابهم من السداد الكامل.`,
     },
-    {
-      id: 'admin',
-      question: '🔐 كيف أحصل على صلاحية المشرف؟',
-      answer: `اضغط على **تسجيل الدخول** في الشريط العلوي. صلاحية المشرف تمنحك مزامنة حقيقية مع السحابة، وبيانات ثابتة على جميع الأجهزة، وتقارير متكاملة.`,
-    },
+
     {
       id: 'currencies',
       question: '💱 هل يمكنني تغيير العملة؟',
