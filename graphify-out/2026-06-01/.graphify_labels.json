@@ -1,0 +1,16 @@
+{
+  "0": "Client Details & History",
+  "1": "Dashboard Components & Settings",
+  "2": "Database Sync & Local Storage Context",
+  "3": "Authentication & API Routes",
+  "4": "Providers & Global App Layout",
+  "5": "Internationalization & Translation",
+  "6": "Dashboard Metric Cards",
+  "7": "Login Page",
+  "8": "Admin Analytics Page",
+  "9": "Home Landing Page",
+  "10": "Prisma DB Client Singleton",
+  "11": "NextAuth TypeScript Definitions",
+  "12": "Community 12",
+  "13": "Community 13"
+}

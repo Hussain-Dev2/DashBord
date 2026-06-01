@@ -1,0 +1,1532 @@
+{
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\capacitor.config.ts": {
+    "mtime": 1772906278.8480263,
+    "ast_hash": "d8bc60041bd9c5fb1a0bfc8c9143c20b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\electron-builder.json": {
+    "mtime": 1770305099.607414,
+    "ast_hash": "067f33dc1b9fa79241240f811c874fdc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\eslint.config.mjs": {
+    "mtime": 1766678750.459217,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\next.config.ts": {
+    "mtime": 1772061806.3529315,
+    "ast_hash": "e3dc8dae273855add40f19975a08c6ff",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\package.json": {
+    "mtime": 1772900675.5702283,
+    "ast_hash": "03bae52e6f5875f46636539f3e35ed5c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\postcss.config.mjs": {
+    "mtime": 1767030277.6559172,
+    "ast_hash": "c56b5f3c12f777a86e2513f45daab56a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\skills-lock.json": {
+    "mtime": 1772049630.4497638,
+    "ast_hash": "832e3c7b21f85b4e982975f30300f7e5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\tailwind.config.ts": {
+    "mtime": 1766780066.5562153,
+    "ast_hash": "5224554a701db82b841497e8821f9b85",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\tsconfig.json": {
+    "mtime": 1766780047.476585,
+    "ast_hash": "baea49f3dcb1455a0a6a9caa15656490",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.claude\\settings.json": {
+    "mtime": 1780261214.8352978,
+    "ast_hash": "5d6ecd96cf065b16e8bb9fbf5d7d8f0d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\electron\\main.js": {
+    "mtime": 1772906280.8693514,
+    "ast_hash": "c2f24be01b1036e53e0601fc2711f598",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\electron\\preload.js": {
+    "mtime": 1770300903.5072992,
+    "ast_hash": "23d1ed6ba3e453e05f49f97040f26630",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\AppDelegate.swift": {
+    "mtime": 1769534879.0,
+    "ast_hash": "b2865a48d0e54c1613fa58272418bf98",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\capacitor.config.json": {
+    "mtime": 1770307405.8158605,
+    "ast_hash": "a1e82b2816108d9b6d68209e278d043c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\Contents.json": {
+    "mtime": 1769534879.0,
+    "ast_hash": "31cc68f34934a99c0b0c1bebde56309c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\AppIcon.appiconset\\Contents.json": {
+    "mtime": 1769534879.0,
+    "ast_hash": "7453c3002126811a57c38b2740f990cf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\Splash.imageset\\Contents.json": {
+    "mtime": 1769534879.0,
+    "ast_hash": "1162e1cddd7ea769bcacdd1aa7b4ac72",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\cordova.js": {
+    "mtime": 1770307405.7841835,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\cordova_plugins.js": {
+    "mtime": 1770307405.784723,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\service-worker.js": {
+    "mtime": 1769782549.2818396,
+    "ast_hash": "666787e06fda5455beda4ec646f1a4a3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\04fde024c48b4214.js": {
+    "mtime": 1770307395.6901329,
+    "ast_hash": "1d6c756189449aef58d25bd127be7a03",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\0a74585455a1da1d.js": {
+    "mtime": 1770307395.6911678,
+    "ast_hash": "2059362c9e5cc29650e76de50b8e6307",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\236f7e5abd6f09ff.js": {
+    "mtime": 1770307395.6886022,
+    "ast_hash": "d2519697de291927ede9f355e1d6a6d4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\2a2d045dedfe5cc7.js": {
+    "mtime": 1770307395.699051,
+    "ast_hash": "2427d28a535d67dbff233a06b6e082b4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\501190a316d7fceb.js": {
+    "mtime": 1770307395.6911678,
+    "ast_hash": "c1f84f4d3f6bb627a4f1a002f660e73b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\7340adf74ff47ec0.js": {
+    "mtime": 1770307395.6753416,
+    "ast_hash": "07116caaa974183af6252904a1e19581",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\89e95691e239b870.js": {
+    "mtime": 1770307395.6934197,
+    "ast_hash": "359539a4d3be883a48c17cfa9ec209a1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\89f381b2b85f74f1.js": {
+    "mtime": 1770307395.6660154,
+    "ast_hash": "205c9f34922ec846220ec2d77dca8098",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\a6dad97d9634a72d.js": {
+    "mtime": 1770307395.6847534,
+    "ast_hash": "846118c33b2c0e922d7b3a7676f81f6f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\ae69641e80933879.js": {
+    "mtime": 1770307395.6841831,
+    "ast_hash": "5117e65d15435bc0b5f8b72fbdb42640",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\ba8234e90c31a51b.js": {
+    "mtime": 1770307395.6814413,
+    "ast_hash": "632e2b6adcec4c036d5d41fc000235a9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\c012a3999028b020.js": {
+    "mtime": 1770307395.677514,
+    "ast_hash": "4dbe4865fb8f822c6efd050438b0ffef",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\cc759f7c2413b7ff.js": {
+    "mtime": 1770307395.6785593,
+    "ast_hash": "baf4c95778006ea1a8d23f98ceb413ac",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\d59f830a2b8e768c.js": {
+    "mtime": 1770307395.6964421,
+    "ast_hash": "38381fe7174710907bdee45a09ac46d5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\e55430c932a86655.js": {
+    "mtime": 1770307395.6906471,
+    "ast_hash": "c61e9aef789a3771cb83536409c8c25e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\e761ed9fa77fcc40.js": {
+    "mtime": 1770307395.6964421,
+    "ast_hash": "611763bb18c26eabd1003a7a67f2bf13",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\f49bd77fc780a175.js": {
+    "mtime": 1770307395.6785593,
+    "ast_hash": "2c7dc7b3e917e31afb09356011b93b52",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\ff1a16fafef87110.js": {
+    "mtime": 1770307395.674128,
+    "ast_hash": "5458632ee5cb3da028baebb11d5f70dd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\chunks\\turbopack-2625e153dc25813c.js": {
+    "mtime": 1770307395.6886022,
+    "ast_hash": "d1693f42a62e16a74b88d57c2eb8de46",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\ZW2OndOiW9-wQ7hxz7vKX\\_buildManifest.js": {
+    "mtime": 1770307395.840713,
+    "ast_hash": "3f290ecb505664f59e6ec20e14f7fccd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\ZW2OndOiW9-wQ7hxz7vKX\\_clientMiddlewareManifest.json": {
+    "mtime": 1770307395.8467755,
+    "ast_hash": "d751713988987e9331980363e24189ce",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_next\\static\\ZW2OndOiW9-wQ7hxz7vKX\\_ssgManifest.js": {
+    "mtime": 1770307402.5401921,
+    "ast_hash": "b404e23d62d95bafd03ad7747cc0e88b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\CapApp-SPM\\Package.swift": {
+    "mtime": 1770307405.7903457,
+    "ast_hash": "c5b78f3e549f1acec259121ec15cc6c7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\CapApp-SPM\\Sources\\CapApp-SPM\\CapApp-SPM.swift": {
+    "mtime": 1769534879.0,
+    "ast_hash": "0d92cb44a62bc3f2d73464a2e4f9a890",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\prisma\\seed.ts": {
+    "mtime": 1766775923.9699202,
+    "ast_hash": "539af756c98e8757df1ffbc61edf2f5b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\prisma\\migrations\\20251229174722_init\\migration.sql": {
+    "mtime": 1767030442.985507,
+    "ast_hash": "11e75e263a8a66cf0bbac8672d9d1156",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\service-worker.js": {
+    "mtime": 1769782549.2818396,
+    "ast_hash": "666787e06fda5455beda4ec646f1a4a3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\scripts\\clear-db.ts": {
+    "mtime": 1767033242.5349994,
+    "ast_hash": "4db706e77f340078537fa25bdbd7aa54",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\layout.tsx": {
+    "mtime": 1773194844.2367811,
+    "ast_hash": "e63ec1631a3a58aeee01937647e8311f",
+    "semantic_hash": "e63ec1631a3a58aeee01937647e8311f"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\page.tsx": {
+    "mtime": 1769782348.610192,
+    "ast_hash": "8d2f18a43d6fa3ed0d12f595b261b053",
+    "semantic_hash": "8d2f18a43d6fa3ed0d12f595b261b053"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\admin\\page.tsx": {
+    "mtime": 1770301281.4001074,
+    "ast_hash": "cb25bc204e47e8bda15c317a27356780",
+    "semantic_hash": "cb25bc204e47e8bda15c317a27356780"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\admin\\analytics\\page.tsx": {
+    "mtime": 1780264643.0826356,
+    "ast_hash": "344c4971e45e6f7a53394460b171b7e0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\admin\\client\\page.tsx": {
+    "mtime": 1780327688.5815992,
+    "ast_hash": "6efd29436496b36da9c6d9f17c0ce3b6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\auth\\[...nextauth]\\route.ts": {
+    "mtime": 1772061746.4292135,
+    "ast_hash": "7f62eb1602587357520025d3dad5483a",
+    "semantic_hash": "7f62eb1602587357520025d3dad5483a"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\clients\\route.ts": {
+    "mtime": 1772064816.9998274,
+    "ast_hash": "0ad0e6b6f24a73b1348651482d8fad82",
+    "semantic_hash": "0ad0e6b6f24a73b1348651482d8fad82"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\clients\\[id]\\route.ts": {
+    "mtime": 1772065008.1769147,
+    "ast_hash": "12cb28d390ef8b218840a42ba4b2cb19",
+    "semantic_hash": "12cb28d390ef8b218840a42ba4b2cb19"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\clients\\[id]\\debt\\route.ts": {
+    "mtime": 1780264517.5082924,
+    "ast_hash": "122dd49f3fc0a45d29312931570f1dfa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\clients\\[id]\\note\\route.ts": {
+    "mtime": 1772064991.942386,
+    "ast_hash": "9804ce1029cd3d672146aff5265bc60e",
+    "semantic_hash": "9804ce1029cd3d672146aff5265bc60e"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\clients\\[id]\\payment\\route.ts": {
+    "mtime": 1780264531.9588113,
+    "ast_hash": "39d4feac6ec21c0b5835c9672e19ad9b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\login\\page.tsx": {
+    "mtime": 1772061402.9927182,
+    "ast_hash": "e7440b36f1f0d821bf4cf76bd551aee0",
+    "semantic_hash": "e7440b36f1f0d821bf4cf76bd551aee0"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\AdminDashboardContent.tsx": {
+    "mtime": 1773194825.7298832,
+    "ast_hash": "f810c93f3cbd6d94ab7370d164f90e88",
+    "semantic_hash": "f810c93f3cbd6d94ab7370d164f90e88"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\ClientEditForm.tsx": {
+    "mtime": 1772061660.4703174,
+    "ast_hash": "676c6e7e1ee2d64b6f4b948aa7f85cc0",
+    "semantic_hash": "676c6e7e1ee2d64b6f4b948aa7f85cc0"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\ClientInvoice.tsx": {
+    "mtime": 1780264818.4465008,
+    "ast_hash": "1e092ba5d0b27d3b3f24d7dfe912065d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\ClientTable.tsx": {
+    "mtime": 1773195007.1402564,
+    "ast_hash": "4ffea7ea0589cf0435caebc70fda8140",
+    "semantic_hash": "4ffea7ea0589cf0435caebc70fda8140"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\CreateClientModal.tsx": {
+    "mtime": 1780262148.014493,
+    "ast_hash": "201da829f442db8998bc27359e06d16d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\CurrencySelector.tsx": {
+    "mtime": 1772898547.7094269,
+    "ast_hash": "3bd2be0df32fc799d24cb00f4406d23f",
+    "semantic_hash": "3bd2be0df32fc799d24cb00f4406d23f"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\DemoChat.tsx": {
+    "mtime": 1773196382.5868113,
+    "ast_hash": "dff666f9bccef990d0c5bac00c264da6",
+    "semantic_hash": "dff666f9bccef990d0c5bac00c264da6"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\DemoWelcome.tsx": {
+    "mtime": 1773194634.1913643,
+    "ast_hash": "ec80eddee74c801013e54bd0cc37f395",
+    "semantic_hash": "ec80eddee74c801013e54bd0cc37f395"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\InteractionLog.tsx": {
+    "mtime": 1772061508.0350218,
+    "ast_hash": "a4f4836b54535ad49488c1d07d5f77a0",
+    "semantic_hash": "a4f4836b54535ad49488c1d07d5f77a0"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\LanguageToggle.tsx": {
+    "mtime": 1772898558.3175583,
+    "ast_hash": "498275e6722a2ad9613b0ce017a4c6fc",
+    "semantic_hash": "498275e6722a2ad9613b0ce017a4c6fc"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\PaymentHistory.tsx": {
+    "mtime": 1772065248.9341817,
+    "ast_hash": "9f37837dfff3fa61069af615305390f0",
+    "semantic_hash": "9f37837dfff3fa61069af615305390f0"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\PostHogPageView.tsx": {
+    "mtime": 1767274841.6867957,
+    "ast_hash": "6fc287712abad83fb3d4f3a5a7a20016",
+    "semantic_hash": "6fc287712abad83fb3d4f3a5a7a20016"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\PostHogProvider.tsx": {
+    "mtime": 1767275716.2594504,
+    "ast_hash": "a3486b13195cd95de38e8414bc364453",
+    "semantic_hash": "a3486b13195cd95de38e8414bc364453"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\providers.tsx": {
+    "mtime": 1770300923.925482,
+    "ast_hash": "76596961231f28f5472c72634e22a3a7",
+    "semantic_hash": "76596961231f28f5472c72634e22a3a7"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\QuickPaymentUpdate.tsx": {
+    "mtime": 1773184119.9563782,
+    "ast_hash": "8bc5223653b3ef2adcf709e06965b9c9",
+    "semantic_hash": "8bc5223653b3ef2adcf709e06965b9c9"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\StatCard.tsx": {
+    "mtime": 1772893698.2484827,
+    "ast_hash": "b2c74bf46de4b56d259c22bd9616dc49",
+    "semantic_hash": "b2c74bf46de4b56d259c22bd9616dc49"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\components\\SyncService.tsx": {
+    "mtime": 1772907390.070361,
+    "ast_hash": "d8359943d84502be546d6f05a917f8c5",
+    "semantic_hash": "d8359943d84502be546d6f05a917f8c5"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\contexts\\ClientsContext.tsx": {
+    "mtime": 1780262108.1331558,
+    "ast_hash": "745f1b53da5cb42f3bd2bd70e5803512",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\contexts\\CurrencyContext.tsx": {
+    "mtime": 1769782494.3316915,
+    "ast_hash": "e022d578d6dda05eff2955c066884e5f",
+    "semantic_hash": "e022d578d6dda05eff2955c066884e5f"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\contexts\\LanguageContext.tsx": {
+    "mtime": 1773192332.3373537,
+    "ast_hash": "c380eff1ccffec0b4754132c0a548045",
+    "semantic_hash": "c380eff1ccffec0b4754132c0a548045"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\hooks\\useClients.ts": {
+    "mtime": 1772907377.8641772,
+    "ast_hash": "1493f073523979ea1bc5de2c12d816de",
+    "semantic_hash": "1493f073523979ea1bc5de2c12d816de"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\auth.ts": {
+    "mtime": 1769781812.17404,
+    "ast_hash": "e0c5a1e2ae221447557be8008c250f6b",
+    "semantic_hash": "e0c5a1e2ae221447557be8008c250f6b"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\constants.ts": {
+    "mtime": 1769799777.067392,
+    "ast_hash": "86185fd129ecd8e5845fc3b44b48d830",
+    "semantic_hash": "86185fd129ecd8e5845fc3b44b48d830"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\db.ts": {
+    "mtime": 1772900689.2157383,
+    "ast_hash": "b368311db5d19b8bb395cf61f63569c6",
+    "semantic_hash": "b368311db5d19b8bb395cf61f63569c6"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\format.ts": {
+    "mtime": 1767030582.9865406,
+    "ast_hash": "64b233563fad1a7d02ee54ad003332e9",
+    "semantic_hash": "64b233563fad1a7d02ee54ad003332e9"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\prisma.ts": {
+    "mtime": 1766753630.6550665,
+    "ast_hash": "19a22c81b3e79884a0c023786f5ab7d0",
+    "semantic_hash": "19a22c81b3e79884a0c023786f5ab7d0"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\supabase.ts": {
+    "mtime": 1772907358.9256341,
+    "ast_hash": "9607af3c411059890aae73776d0d393c",
+    "semantic_hash": "9607af3c411059890aae73776d0d393c"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\translations.ts": {
+    "mtime": 1769799424.6388369,
+    "ast_hash": "fffa7bf4fe04c51248914c8b4b669197",
+    "semantic_hash": "fffa7bf4fe04c51248914c8b4b669197"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\types.ts": {
+    "mtime": 1780264367.2207713,
+    "ast_hash": "09e3d2c57f573c887bb037d3de5bda80",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\providers\\QueryProvider.tsx": {
+    "mtime": 1770304806.947811,
+    "ast_hash": "31d1594e9af41e36687b96aab94c8718",
+    "semantic_hash": "31d1594e9af41e36687b96aab94c8718"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\types\\next-auth.d.ts": {
+    "mtime": 1769781898.5194068,
+    "ast_hash": "134a0c50b8994e6e65ae9eb377889254",
+    "semantic_hash": "134a0c50b8994e6e65ae9eb377889254"
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\standard_prd.json": {
+    "mtime": 1772060240.368195,
+    "ast_hash": "022b72f5824ac53efc12c0ec051f4535",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC001_Dashboard_renders_header_branding_on_initial_load.py": {
+    "mtime": 1772060987.6399446,
+    "ast_hash": "d6cdfba712a85adb7ea708bccbba4246",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC002_Dashboard_shows_all_four_stat_cards.py": {
+    "mtime": 1772060987.6420174,
+    "ast_hash": "932266a0d3738cdf8826708bfbfc07ec",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC003_Client_list_panel_renders_below_stats.py": {
+    "mtime": 1772060987.6446629,
+    "ast_hash": "8b4f0edbcdf87263b614dddc5477b24b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC006_Record_a_valid_inline_payment_and_see_debt__progress_update.py": {
+    "mtime": 1772060987.6466079,
+    "ast_hash": "ce94dead9acd9eafa364b3ed1c73095b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC008_Inline_form_appears_when_Add_Money_is_clicked.py": {
+    "mtime": 1772060987.6493003,
+    "ast_hash": "6fc6475b2c8a7e408c244ff7e791245e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC009_Reject_non_numeric_value_in_the_payment_input.py": {
+    "mtime": 1772060987.650878,
+    "ast_hash": "7f2cd655a322eebb108e46fe0e0d6051",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC010_Reject_negative_payment_amount.py": {
+    "mtime": 1772060987.6537547,
+    "ast_hash": "d3f20c1b73464e60591ffe3c3fb2b9ca",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC013_Quick_Add_Debt_via_checkmark_updates_balance_and_shows_success_toast.py": {
+    "mtime": 1772060987.6557157,
+    "ast_hash": "460111a976ce44bb61472423691e68a6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC014_Quick_Add_Debt_via_Enter_key_updates_balance_and_shows_success_toast.py": {
+    "mtime": 1772060987.657747,
+    "ast_hash": "1c935859640e9c585f18e5d999fd0437",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC016_Empty_input_shows_inline_validation_error_and_does_not_change_balance.py": {
+    "mtime": 1772060987.6600933,
+    "ast_hash": "c5d24f969b5c6fe34ffc97656e49aae7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC017_Non_numeric_input_shows_inline_validation_error_and_does_not_change_balance.py": {
+    "mtime": 1772060987.6621666,
+    "ast_hash": "a654a034f805993dde75ee06fda940ff",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC020_Search_clients_by_phone_number_fragment.py": {
+    "mtime": 1772060987.6643538,
+    "ast_hash": "8dc2e68841918751de21a353ad5ed7fc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC021_No_results_empty_state_appears_when_search_matches_no_clients.py": {
+    "mtime": 1772060987.6664903,
+    "ast_hash": "b5fee208546af65f037c05f54946d8bf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC024_Filter_client_list_by_ACTIVE_status_using_the_status_pill.py": {
+    "mtime": 1772060987.668395,
+    "ast_hash": "7c8b3bb1a278c5285fa8317c9712099b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\TC025_Filter_client_list_by_SUSPENDED_when_no_suspended_clients_exist.py": {
+    "mtime": 1772060987.669939,
+    "ast_hash": "31ac2446c5c28632c62f6a3b4fe58e66",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\testsprite_frontend_test_plan.json": {
+    "mtime": 1772060646.549854,
+    "ast_hash": "b62e672a5ea1bdb2dc576e0c76110176",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ANSWER.md": {
+    "mtime": 1767971243.8479729,
+    "ast_hash": "9a4ead45061a99b198963ea5587a87da",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\build_error_log.txt": {
+    "mtime": 1770318240.523002,
+    "ast_hash": "65dde53e2c037ef98ba8e4e6ffc10b48",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\build_log.txt": {
+    "mtime": 1770303332.2567492,
+    "ast_hash": "1f03dff22db727e9d53e01cf452dcdc1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\build_log_client.txt": {
+    "mtime": 1770304589.5277038,
+    "ast_hash": "daa97e2da81188e80d021f1a9710977d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\build_log_debug.txt": {
+    "mtime": 1770304751.2293491,
+    "ast_hash": "d78b33a34773de603cf23f27650c16d5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\CLAUDE.md": {
+    "mtime": 1780261214.8332996,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\CODEBASE.md": {
+    "mtime": 1769360654.0880148,
+    "ast_hash": "78cc34ff07d6905ed86bc7210914c8ab",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\CURRENCY_CONVERSION.md": {
+    "mtime": 1767972880.5759785,
+    "ast_hash": "22569878975ac282af1b1594986a81ee",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\PRD.md": {
+    "mtime": 1772906298.2917361,
+    "ast_hash": "5d247935e7f4c4734295b0fa1e5c5bb1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\README.md": {
+    "mtime": 1772906292.045145,
+    "ast_hash": "2657c58729b3b21a8b3338b49b52ba15",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\README_FIX.md": {
+    "mtime": 1767968780.482419,
+    "ast_hash": "3032ef486184f39258d2c7fb4eb1ef8c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\rules\\graphify.md": {
+    "mtime": 1780261218.5719643,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\frontend-design\\LICENSE.txt": {
+    "mtime": 1772048895.8515792,
+    "ast_hash": "29256199be2a609aac596980ffc11996",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\frontend-design\\SKILL.md": {
+    "mtime": 1772048895.8533058,
+    "ast_hash": "400c8b8231420f30b48aed0a6f37df9f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\AGENTS.md": {
+    "mtime": 1772048958.1279283,
+    "ast_hash": "21d7db2786e9bb5d98ea1a9ef0d501b0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\README.md": {
+    "mtime": 1772048958.1285124,
+    "ast_hash": "ea0b87a642d12567a80424f12365a934",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\SKILL.md": {
+    "mtime": 1772048958.1295238,
+    "ast_hash": "c5807b44c5991eb2f653182593133fe2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\advanced-event-handler-refs.md": {
+    "mtime": 1772048958.1321657,
+    "ast_hash": "e277ef383b038da08b81404c569af6cd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\advanced-init-once.md": {
+    "mtime": 1772048958.1333292,
+    "ast_hash": "8e7759bb017e5d0d1dd64f6f60f85d3e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\advanced-use-latest.md": {
+    "mtime": 1772048958.1339436,
+    "ast_hash": "21d3dbb5f2b557f6d14b224af2d47dc5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\async-api-routes.md": {
+    "mtime": 1772048958.1346076,
+    "ast_hash": "94058ab5b50f99781e5aa56183b00008",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\async-defer-await.md": {
+    "mtime": 1772048958.1346076,
+    "ast_hash": "2e5d4672a75e740fcfd872551e08bbbf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\async-dependencies.md": {
+    "mtime": 1772048958.135207,
+    "ast_hash": "3bd47351349c6fe86323bf32dd017d76",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\async-parallel.md": {
+    "mtime": 1772048958.135207,
+    "ast_hash": "5029495e12b0b9b3c03b0ae4f3085659",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\async-suspense-boundaries.md": {
+    "mtime": 1772048958.135207,
+    "ast_hash": "00c19181680f2f698664db510da810d4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\bundle-barrel-imports.md": {
+    "mtime": 1772048958.1367657,
+    "ast_hash": "399d3ac7bcf2623755e299a4efcfe7a4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\bundle-conditional.md": {
+    "mtime": 1772048958.137418,
+    "ast_hash": "d1e3c1adf9989359446cbf624bc0587d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\bundle-defer-third-party.md": {
+    "mtime": 1772048958.1379611,
+    "ast_hash": "476bf2e75198f7c6accc17ea81f3a161",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\bundle-dynamic-imports.md": {
+    "mtime": 1772048958.1379611,
+    "ast_hash": "2ccb840f6d1c0b4ccf9714dc3fb05651",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\bundle-preload.md": {
+    "mtime": 1772048958.1389728,
+    "ast_hash": "b67a4242446249b2bafdeb6a620a2af7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\client-event-listeners.md": {
+    "mtime": 1772048958.1394806,
+    "ast_hash": "78c4562d3fa71d314c7b98d272f56045",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\client-localstorage-schema.md": {
+    "mtime": 1772048958.1400113,
+    "ast_hash": "65c4468bd1d170a5f36003b23062a1e7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\client-passive-event-listeners.md": {
+    "mtime": 1772048958.1400113,
+    "ast_hash": "fbeb4ae3eb20a5bde142b50686e7a166",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\client-swr-dedup.md": {
+    "mtime": 1772048958.1400113,
+    "ast_hash": "e912f4b5ee9e04bcf1b12cb86c86e192",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-batch-dom-css.md": {
+    "mtime": 1772048958.1417441,
+    "ast_hash": "8aeccee9fc15f16f17a8a035b095a088",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-cache-function-results.md": {
+    "mtime": 1772048958.1423361,
+    "ast_hash": "352d02de8ae05ca73448044591fedd70",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-cache-property-access.md": {
+    "mtime": 1772048958.1423361,
+    "ast_hash": "3fc311109878cb0564faad1c3f8992a8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-cache-storage.md": {
+    "mtime": 1772048958.1433437,
+    "ast_hash": "ae2d1432a80c552513c42dac684d8663",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-combine-iterations.md": {
+    "mtime": 1772048958.143849,
+    "ast_hash": "afe61f0854bf49bd52475dbaae3bac85",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-early-exit.md": {
+    "mtime": 1772048958.143849,
+    "ast_hash": "729d6ae7f359973121b30dcb3c8e5d9b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-hoist-regexp.md": {
+    "mtime": 1772048958.143849,
+    "ast_hash": "76ec43c627c68eca559e7a79a6520bbc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-index-maps.md": {
+    "mtime": 1772048958.144863,
+    "ast_hash": "8462667d199be001ed6df6cc0cb5c83b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-length-check-first.md": {
+    "mtime": 1772048958.145856,
+    "ast_hash": "ded33d19a9c0d1aa4138838fd6c30402",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-min-max-loop.md": {
+    "mtime": 1772048958.145856,
+    "ast_hash": "3b812151da0f973d0006fc954eeb1950",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-set-map-lookups.md": {
+    "mtime": 1772048958.146856,
+    "ast_hash": "e26c96c5383f2afef8788fc4de914e97",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\js-tosorted-immutable.md": {
+    "mtime": 1772048958.146856,
+    "ast_hash": "55999ff61e2a85ef01e19c685fd1f0c0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-activity.md": {
+    "mtime": 1772048958.146856,
+    "ast_hash": "3d75187b877aef28c7b4d6b5f33b2915",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-animate-svg-wrapper.md": {
+    "mtime": 1772048958.1478558,
+    "ast_hash": "b471e4d8054772a6c5e6a67cf5589e8c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-conditional-render.md": {
+    "mtime": 1772048958.1483674,
+    "ast_hash": "c61896d12e979f353634cc6e5f1b27f0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-content-visibility.md": {
+    "mtime": 1772048958.1489952,
+    "ast_hash": "20a486c49754b5fb0bf806d303118aa2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-hoist-jsx.md": {
+    "mtime": 1772048958.1489952,
+    "ast_hash": "776e60b758a1e9fc755f112ae2dd6253",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-hydration-no-flicker.md": {
+    "mtime": 1772048958.1500094,
+    "ast_hash": "dc8c31d3ea2156299b3da17364fc51cb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-hydration-suppress-warning.md": {
+    "mtime": 1772048958.1505282,
+    "ast_hash": "ad795d33558ef725bb5204e122e9ffbd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-svg-precision.md": {
+    "mtime": 1772048958.151048,
+    "ast_hash": "bb74883dab6f28f8f5652ca779867be0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rendering-usetransition-loading.md": {
+    "mtime": 1772048958.151592,
+    "ast_hash": "5d8cd195730cf58891d3878bafe64bb0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-defer-reads.md": {
+    "mtime": 1772048958.1521273,
+    "ast_hash": "75aa954f318eedc3a9ca14fed5aebcac",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-dependencies.md": {
+    "mtime": 1772048958.1521273,
+    "ast_hash": "52f7b732ffe56cd965fe0843a3bb0734",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-derived-state-no-effect.md": {
+    "mtime": 1772048958.1521273,
+    "ast_hash": "31ea3f116cd42a25443867bc093d3694",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-derived-state.md": {
+    "mtime": 1772048958.153661,
+    "ast_hash": "37b637d1bc1c176c0e25900d61783766",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-functional-setstate.md": {
+    "mtime": 1772048958.1542056,
+    "ast_hash": "ad5f7b2581764321ef7c856530130152",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-lazy-state-init.md": {
+    "mtime": 1772048958.1547716,
+    "ast_hash": "8232f3ad1c39eb66fbbd7586bba68477",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-memo-with-default-value.md": {
+    "mtime": 1772048958.1553018,
+    "ast_hash": "4a9093e4588f6bddd7bde77956ba12f9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-memo.md": {
+    "mtime": 1772048958.1558297,
+    "ast_hash": "ffc8ff5758af92671ad9073316eeec96",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-move-effect-to-event.md": {
+    "mtime": 1772048958.1565268,
+    "ast_hash": "0f0a135c2841f75d12197e8d7a5b1dce",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-simple-expression-in-memo.md": {
+    "mtime": 1772048958.1565268,
+    "ast_hash": "93133bbfc9e82851d12dd10314b17239",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-transitions.md": {
+    "mtime": 1772048958.1570754,
+    "ast_hash": "a6900c7ea8278db5ebdc0dfea981da68",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\rerender-use-ref-transient-values.md": {
+    "mtime": 1772048958.1576235,
+    "ast_hash": "7518ae1a018dd77897cba1897d321f5f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-after-nonblocking.md": {
+    "mtime": 1772048958.1576235,
+    "ast_hash": "ef9df9991c5ac8ef7d4685219fc4f2fe",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-auth-actions.md": {
+    "mtime": 1772048958.158633,
+    "ast_hash": "79f807c5ceed427137d46e125b47c188",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-cache-lru.md": {
+    "mtime": 1772048958.1591377,
+    "ast_hash": "b4bff68df5ef6067861ffd725c5de9db",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-cache-react.md": {
+    "mtime": 1772048958.1596787,
+    "ast_hash": "07ef8edb8485881cb4d5dc679998a69b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-dedup-props.md": {
+    "mtime": 1772048958.160201,
+    "ast_hash": "01b8f05177ca9fec8af89db728dad353",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-parallel-fetching.md": {
+    "mtime": 1772048958.1607745,
+    "ast_hash": "30af1819ffffec5afcababf49ed8e9f1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-best-practices\\rules\\server-serialization.md": {
+    "mtime": 1772048958.161313,
+    "ast_hash": "65ef936a259fe0bfcdae6e70b643cf8b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\AGENTS.md": {
+    "mtime": 1772049562.0119426,
+    "ast_hash": "855ac4c5133c02bea7e98694ab1baee7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\README.md": {
+    "mtime": 1772049562.0119426,
+    "ast_hash": "d4bd39ee08a5b35727779a71f7ac9560",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\SKILL.md": {
+    "mtime": 1772049562.0129528,
+    "ast_hash": "20b0c32281599765b7bdf8828f0dda04",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\animation-derived-value.md": {
+    "mtime": 1772049562.0158825,
+    "ast_hash": "9e60d057f7c4cf5f9b4ea7f61222c27e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\animation-gesture-detector-press.md": {
+    "mtime": 1772049562.017393,
+    "ast_hash": "466e4133b168e61519b6023c3a785c54",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\animation-gpu-properties.md": {
+    "mtime": 1772049562.0184042,
+    "ast_hash": "7f0dd61cd4118b5c4bc707e109c03ce9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\design-system-compound-components.md": {
+    "mtime": 1772049562.0184042,
+    "ast_hash": "a4f701e320e47647a2650284370017ba",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\fonts-config-plugin.md": {
+    "mtime": 1772049562.0194025,
+    "ast_hash": "ac9103d2cc3ad61e6643acf7f4def6a1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\imports-design-system-folder.md": {
+    "mtime": 1772049562.0204031,
+    "ast_hash": "d9d7987dec602ccd06cabedd0b975ef3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\js-hoist-intl.md": {
+    "mtime": 1772049562.0209243,
+    "ast_hash": "68a8d443b039f884d6c2df29f919b558",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-callbacks.md": {
+    "mtime": 1772049562.0209243,
+    "ast_hash": "034c362d1431d427f33bcc81c01acca3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-function-references.md": {
+    "mtime": 1772049562.0209243,
+    "ast_hash": "594fdb044bf0329dd0e2673b029f09f4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-images.md": {
+    "mtime": 1772049562.023015,
+    "ast_hash": "dcfe76e31ec92f1df6e386f74518e421",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-inline-objects.md": {
+    "mtime": 1772049562.023015,
+    "ast_hash": "d5e8b759beaad807b613d1d3e98fe7fa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-item-expensive.md": {
+    "mtime": 1772049562.0237732,
+    "ast_hash": "55b3d2fac9467764301712bcac98fe84",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-item-memo.md": {
+    "mtime": 1772049562.024459,
+    "ast_hash": "8be2fc3d89acea38e253fc8d15f754eb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-item-types.md": {
+    "mtime": 1772049562.0254686,
+    "ast_hash": "a340b399dd0342553b5c83a9748ed410",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\list-performance-virtualize.md": {
+    "mtime": 1772049562.0254686,
+    "ast_hash": "562d704816763991eb3c680b4373ada9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\monorepo-native-deps-in-app.md": {
+    "mtime": 1772049562.026981,
+    "ast_hash": "64cc8e840b05dfd1aa37fb025daa2a50",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\monorepo-single-dependency-versions.md": {
+    "mtime": 1772049562.028507,
+    "ast_hash": "36b438e03de6185cf519b7d6259b62a9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\navigation-native-navigators.md": {
+    "mtime": 1772049562.0295246,
+    "ast_hash": "9efc15c4eac50fee8188fe7d9952960b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\react-compiler-destructure-functions.md": {
+    "mtime": 1772049562.030535,
+    "ast_hash": "fc72bda7b29e66a4b633fa644df3502e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\react-compiler-reanimated-shared-values.md": {
+    "mtime": 1772049562.031616,
+    "ast_hash": "8072467a04dafed285ff43a75eb5140b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\react-state-dispatcher.md": {
+    "mtime": 1772049562.032328,
+    "ast_hash": "6342052228f5abb7334c0662c196d97f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\react-state-fallback.md": {
+    "mtime": 1772049562.032328,
+    "ast_hash": "2ca3179448720609b40ae8aea9fc76ca",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\react-state-minimize.md": {
+    "mtime": 1772049562.0343897,
+    "ast_hash": "4d40d566bb058a2a38bca5d2efcb0109",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\rendering-no-falsy-and.md": {
+    "mtime": 1772049562.0349553,
+    "ast_hash": "f3e2287e6bfc2e05f1a884d7211a7ac2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\rendering-text-in-text-component.md": {
+    "mtime": 1772049562.0365622,
+    "ast_hash": "367f3f84926a75b222a68f348dd1da97",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\scroll-position-no-state.md": {
+    "mtime": 1772049562.037505,
+    "ast_hash": "5b02eeca6f0f7f428a10218a2d8f846f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\state-ground-truth.md": {
+    "mtime": 1772049562.0385156,
+    "ast_hash": "0abd53901382663b61d31609075a8ceb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-expo-image.md": {
+    "mtime": 1772049562.040032,
+    "ast_hash": "1976706c0257517203f46aec0e648bc1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-image-gallery.md": {
+    "mtime": 1772049562.040032,
+    "ast_hash": "34c8aca467cf92bd49c06d86fc86a958",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-measure-views.md": {
+    "mtime": 1772049562.0416877,
+    "ast_hash": "7adb11a62fe662d54877dd3cf3b0cfc0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-menus.md": {
+    "mtime": 1772049562.042699,
+    "ast_hash": "47c80fa1a540e25085fe2f9b28f8a7d0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-native-modals.md": {
+    "mtime": 1772049562.04371,
+    "ast_hash": "02e5d8a3ce8a8451589522489d2ee17e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-pressable.md": {
+    "mtime": 1772049562.04371,
+    "ast_hash": "b1d1d05d7bc7d31540a8133948e2e23e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-safe-area-scroll.md": {
+    "mtime": 1772049562.0455222,
+    "ast_hash": "818cc441156d24fba296464009e32522",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-scrollview-content-inset.md": {
+    "mtime": 1772049562.046541,
+    "ast_hash": "3c00038a575aa881e041681ba0f407cd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\skills\\vercel-react-native-skills\\rules\\ui-styling.md": {
+    "mtime": 1772049562.046541,
+    "ast_hash": "a671c63798fbaf9c461721b204fcd025",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.agents\\workflows\\graphify.md": {
+    "mtime": 1780261218.5741642,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.claude\\CLAUDE.md": {
+    "mtime": 1780261214.8322983,
+    "ast_hash": "817fe671013b35ae0bc9301dfe449a87",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\.claude\\skills\\graphify\\SKILL.md": {
+    "mtime": 1780261214.830299,
+    "ast_hash": "e065bdafac4ca689ffd4e353ffd71160",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\404.html": {
+    "mtime": 1770307402.5169437,
+    "ast_hash": "779ff935c42abe19d9eb89b6b7f191e5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin.html": {
+    "mtime": 1770307402.5190716,
+    "ast_hash": "a660093d2db9468e620267bc36c591ed",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin.txt": {
+    "mtime": 1770307402.5190716,
+    "ast_hash": "54d70c3c5c3ceadeb97d2a84801d5fe2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\index.html": {
+    "mtime": 1770307402.5207086,
+    "ast_hash": "870ccbfe6e49c15466a8d3c766394b13",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\index.txt": {
+    "mtime": 1770307402.5203407,
+    "ast_hash": "4a854f6ddd6f7abb0b76cc8aa445a275",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login.html": {
+    "mtime": 1770307402.5185654,
+    "ast_hash": "bede032c44549fcf719eb3f9d93cca9a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login.txt": {
+    "mtime": 1770307402.5185654,
+    "ast_hash": "898d277d221e007d4f83cc5ee5c9df97",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found.html": {
+    "mtime": 1770307402.5169437,
+    "ast_hash": "779ff935c42abe19d9eb89b6b7f191e5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "400c6d5fdd9d91b40e9010b99e99517d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\__next._full.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "4a854f6ddd6f7abb0b76cc8aa445a275",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\__next._head.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "48b497ee5f6da3525bc2879ce1c83818",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\__next._index.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\__next._tree.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "43fcb2d44ed5a00e11e0874ad41b3c50",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\__next.__PAGE__.txt": {
+    "mtime": 1770307402.5169437,
+    "ast_hash": "39e55a05a61c43ad753589f454bc8c7e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics.html": {
+    "mtime": 1770307402.5169437,
+    "ast_hash": "8a58f574fe2da34d979aec5badf40d15",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics.txt": {
+    "mtime": 1770307402.5175567,
+    "ast_hash": "c206811fc22b34331e50f09c06ee6d24",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client.html": {
+    "mtime": 1770307402.5175567,
+    "ast_hash": "01ce8d147a8e4787cd6607c288708f84",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client.txt": {
+    "mtime": 1770307402.5175567,
+    "ast_hash": "5925b444d2ea28d1d7b32ee954a8e089",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next.admin.txt": {
+    "mtime": 1770307402.5148365,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next._full.txt": {
+    "mtime": 1770307402.5148365,
+    "ast_hash": "54d70c3c5c3ceadeb97d2a84801d5fe2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next._head.txt": {
+    "mtime": 1770307402.5158463,
+    "ast_hash": "48b497ee5f6da3525bc2879ce1c83818",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next._index.txt": {
+    "mtime": 1770307402.5148365,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next._tree.txt": {
+    "mtime": 1770307402.514317,
+    "ast_hash": "ad3927ca375d75169573b3af0151f5a5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next.admin.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next._full.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "c206811fc22b34331e50f09c06ee6d24",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next._head.txt": {
+    "mtime": 1770307402.512707,
+    "ast_hash": "48b497ee5f6da3525bc2879ce1c83818",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next._index.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next._tree.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "5ec2071ef17f5dc7befb6f68d61ae180",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next.admin\\analytics.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\analytics\\__next.admin\\analytics\\__PAGE__.txt": {
+    "mtime": 1770307402.5218546,
+    "ast_hash": "413fea2bbaf2984fb52756ff8a6d0f3a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next.admin.txt": {
+    "mtime": 1770307402.5132115,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next._full.txt": {
+    "mtime": 1770307402.512707,
+    "ast_hash": "5925b444d2ea28d1d7b32ee954a8e089",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next._head.txt": {
+    "mtime": 1770307402.5132115,
+    "ast_hash": "48b497ee5f6da3525bc2879ce1c83818",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next._index.txt": {
+    "mtime": 1770307402.51373,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next._tree.txt": {
+    "mtime": 1770307402.512707,
+    "ast_hash": "76be7dc29e345a9472fd195d8906d7fe",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next.admin\\client.txt": {
+    "mtime": 1770307402.5132115,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\client\\__next.admin\\client\\__PAGE__.txt": {
+    "mtime": 1770307402.5218546,
+    "ast_hash": "0a08bad1385651cde152c6f0f8860391",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\admin\\__next.admin\\__PAGE__.txt": {
+    "mtime": 1770307402.5218546,
+    "ast_hash": "a116ba256b7826d603303a1540748dc2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next.login.txt": {
+    "mtime": 1770307402.514317,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next._full.txt": {
+    "mtime": 1770307402.5132115,
+    "ast_hash": "898d277d221e007d4f83cc5ee5c9df97",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next._head.txt": {
+    "mtime": 1770307402.5148365,
+    "ast_hash": "48b497ee5f6da3525bc2879ce1c83818",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next._index.txt": {
+    "mtime": 1770307402.5148365,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next._tree.txt": {
+    "mtime": 1770307402.5132115,
+    "ast_hash": "ef5da51903dd79cf6f8681b1c76a3f12",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\login\\__next.login\\__PAGE__.txt": {
+    "mtime": 1770307402.5218546,
+    "ast_hash": "4d26d0e60cd41c5f7d681ab9c4eb8103",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._full.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "400c6d5fdd9d91b40e9010b99e99517d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._head.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "ed3d072ad0846eb896fa7ed66266fe00",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._index.txt": {
+    "mtime": 1770307402.5111876,
+    "ast_hash": "061905cc48dd41d1fec2ad30d06819a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._not-found.txt": {
+    "mtime": 1770307402.5099123,
+    "ast_hash": "87e287d08e51664f63c098115a608e20",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._tree.txt": {
+    "mtime": 1770307402.5099123,
+    "ast_hash": "5032f279c0e96fdce2f344bf9281da68",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\_not-found\\__next._not-found\\__PAGE__.txt": {
+    "mtime": 1770307402.5117013,
+    "ast_hash": "72d2c57e91a9ec1988e02a53eaabb392",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\CapApp-SPM\\README.md": {
+    "mtime": 1769534879.0,
+    "ast_hash": "9cfb163b70d2e73140eab9557c445dfa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\testsprite_tests\\testsprite-mcp-test-report.md": {
+    "mtime": 1772061193.887218,
+    "ast_hash": "eec71d8721ad7d6daae4210168aa3b25",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\AppIcon.appiconset\\AppIcon-512@2x.png": {
+    "mtime": 1769534879.0,
+    "ast_hash": "0ac741c9e1701ee14dd05ea131f7cfd8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\Splash.imageset\\splash-2732x2732-1.png": {
+    "mtime": 1769534879.0,
+    "ast_hash": "958532b95c3e7d4997327dc977b80600",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\Splash.imageset\\splash-2732x2732-2.png": {
+    "mtime": 1769534879.0,
+    "ast_hash": "958532b95c3e7d4997327dc977b80600",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\Assets.xcassets\\Splash.imageset\\splash-2732x2732.png": {
+    "mtime": 1769534879.0,
+    "ast_hash": "958532b95c3e7d4997327dc977b80600",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\file.svg": {
+    "mtime": 1766678750.5038922,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\globe.svg": {
+    "mtime": 1766678750.52164,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\next.svg": {
+    "mtime": 1766678750.5341003,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\vercel.svg": {
+    "mtime": 1766678750.542655,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\ios\\App\\App\\public\\window.svg": {
+    "mtime": 1766678750.5463533,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\file.svg": {
+    "mtime": 1766678750.5038922,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\globe.svg": {
+    "mtime": 1766678750.52164,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\next.svg": {
+    "mtime": 1766678750.5341003,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\vercel.svg": {
+    "mtime": 1766678750.542655,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\public\\window.svg": {
+    "mtime": 1766678750.5463533,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\error.tsx": {
+    "mtime": 1780262025.1805706,
+    "ast_hash": "c9fdbe0b9a335d6acf353a32de7843c6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\not-found.tsx": {
+    "mtime": 1780262035.0466757,
+    "ast_hash": "e0d4185b3475ee129c38346cab26c935",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\admin\\loading.tsx": {
+    "mtime": 1780262058.781079,
+    "ast_hash": "ad13594c76378f766a08c1d8741f76b4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\admin\\expenses\\page.tsx": {
+    "mtime": 1780264697.9766433,
+    "ast_hash": "683f0d9e226cd1c88ae8079a33efed75",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\accounting\\coa\\route.ts": {
+    "mtime": 1780264396.2173402,
+    "ast_hash": "629baf1b24b6a260bdf41e71bdeacba9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\accounting\\journal\\route.ts": {
+    "mtime": 1780264385.0958152,
+    "ast_hash": "d24ac8edd7147ede4adb1eec189b0d2f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\accounting\\reports\\route.ts": {
+    "mtime": 1780264419.4527576,
+    "ast_hash": "9b3a0c120509e0375c5500674d197726",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\cron\\billing\\route.ts": {
+    "mtime": 1780264497.3810277,
+    "ast_hash": "1e6b446c92bc6c3bf4a198eda64d38e0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\expenses\\route.ts": {
+    "mtime": 1780264444.997609,
+    "ast_hash": "5ba6a806f71453b14f67a8c5abae33e0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\products\\route.ts": {
+    "mtime": 1780264579.9126832,
+    "ast_hash": "3da936be6f9727d66fbd9458bc875e8c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\subscriptions\\route.ts": {
+    "mtime": 1780264462.8696651,
+    "ast_hash": "5490df2a313e7fb45a232d390005502f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\app\\api\\subscriptions\\[id]\\route.ts": {
+    "mtime": 1780264473.1841743,
+    "ast_hash": "6ba49cc7987b37a9c510377cfe7d96ab",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\hooks\\useAccounting.ts": {
+    "mtime": 1780264548.5627728,
+    "ast_hash": "66c53a907e2ac469cd94ea8c308183e7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\hooks\\useProducts.ts": {
+    "mtime": 1780264569.4985116,
+    "ast_hash": "ec561173064a66298dd794d948d2ef5f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\hooks\\useSubscriptions.ts": {
+    "mtime": 1780264561.179097,
+    "ast_hash": "c441d419f4f9a7cbc01f49e1d24ec361",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\huiq9\\OneDrive\\Desktop\\My-Project\\Product-menu\\Dashbord\\src\\lib\\migrations\\001_accounting_schema.sql": {
+    "mtime": 1780264321.206342,
+    "ast_hash": "227e49186915cf7a521be50db5d0c19d",
+    "semantic_hash": ""
+  }
+}

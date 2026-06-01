@@ -1,0 +1,331 @@
+{
+  "communities": {
+    "0": [
+      "app_admin_client_page_tsx",
+      "client_page_clientdetailscontent",
+      "client_page_clientpage",
+      "client_page_getwhatsapplink",
+      "client_page_statusstyles",
+      "components_clienteditform_client",
+      "components_clienteditform_clienteditform",
+      "components_clienteditform_tsx",
+      "components_clientinvoice_clientinvoice",
+      "components_clientinvoice_tsx",
+      "components_interactionlog_interactionlog",
+      "components_interactionlog_interactionlogprops",
+      "components_interactionlog_note",
+      "components_interactionlog_tsx",
+      "components_paymenthistory_payment",
+      "components_paymenthistory_paymenthistory",
+      "components_paymenthistory_paymenthistoryprops",
+      "components_paymenthistory_tsx",
+      "components_quickpaymentupdate_mode",
+      "components_quickpaymentupdate_quickpaymentupdate",
+      "components_quickpaymentupdate_quickpaymentupdateprops",
+      "components_quickpaymentupdate_tsx",
+      "contexts_clientscontext_useclients",
+      "lib_format_formatcurrency",
+      "lib_format_formatdate",
+      "lib_format_formatdatetime",
+      "lib_format_ts"
+    ],
+    "1": [
+      "components_admindashboardcontent_admindashboardcontent",
+      "components_admindashboardcontent_tsx",
+      "components_clienttable_client",
+      "components_clienttable_clientavatar",
+      "components_clienttable_clienttable",
+      "components_clienttable_filterpreset",
+      "components_clienttable_mobileclientcard",
+      "components_clienttable_sortmode",
+      "components_clienttable_status_colors",
+      "components_clienttable_tsx",
+      "components_createclientmodal_createclientdata",
+      "components_createclientmodal_createclientmodal",
+      "components_createclientmodal_customfield",
+      "components_createclientmodal_tsx",
+      "components_currencyselector_currencyselector",
+      "components_currencyselector_tsx",
+      "components_demochat_demochat",
+      "components_demowelcome_demowelcome",
+      "components_demowelcome_tour_slides",
+      "components_demowelcome_tsx",
+      "components_demowelcome_ui_text",
+      "components_demowelcome_usetypedtext",
+      "components_languagetoggle_languagetoggle",
+      "components_languagetoggle_tsx",
+      "contexts_currencycontext_usecurrency",
+      "contexts_languagecontext_uselanguage"
+    ],
+    "2": [
+      "admin_page_admindashboardpage",
+      "app_admin_page_tsx",
+      "components_syncservice_processsyncqueue",
+      "components_syncservice_syncservice",
+      "components_syncservice_tsx",
+      "contexts_clientscontext_clientscontext",
+      "contexts_clientscontext_clientscontexttype",
+      "contexts_clientscontext_clientsprovider",
+      "contexts_clientscontext_clientwithnotes",
+      "contexts_clientscontext_tsx",
+      "hooks_useclients_apicall",
+      "hooks_useclients_ts",
+      "hooks_useclients_useclients",
+      "lib_db_db",
+      "lib_db_offlinedb",
+      "lib_db_offlinedb_constructor",
+      "lib_db_syncoperation",
+      "lib_db_ts",
+      "lib_types_clientwithrelations",
+      "lib_types_createclientdata",
+      "lib_types_serializedclient",
+      "lib_types_status",
+      "lib_types_ts",
+      "lib_types_updateclientdata"
+    ],
+    "3": [
+      "app_api_auth_nextauth_route_ts",
+      "app_api_clients_id_debt_route_ts",
+      "app_api_clients_id_note_route_ts",
+      "app_api_clients_id_payment_route_ts",
+      "app_api_clients_id_route_ts",
+      "app_api_clients_route_ts",
+      "clients_route_get",
+      "clients_route_post",
+      "debt_route_post",
+      "id_route_delete",
+      "id_route_params",
+      "id_route_patch",
+      "lib_auth_authoptions",
+      "lib_auth_ts",
+      "lib_constants_admin_emails",
+      "lib_constants_sample_clients",
+      "lib_constants_ts",
+      "lib_supabase_createadminclient",
+      "lib_supabase_ts",
+      "nextauth_route_handler",
+      "note_route_post",
+      "payment_route_post"
+    ],
+    "4": [
+      "app_layout_geistmono",
+      "app_layout_geistsans",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "app_layout_tsx",
+      "components_posthogpageview_posthogpageview",
+      "components_posthogpageview_posthogpageviewcontent",
+      "components_posthogpageview_tsx",
+      "components_posthogprovider_posthogprovider",
+      "components_posthogprovider_tsx",
+      "components_providers_providers",
+      "components_providers_tsx",
+      "contexts_currencycontext_currency",
+      "contexts_currencycontext_currencycontext",
+      "contexts_currencycontext_currencycontexttype",
+      "contexts_currencycontext_currencyprovider",
+      "contexts_currencycontext_exchangerateresponse",
+      "contexts_currencycontext_fetcher",
+      "contexts_currencycontext_tsx",
+      "contexts_languagecontext_languageprovider",
+      "providers_queryprovider_queryprovider",
+      "providers_queryprovider_tsx"
+    ],
+    "5": [
+      "components_demochat_faq_items",
+      "components_demochat_message",
+      "components_demochat_parsedtext",
+      "components_demochat_tsx",
+      "components_demochat_ui_text",
+      "contexts_languagecontext_languagecontext",
+      "contexts_languagecontext_languagecontexttype",
+      "contexts_languagecontext_tsx",
+      "lib_translations_language",
+      "lib_translations_translations",
+      "lib_translations_ts"
+    ],
+    "6": [
+      "components_statcard_animatednumber",
+      "components_statcard_statcard",
+      "components_statcard_statcardprops",
+      "components_statcard_tsx",
+      "components_statcard_variantstyles"
+    ],
+    "7": [
+      "app_login_page_tsx",
+      "login_page_logincontent",
+      "login_page_loginpage"
+    ],
+    "8": [
+      "analytics_page_adminanalyticspage",
+      "app_admin_analytics_page_tsx"
+    ],
+    "9": [
+      "app_page_home",
+      "app_page_tsx"
+    ],
+    "10": [
+      "lib_prisma_globalforprisma",
+      "lib_prisma_ts"
+    ],
+    "11": [
+      "types_next_auth_d_session",
+      "types_next_auth_d_ts"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1282051282051282,
+    "1": 0.15384615384615385,
+    "2": 0.14492753623188406,
+    "3": 0.19047619047619047,
+    "4": 0.10822510822510822,
+    "5": 0.2545454545454545,
+    "6": 0.4,
+    "7": 0.6666666666666666,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "contexts_currencycontext_usecurrency",
+      "label": "useCurrency()",
+      "degree": 18
+    },
+    {
+      "id": "contexts_languagecontext_uselanguage",
+      "label": "useLanguage()",
+      "degree": 18
+    },
+    {
+      "id": "lib_supabase_createadminclient",
+      "label": "createAdminClient()",
+      "degree": 13
+    },
+    {
+      "id": "contexts_clientscontext_useclients",
+      "label": "useClients()",
+      "degree": 8
+    },
+    {
+      "id": "lib_auth_authoptions",
+      "label": "authOptions",
+      "degree": 7
+    },
+    {
+      "id": "components_quickpaymentupdate_quickpaymentupdate",
+      "label": "QuickPaymentUpdate()",
+      "degree": 6
+    },
+    {
+      "id": "lib_types_serializedclient",
+      "label": "SerializedClient",
+      "degree": 6
+    },
+    {
+      "id": "components_clientinvoice_clientinvoice",
+      "label": "ClientInvoice()",
+      "degree": 5
+    },
+    {
+      "id": "lib_format_formatcurrency",
+      "label": "formatCurrency()",
+      "degree": 5
+    },
+    {
+      "id": "lib_types_status",
+      "label": "Status",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "GET()",
+      "target": "createAdminClient()",
+      "source_files": [
+        "app/api/clients/route.ts",
+        "lib/supabase.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `createAdminClient()`"
+    },
+    {
+      "source": "POST()",
+      "target": "createAdminClient()",
+      "source_files": [
+        "app/api/clients/route.ts",
+        "lib/supabase.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `POST()` unexpectedly reaches hub `createAdminClient()`"
+    },
+    {
+      "source": "PATCH()",
+      "target": "createAdminClient()",
+      "source_files": [
+        "app/api/clients/[id]/route.ts",
+        "lib/supabase.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `PATCH()` unexpectedly reaches hub `createAdminClient()`"
+    },
+    {
+      "source": "DELETE()",
+      "target": "createAdminClient()",
+      "source_files": [
+        "app/api/clients/[id]/route.ts",
+        "lib/supabase.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `DELETE()` unexpectedly reaches hub `createAdminClient()`"
+    },
+    {
+      "source": "POST()",
+      "target": "createAdminClient()",
+      "source_files": [
+        "app/api/clients/[id]/debt/route.ts",
+        "lib/supabase.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `POST()` unexpectedly reaches hub `createAdminClient()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `useCurrency()` connect `Community 1` to `Community 0`, `Community 4`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `useLanguage()` connect `Community 1` to `Community 0`, `Community 5`?",
+      "why": "High betweenness centrality (0.036) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `geistSans`, `geistMono`, `metadata` to the rest of the system?",
+      "why": "36 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1282051282051282 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14492753623188406 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 4` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10822510822510822 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

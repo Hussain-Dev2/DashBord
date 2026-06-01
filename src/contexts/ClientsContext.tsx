@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { useClients as useSupabaseClients } from '@/hooks/useClients'
-import { SerializedClient, Status } from '@/lib/types'
+import { SerializedClient, SerializedPayment, Status, CreateClientData, UpdateClientData } from '@/lib/types'
 import { SAMPLE_CLIENTS } from '@/lib/constants'
 
 // Re-export types
@@ -13,8 +13,8 @@ export type ClientWithNotes = SerializedClient
 // Interface
 interface ClientsContextType {
   clients: ClientWithNotes[]
-  addClient: (data: any) => Promise<void>
-  updateClientFn: (id: string, data: any) => Promise<void>
+  addClient: (data: CreateClientData) => Promise<void>
+  updateClientFn: (id: string, data: UpdateClientData) => Promise<void>
   deleteClientFn: (id: string) => Promise<void>
   updateStatusFn: (id: string, status: Status) => Promise<void>
   addPaymentFn: (clientId: string, amount: number) => Promise<void>
@@ -83,20 +83,26 @@ export function ClientsProvider({
   const isLoading = isAdmin ? isServerLoading : false
 
   // Handlers
-  const addClient = useCallback(async (data: any) => {
+  const addClient = useCallback(async (data: CreateClientData) => {
     console.log('[addClient] isAdmin:', isAdmin, 'data:', data)
     if (isAdmin) {
       try {
         await addClientCtx.mutateAsync(data)
         toast.success('Client created')
-      } catch (error: any) {
-        console.error('[addClient] FAILED:', error?.message || error)
-        toast.error(`Failed to create client: ${error?.message || 'Unknown error'}`)
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error'
+        console.error('[addClient] FAILED:', msg)
+        toast.error(`Failed to create client: ${msg}`)
       }
     } else {
       const newClient: ClientWithNotes = {
-        ...data,
         id: `demo-${Date.now()}`,
+        name: data.name,
+        phone: data.phone ?? null,
+        industry: data.industry ?? null,
+        logoUrl: data.logoUrl ?? null,
+        projectUrl: data.projectUrl ?? null,
+        repoUrl: data.repoUrl ?? null,
         status: 'PENDING',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -104,20 +110,22 @@ export function ClientsProvider({
         payments: [],
         priceQuoted: Number(data.priceQuoted) || 0,
         amountPaid: Number(data.amountPaid) || 0,
-      } as any 
+        lastPayment: null,
+      }
       setDemoClients(prev => [newClient, ...prev])
       toast.success('Demo: Client created (Local Only)')
     }
   }, [isAdmin, addClientCtx])
 
-  const updateClientFn = useCallback(async (id: string, data: any) => {
+  const updateClientFn = useCallback(async (id: string, data: UpdateClientData) => {
     if (isAdmin) {
       try {
         await updateClientCtx.mutateAsync({id, data})
         toast.success('Client updated')
-      } catch (error: any) {
-        console.error('[updateClient] FAILED:', error?.message || error)
-        toast.error(`Failed to update client: ${error?.message || 'Unknown error'}`)
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error'
+        console.error('[updateClient] FAILED:', msg)
+        toast.error(`Failed to update client: ${msg}`)
       }
     } else {
         setDemoClients(prev => prev.map(c => c.id === id ? { ...c, ...data } : c))
@@ -166,12 +174,12 @@ export function ClientsProvider({
           // Demo mode: update amountPaid AND push to payments[] history
           setDemoClients(prev => prev.map(c => {
             if (c.id === clientId) {
-              const newPayment = {
+              const newPayment: SerializedPayment = {
                 id: `demo-pay-${Date.now()}`,
                 amount,
                 date: new Date().toISOString(),
                 clientId,
-                type: 'PAYMENT' as const,
+                type: 'PAYMENT',
               }
               return {
                 ...c,
@@ -199,12 +207,12 @@ export function ClientsProvider({
           // Demo mode: update priceQuoted AND push to payments[] history as negative
           setDemoClients(prev => prev.map(c => {
             if (c.id === clientId) {
-              const newDebt = {
+              const newDebt: SerializedPayment = {
                 id: `demo-debt-${Date.now()}`,
                 amount: -amount, // stored as negative for history
                 date: new Date().toISOString(),
                 clientId,
-                type: 'DEBT' as any,
+                type: 'DEBT',
               }
               return {
                 ...c,

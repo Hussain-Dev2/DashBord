@@ -13,13 +13,19 @@ interface CustomField {
   isDefault?: boolean
 }
 
-interface CreateClientData {
+interface FormData {
     name: string
     phone: string
     logoUrl: string
     priceQuoted: string
     amountPaid: string
     customFields: CustomField[]
+}
+
+interface FormErrors {
+  name?: string
+  priceQuoted?: string
+  amountPaid?: string
 }
 
 export function CreateClientModal({ variant = 'default' }: { variant?: 'default' | 'mobile-nav' }) {
@@ -29,9 +35,10 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showAdvanced, setShowAdvanced] = useState(false)
+  const [errors, setErrors] = useState<FormErrors>({})
   const fileInputRef = useRef<HTMLInputElement>(null)
   
-  const [formData, setFormData] = useState<CreateClientData>({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
     logoUrl: '',
@@ -43,6 +50,26 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
       { id: 'repoUrl', type: 'url', label: 'Repo URL', value: '', isDefault: true },
     ]
   })
+
+  const validate = (): boolean => {
+    const newErrors: FormErrors = {}
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters.'
+    }
+    const price = parseFloat(formData.priceQuoted)
+    const paid = parseFloat(formData.amountPaid)
+    if (formData.priceQuoted && (isNaN(price) || price < 0)) {
+      newErrors.priceQuoted = 'Must be a positive number.'
+    }
+    if (formData.amountPaid && (isNaN(paid) || paid < 0)) {
+      newErrors.amountPaid = 'Must be a positive number.'
+    }
+    if (!isNaN(price) && !isNaN(paid) && paid > price && price > 0) {
+      newErrors.amountPaid = 'Amount paid cannot exceed total price.'
+    }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   // Handle local image upload
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +89,7 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
     setIsSubmitting(true)
     
     try {
@@ -89,6 +117,7 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
       })
       
       setIsOpen(false)
+      setErrors({})
       setFormData({
         name: '',
         phone: '',
@@ -224,10 +253,15 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border border-white/5 focus:border-nexa-gold/30 rounded-2xl text-white font-bold text-lg outline-none transition-all placeholder:text-gray-700"
+                    className={`w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border rounded-2xl text-white font-bold text-lg outline-none transition-all placeholder:text-gray-700 ${
+                      errors.name ? 'border-red-500/50 focus:border-red-500/70' : 'border-white/5 focus:border-nexa-gold/30'
+                    }`}
                     placeholder={t('client_name')}
                     required
                   />
+                  {errors.name && (
+                    <p className="absolute -bottom-5 start-0 text-xs text-red-400 font-medium">{errors.name}</p>
+                  )}
                 </div>
 
                 <div className="relative group">
@@ -248,11 +282,17 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
                     </span>
                     <input
                       type="number"
+                      min="0"
                       value={formData.priceQuoted}
                       onChange={(e) => setFormData({ ...formData, priceQuoted: e.target.value })}
-                      className="w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border border-white/5 focus:border-nexa-gold/30 rounded-2xl text-white font-bold text-base outline-none transition-all placeholder:text-gray-700"
+                      className={`w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border rounded-2xl text-white font-bold text-base outline-none transition-all placeholder:text-gray-700 ${
+                        errors.priceQuoted ? 'border-red-500/50' : 'border-white/5 focus:border-nexa-gold/30'
+                      }`}
                       placeholder={t('price_quoted')}
                     />
+                    {errors.priceQuoted && (
+                      <p className="mt-1 text-xs text-red-400 font-medium ps-2">{errors.priceQuoted}</p>
+                    )}
                   </div>
                   <div className="relative group">
                     <span className="absolute start-5 top-1/2 -translate-y-1/2 text-sm font-black text-gray-600 group-focus-within:text-nexa-gold transition-all">
@@ -260,11 +300,17 @@ export function CreateClientModal({ variant = 'default' }: { variant?: 'default'
                     </span>
                     <input
                       type="number"
+                      min="0"
                       value={formData.amountPaid}
                       onChange={(e) => setFormData({ ...formData, amountPaid: e.target.value })}
-                      className="w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border border-white/5 focus:border-nexa-gold/30 rounded-2xl text-white font-bold text-base outline-none transition-all placeholder:text-gray-700"
+                      className={`w-full min-h-[64px] ps-14 pe-6 bg-white/[0.03] border rounded-2xl text-white font-bold text-base outline-none transition-all placeholder:text-gray-700 ${
+                        errors.amountPaid ? 'border-red-500/50' : 'border-white/5 focus:border-nexa-gold/30'
+                      }`}
                       placeholder={t('initial_payment')}
                     />
+                    {errors.amountPaid && (
+                      <p className="mt-1 text-xs text-red-400 font-medium ps-2">{errors.amountPaid}</p>
+                    )}
                   </div>
                 </div>
               </div>
